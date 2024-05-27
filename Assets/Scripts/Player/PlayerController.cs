@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.testSFXEvent, transform.position);
         }
 
-        _buildingManager.BuildStructure(_currentObjectToBuild);
+        //_buildingManager.BuildStructure(_currentObjectToBuild);
 
     }
     
