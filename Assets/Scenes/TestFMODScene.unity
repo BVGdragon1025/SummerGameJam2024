@@ -298,7 +298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpeed: 2
+  _buildingManager: {fileID: 0}
   _currentObjectToBuild: {fileID: 1573833197947294809, guid: 245e9cbf46071574b968e33b4e212634, type: 3}
+  playerRange: {fileID: 1336116639}
 --- !u!50 &453322055
 Rigidbody2D:
   serializedVersion: 4
