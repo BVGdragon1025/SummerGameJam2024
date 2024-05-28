@@ -174,6 +174,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingCost: 0
+  layers:
+    serializedVersion: 2
+    m_Bits: 192
   validPlacementMaterial: {fileID: 2100000, guid: 1598dab8cba5b9c41a83a1ed1877a6d9, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: df53763d4a9111f4592844eba0ea7cbe, type: 2}
   meshComponents:
