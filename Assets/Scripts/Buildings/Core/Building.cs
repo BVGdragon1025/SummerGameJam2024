@@ -18,6 +18,7 @@ public abstract class Building : MonoBehaviour
     [HideInInspector] public bool hasValidPlacement;
     [HideInInspector] public bool isPlaced;
 
+    [SerializeField]
     private int _numberOfObstacles;
 
     private void Awake()
@@ -25,6 +26,8 @@ public abstract class Building : MonoBehaviour
         hasValidPlacement = true;
         isPlaced = true;
         _numberOfObstacles = 0;
+
+        InitializeMaterials();
 
     }
 
@@ -36,8 +39,12 @@ public abstract class Building : MonoBehaviour
         if(IsPlaced(other.gameObject))
             return;
 
-        _numberOfObstacles++;
-        SetPlacementMode(BuildingState.NotValid);
+        if(other.gameObject.layer != LayerMask.GetMask("PlayerRadius"))
+        {
+            _numberOfObstacles++;
+            SetPlacementMode(BuildingState.NotValid);
+        }
+            
 
     }
 
@@ -78,10 +85,10 @@ public abstract class Building : MonoBehaviour
                 break;
         }
 
-        SetMaterials(state);
+        SetMaterial(state);
     }
 
-    public void SetMaterials(BuildingState state)
+    public void SetMaterial(BuildingState state)
     {
         if(state == BuildingState.Placed)
         {

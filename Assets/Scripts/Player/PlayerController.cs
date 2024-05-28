@@ -2,25 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BuildingManager))]
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float _playerSpeed;
-    private Rigidbody2D _rb;
+    private Rigidbody _rb;
     [SerializeField]
-    private BuildingManager _buildingManager;
-    private Vector2 _movement;
+    private Vector3 _movement;
     [SerializeField]
     private GameObject _currentObjectToBuild;
-    public Collider2D playerRange;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _buildingManager = GetComponent<BuildingManager>();
-        playerRange = GetComponentInChildren<Collider2D>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -28,16 +23,13 @@ public class PlayerController : MonoBehaviour
         float hInput = Input.GetAxisRaw("Horizontal");
         float vInput = Input.GetAxisRaw("Vertical");
 
-        _movement = new Vector2(hInput, vInput).normalized;
-        Debug.Log($"Velocity: { _movement }");
+        _movement = new Vector3(hInput, 0, vInput).normalized;
 
         //Test SFX
         if (Input.GetKeyDown(KeyCode.Space))
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.testSFXEvent, transform.position);
         }
-
-        //_buildingManager.BuildStructure(_currentObjectToBuild);
 
     }
     
@@ -47,7 +39,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void MovePlayer(Vector2 movementVector, float playerSpeed)
+    void MovePlayer(Vector3 movementVector, float playerSpeed)
     {
         _rb.velocity = movementVector * playerSpeed;
     }
