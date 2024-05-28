@@ -33,28 +33,25 @@ public abstract class Building : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isPlaced)
-            return;
+        if(isPlaced) return;
 
-        if(IsPlaced(other.gameObject))
-            return;
+        if(IsPlaced(other.gameObject)) return;
 
-        if(other.gameObject.layer != LayerMask.GetMask("PlayerRadius"))
+        if(other.gameObject.layer != BuildingPlacer.Instance.groundLayerMask)
         {
             _numberOfObstacles++;
-            SetPlacementMode(BuildingState.NotValid);
         }
-            
+
+        
+        SetPlacementMode(BuildingState.NotValid);
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (isPlaced)
-            return;
+        if(isPlaced) return;
 
-        if (IsPlaced(other.gameObject))
-            return;
+        if(IsPlaced(other.gameObject)) return;
 
         _numberOfObstacles--;
 
@@ -99,7 +96,8 @@ public abstract class Building : MonoBehaviour
         }
         else
         {
-            Material materialToApply = state == BuildingState.Valid ? validPlacementMaterial : invalidPlacementMaterial;
+            Material materialToApply = state == BuildingState.Valid
+                ? validPlacementMaterial : invalidPlacementMaterial;
 
             Material[] materials;
             int numberOfMaterials;

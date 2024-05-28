@@ -12,21 +12,11 @@ public class BuildingPlacer : MonoBehaviour
     private RaycastHit _hit;
 
     public LayerMask groundLayerMask;
-    public static BuildingPlacer Instance { get; private set; }
+    public static BuildingPlacer Instance;
 
     private void Awake()
     {
-        /*
-        if(Instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-        */
-
+        Instance = this;
         _mainCamera = Camera.main;
         _buildingPrefab = null;
     }
@@ -35,10 +25,19 @@ public class BuildingPlacer : MonoBehaviour
     {
         if(_buildingPrefab != null)
         {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Destroy(_toBuild);
+                _toBuild = null;
+                _buildingPrefab = null;
+                return;
+            }
+
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 if(_toBuild.activeSelf)
                     _toBuild.SetActive(false);
+                return;
             }
             else if (!_toBuild.activeSelf)
             {
@@ -48,12 +47,12 @@ public class BuildingPlacer : MonoBehaviour
             _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(_ray, out _hit, 1000f, groundLayerMask))
             {
-                Debug.Log($"GameObject {_hit.collider.name} with LayerMask {LayerMask.LayerToName(_hit.collider.gameObject.layer)}");
+                //Debug.Log($"GameObject {_hit.collider.name} with LayerMask {LayerMask.LayerToName(_hit.collider.gameObject.layer)}");
 
                 if(_toBuild.activeSelf)
                     _toBuild.SetActive(true);
 
-                _toBuild.transform.position = new Vector3(_hit.point.x,  _toBuild.transform.position.y, _hit.point.z);
+                _toBuild.transform.position = new Vector3(_hit.point.x, transform.localScale.y / 2, _hit.point.z);
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -61,10 +60,22 @@ public class BuildingPlacer : MonoBehaviour
 
                     if (building.hasValidPlacement)
                     {
+
                         building.SetPlacementMode(BuildingState.Placed);
 
-                        _buildingPrefab = null;
-                        _toBuild = null;
+                        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                        {
+                            _toBuild = null;
+                            PrepareBuilding();
+                        }
+                        else
+                        {
+                            building.GetComponent<Collider>().isTrigger = false;
+
+                            _buildingPrefab = null;
+                            _toBuild = null;
+                        }
+                        
                     }
                     
 
@@ -82,6 +93,7 @@ public class BuildingPlacer : MonoBehaviour
     {
         _buildingPrefab = prefab;
         PrepareBuilding();
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void PrepareBuilding()
@@ -89,9 +101,7 @@ public class BuildingPlacer : MonoBehaviour
         if(_toBuild)
             Destroy(_toBuild);
 
-        Vector3 position = new Vector3(_buildingPrefab.transform.position.x, _buildingPrefab.transform.localScale.y / 2, _buildingPrefab.transform.position.z);
-
-        _toBuild = Instantiate(_buildingPrefab, position, Quaternion.identity);
+        _toBuild = Instantiate(_buildingPrefab);
         _toBuild.SetActive(false);
 
         Building building = _toBuild.GetComponent<Building>();

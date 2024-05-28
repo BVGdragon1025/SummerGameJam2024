@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
     [SerializeField]
     private Vector3 _movement;
-    [SerializeField]
-    private GameObject _currentObjectToBuild;
 
     private void Awake()
     {
