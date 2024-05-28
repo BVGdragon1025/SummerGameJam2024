@@ -16,6 +16,7 @@ public class BuildingPlacer : MonoBehaviour
 
     private void Awake()
     {
+        /*
         if(Instance != null)
         {
             Destroy(gameObject);
@@ -24,6 +25,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             Instance = this;
         }
+        */
 
         _mainCamera = Camera.main;
         _buildingPrefab = null;
@@ -51,7 +53,7 @@ public class BuildingPlacer : MonoBehaviour
                 if(_toBuild.activeSelf)
                     _toBuild.SetActive(true);
 
-                _toBuild.transform.position = _hit.point;
+                _toBuild.transform.position = new Vector3(_hit.point.x,  _toBuild.transform.position.y, _hit.point.z);
 
                 if (Input.GetMouseButtonDown(0))
                 {
