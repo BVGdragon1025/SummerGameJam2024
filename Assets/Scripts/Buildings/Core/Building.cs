@@ -62,13 +62,6 @@ public abstract class Building : MonoBehaviour
             SetPlacementMode(BuildingState.Valid);
     }
 
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        InitializeMaterials(); 
-    }
-#endif
-
     public void SetPlacementMode(BuildingState state)
     {
         switch(state)
