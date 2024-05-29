@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 2900653660868043017}
   - component: {fileID: 7615228015000307896}
   - component: {fileID: 5393486226494776568}
+  - component: {fileID: 4702178204777977732}
   m_Layer: 0
   m_Name: TestStructure3D
   m_TagString: Untagged
@@ -173,17 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727ddbc0fd2f6204686b29e097c1e3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingCost: 0
-  layers:
-    serializedVersion: 2
-    m_Bits: 321
-  validPlacementMaterial: {fileID: 2100000, guid: 1598dab8cba5b9c41a83a1ed1877a6d9, type: 2}
-  invalidPlacementMaterial: {fileID: 2100000, guid: df53763d4a9111f4592844eba0ea7cbe, type: 2}
-  meshComponents:
-  - {fileID: 6668347346622794945}
-  hasValidPlacement: 0
-  isPlaced: 0
-  _numberOfObstacles: 0
+  buildingCost: 1
+  currencyAmount: 0
+  lvlPlagueLoss: 0
 --- !u!54 &5393486226494776568
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -211,3 +204,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4702178204777977732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886148822320119858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validPlacementMaterial: {fileID: 2100000, guid: 1598dab8cba5b9c41a83a1ed1877a6d9, type: 2}
+  invalidPlacementMaterial: {fileID: 2100000, guid: df53763d4a9111f4592844eba0ea7cbe, type: 2}
+  meshComponents:
+  - {fileID: 6668347346622794945}
+  hasValidPlacement: 0
+  isPlaced: 0

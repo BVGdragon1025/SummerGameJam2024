@@ -63,12 +63,14 @@ public class BuildingPlacer : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    BuildingManager buildingManager = _toBuild.GetComponent<BuildingManager>();
                     Building building = _toBuild.GetComponent<Building>();
 
-                    if (building.hasValidPlacement && building.CheckLayerMask(_toBuild.transform.position, 0.5f))
+                    if (buildingManager.hasValidPlacement && building.HasCurrency())
                     {
 
-                        building.SetPlacementMode(BuildingState.Placed);
+                        buildingManager.SetPlacementMode(BuildingState.Placed);
+
 
                         if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                         {
@@ -77,7 +79,7 @@ public class BuildingPlacer : MonoBehaviour
                         }
                         else
                         {
-                            building.GetComponent<Collider>().isTrigger = false;
+                            buildingManager.GetComponent<Collider>().isTrigger = false;
 
                             _buildingPrefab = null;
                             _toBuild = null;
@@ -86,7 +88,7 @@ public class BuildingPlacer : MonoBehaviour
                     }
                     else
                     {
-                        building.SetPlacementMode(BuildingState.NotValid);
+                        buildingManager.SetPlacementMode(BuildingState.NotValid);
                     }
                     
                 }
@@ -114,9 +116,9 @@ public class BuildingPlacer : MonoBehaviour
         _toBuild = Instantiate(_buildingPrefab);
         _toBuild.SetActive(false);
 
-        Building building = _toBuild.GetComponent<Building>();
-        building.isPlaced = false;
-        building.SetPlacementMode(BuildingState.Valid);
+        BuildingManager buildingManager = _toBuild.GetComponent<BuildingManager>();
+        buildingManager.isPlaced = false;
+        buildingManager.SetPlacementMode(BuildingState.Valid);
     }
 
 }
