@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 
 public class PlayerController : MonoBehaviour
@@ -8,10 +9,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _playerSpeed;
     private Rigidbody _rb;
+    public VisualEffect vfxRenderer;
     [SerializeField]
     private Vector3 _movement;
     private Animator _animator;
-
+  
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.testSFXEvent, transform.position);
         }
+        vfxRenderer.SetVector3("ColliderPos", new Vector3(transform.position.x, transform.position.z, transform.position.y));
 
     }
     
@@ -46,7 +49,6 @@ public class PlayerController : MonoBehaviour
     {
         _rb.velocity = movementVector * playerSpeed;
     }
-
 
 
 }
