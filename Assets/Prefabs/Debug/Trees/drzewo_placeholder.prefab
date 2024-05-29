@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6891129807940105639}
   - component: {fileID: 9152344490380728169}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: drzewo_placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2395193566141622858}
   - component: {fileID: 958144837022339286}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

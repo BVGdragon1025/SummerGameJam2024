@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,8 +38,9 @@ public abstract class Building : MonoBehaviour
     {
         if(isPlaced) return;
 
-        Debug.Log($"Enter: IsPlaced result:{ IsPlaced(other.gameObject)} for {other.gameObject.name}, layer {LayerMask.LayerToName(other.gameObject.layer)}");
         if(IsPlaced(other.gameObject)) return;
+
+        if (other.CompareTag("Player")) return;
 
         _numberOfObstacles++;
 
@@ -50,8 +52,9 @@ public abstract class Building : MonoBehaviour
     {
         if(isPlaced) return;
 
-        Debug.Log($"Exit: IsPlaced result:{IsPlaced(other.gameObject)} for {other.gameObject.name}, layer {LayerMask.LayerToName(other.gameObject.layer)}");
         if (IsPlaced(other.gameObject)) return;
+
+        if (other.CompareTag("Player")) return;
 
         _numberOfObstacles--;
 
