@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public abstract class Building : MonoBehaviour
     [Header("Building Data"), Tooltip("Resource values and other things")]
     [SerializeField]
     protected int buildingCost = 0;
+    [SerializeField, Tooltip("Specifies which layers this building needs")]
+    private LayerMask layers;
 
     [Header("Building Placement Data")]
     public Material validPlacementMaterial;
@@ -37,12 +40,10 @@ public abstract class Building : MonoBehaviour
 
         if(IsPlaced(other.gameObject)) return;
 
-        if(other.gameObject.layer != BuildingPlacer.Instance.groundLayerMask)
-        {
-            _numberOfObstacles++;
-        }
+        if (other.CompareTag("Player")) return;
 
-        
+        _numberOfObstacles++;
+
         SetPlacementMode(BuildingState.NotValid);
 
     }
@@ -51,7 +52,9 @@ public abstract class Building : MonoBehaviour
     {
         if(isPlaced) return;
 
-        if(IsPlaced(other.gameObject)) return;
+        if (IsPlaced(other.gameObject)) return;
+
+        if (other.CompareTag("Player")) return;
 
         _numberOfObstacles--;
 
@@ -136,6 +139,24 @@ public abstract class Building : MonoBehaviour
             _initialMaterials[renderer] = new List<Material>(renderer.sharedMaterials);
         }
 
+    }
+
+    public bool CheckLayerMask(Vector3 position, float radius)
+    {
+        int maxColliders = 10;
+
+        Collider[] memory = new Collider[maxColliders];
+        int colliders = Physics.OverlapSphereNonAlloc(position, radius, memory, layers);
+
+        if(colliders >= 2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
     private bool IsPlaced(GameObject gameObject)

@@ -16,7 +16,15 @@ public class BuildingPlacer : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         _mainCamera = Camera.main;
         _buildingPrefab = null;
     }
@@ -47,7 +55,6 @@ public class BuildingPlacer : MonoBehaviour
             _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(_ray, out _hit, 1000f, groundLayerMask))
             {
-                //Debug.Log($"GameObject {_hit.collider.name} with LayerMask {LayerMask.LayerToName(_hit.collider.gameObject.layer)}");
 
                 if(_toBuild.activeSelf)
                     _toBuild.SetActive(true);
@@ -58,7 +65,7 @@ public class BuildingPlacer : MonoBehaviour
                 {
                     Building building = _toBuild.GetComponent<Building>();
 
-                    if (building.hasValidPlacement)
+                    if (building.hasValidPlacement && building.CheckLayerMask(_toBuild.transform.position, 0.5f))
                     {
 
                         building.SetPlacementMode(BuildingState.Placed);
@@ -75,10 +82,13 @@ public class BuildingPlacer : MonoBehaviour
                             _buildingPrefab = null;
                             _toBuild = null;
                         }
-                        
+
+                    }
+                    else
+                    {
+                        building.SetPlacementMode(BuildingState.NotValid);
                     }
                     
-
                 }
             }
             else if (_toBuild.activeSelf)

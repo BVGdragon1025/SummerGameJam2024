@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
     [SerializeField]
     private Vector3 _movement;
+    private Animator _animator;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -22,6 +24,9 @@ public class PlayerController : MonoBehaviour
         float vInput = Input.GetAxisRaw("Vertical");
 
         _movement = new Vector3(hInput, 0, vInput).normalized;
+
+        _animator.SetFloat("xValue", hInput);
+        _animator.SetFloat("yValue", vInput);
 
         //Test SFX
         if (Input.GetKeyDown(KeyCode.Space))
