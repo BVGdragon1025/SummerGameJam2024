@@ -361,7 +361,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":-4.052021026611328,"y":4.933597564697266,"z":-8.104764637195672e-10},"size":{"x":56.469120025634769,"y":37.776611328125,"z":2.0}}'
+      m_SerializableObject: '{"center":{"x":0.05788993835449219,"y":0.5096855163574219,"z":4.3828151774505389e-8},"size":{"x":99.61852264404297,"y":99.5074234008789,"z":2.0}}'
     m_Space: 0
   m_Property:
     name: bounds
@@ -1857,7 +1857,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":-7.41117000579834,"y":3.4317970275878908,"z":-7.031666915402468e-10},"size":{"x":47.60108947753906,"y":36.326751708984378,"z":1.0}}'
+      m_SerializableObject: '{"center":{"x":-0.3325499892234802,"y":3.194240093231201,"z":-4.425047883671596e-9},"size":{"x":95.70892333984375,"y":93.62510681152344,"z":1.0}}'
     m_Space: 0
   m_Property:
     name: Box
