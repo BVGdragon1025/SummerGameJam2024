@@ -15,6 +15,8 @@ public abstract class Building : MonoBehaviour
     [SerializeField]
     protected float lvlPlagueLoss;
     public float LvlPlagueLoss { get { return lvlPlagueLoss; } }
+    [SerializeField, Tooltip("Rate at which this buiilding spawns it's resources, in seconds")]
+    private float _spawnRate;
 
     protected GameManager gameManager;
 
@@ -30,6 +32,14 @@ public abstract class Building : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+
+    public IEnumerator StartProduction()
+    {
+        Debug.Log("Production start!");
+        yield return new WaitForSeconds(_spawnRate);
+        Debug.Log("Production stop!");
     }
 
 }

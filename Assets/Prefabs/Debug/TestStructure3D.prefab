@@ -177,6 +177,7 @@ MonoBehaviour:
   buildingCost: 20
   currencyAmount: 0
   lvlPlagueLoss: 0
+  _spawnRate: 5
 --- !u!54 &5393486226494776568
 Rigidbody:
   m_ObjectHideFlags: 0

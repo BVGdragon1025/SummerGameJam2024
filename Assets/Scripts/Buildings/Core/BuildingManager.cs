@@ -61,7 +61,7 @@ public class BuildingManager : MonoBehaviour
             case BuildingState.Placed:
                 isPlaced = true;
                 hasValidPlacement = true;
-
+                StartCoroutine(_building.StartProduction());
                 break;
             case BuildingState.Valid:
                 hasValidPlacement = true;
