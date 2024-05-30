@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 _movement;
     private Animator _animator;
+
+    public float PlayerMovement { get { return _movement.magnitude; } }
   
     private void Awake()
     {

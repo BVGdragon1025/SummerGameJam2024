@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 715354466535421541}
-  - component: {fileID: 1241482999619592601}
-  - component: {fileID: 207641959096581739}
+  - component: {fileID: 188120313989202586}
+  - component: {fileID: 5363995246937477916}
   m_Layer: 8
-  m_Name: Collider
+  m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7251358354442891123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1241482999619592601
+--- !u!135 &188120313989202586
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,7 +54,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &207641959096581739
+--- !u!114 &5363995246937477916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,12 +77,12 @@ GameObject:
   - component: {fileID: 7251358354442891123}
   - component: {fileID: 6698209626461832598}
   - component: {fileID: 6668347346622794945}
-  - component: {fileID: 2900653660868043017}
   - component: {fileID: 7615228015000307896}
   - component: {fileID: 5393486226494776568}
   - component: {fileID: 4702178204777977732}
+  - component: {fileID: 1638146785164813594}
   m_Layer: 14
-  m_Name: TestStructure3D
+  m_Name: TestStructure3D_2
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,27 +154,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2900653660868043017
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6886148822320119858}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7615228015000307896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buildingType: 2
   buildingCost: 20
-  resourceAmount: 20
+  resourceAmount: 10
   _spawnRate: 5
   _currentPlague: 0
   _maxPlagueTime: 0
@@ -242,3 +221,24 @@ MonoBehaviour:
   - {fileID: 6668347346622794945}
   hasValidPlacement: 0
   isPlaced: 0
+--- !u!65 &1638146785164813594
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886148822320119858}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 768
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
