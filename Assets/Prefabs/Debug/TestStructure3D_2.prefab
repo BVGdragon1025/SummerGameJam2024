@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 5393486226494776568}
   - component: {fileID: 4702178204777977732}
   - component: {fileID: 1638146785164813594}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: TestStructure3D_2
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -170,6 +170,9 @@ MonoBehaviour:
   buildingCost: 20
   resourceAmount: 10
   _spawnRate: 5
+  _currentPlague: 0
+  _maxPlagueTime: 0
+  hasPlague: 0
   hasFinished: 0
   elementsInTrigger: 0
   triggerGameObject: {fileID: 380100751439896588}
