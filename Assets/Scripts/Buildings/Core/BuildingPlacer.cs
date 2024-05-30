@@ -61,35 +61,48 @@ public class BuildingPlacer : MonoBehaviour
 
                 _toBuild.transform.position = new Vector3(_hit.point.x, transform.localScale.y / 2, _hit.point.z);
 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Building building = _toBuild.GetComponent<Building>();
+                BuildingManager buildingManager = _toBuild.GetComponent<BuildingManager>();
+                Building building = _toBuild.GetComponent<Building>();
 
-                    if (building.hasValidPlacement && building.CheckLayerMask(_toBuild.transform.position, 0.5f))
+                if (building.HasCurrency())
+                {
+                    if (Input.GetMouseButtonDown(0))
                     {
 
-                        building.SetPlacementMode(BuildingState.Placed);
-
-                        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                        if (buildingManager.hasValidPlacement)
                         {
-                            _toBuild = null;
-                            PrepareBuilding();
+
+                            buildingManager.SetPlacementMode(BuildingState.Placed);
+                            GameManager.Instance.ChangeCurrencyValue(-building.BuildingCost);
+
+
+                            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                            {
+                                _toBuild = null;
+                                PrepareBuilding();
+                            }
+                            else
+                            {
+                                buildingManager.GetComponent<Collider>().isTrigger = false;
+
+                                _buildingPrefab = null;
+                                _toBuild = null;
+                            }
+
                         }
                         else
                         {
-                            building.GetComponent<Collider>().isTrigger = false;
-
-                            _buildingPrefab = null;
-                            _toBuild = null;
+                            buildingManager.SetPlacementMode(BuildingState.NotValid);
                         }
 
                     }
-                    else
-                    {
-                        building.SetPlacementMode(BuildingState.NotValid);
-                    }
-                    
                 }
+                else
+                {
+                    buildingManager.SetPlacementMode(BuildingState.NotValid);
+                }
+
+                
             }
             else if (_toBuild.activeSelf)
             {
@@ -114,9 +127,9 @@ public class BuildingPlacer : MonoBehaviour
         _toBuild = Instantiate(_buildingPrefab);
         _toBuild.SetActive(false);
 
-        Building building = _toBuild.GetComponent<Building>();
-        building.isPlaced = false;
-        building.SetPlacementMode(BuildingState.Valid);
+        BuildingManager buildingManager = _toBuild.GetComponent<BuildingManager>();
+        buildingManager.isPlaced = false;
+        buildingManager.SetPlacementMode(BuildingState.Valid);
     }
 
 }
