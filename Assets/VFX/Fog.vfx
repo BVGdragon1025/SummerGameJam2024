@@ -1857,7 +1857,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":-7.41117000579834,"y":3.4317970275878908,"z":-7.03166747051398e-10},"size":{"x":47.60108947753906,"y":36.326751708984378,"z":1.0}}'
+      m_SerializableObject: '{"center":{"x":-7.41117000579834,"y":3.4317970275878908,"z":-7.031666915402468e-10},"size":{"x":47.60108947753906,"y":36.326751708984378,"z":1.0}}'
     m_Space: 0
   m_Property:
     name: Box
@@ -4121,7 +4121,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"transform":{"position":{"x":5.840128421783447,"y":2.9025866985321047,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":1.9195749759674073}'
+      m_SerializableObject: '{"transform":{"position":{"x":5.840128421783447,"y":2.9025866985321047,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.28550630807876589}'
     m_Space: 0
   m_Property:
     name: sphere
