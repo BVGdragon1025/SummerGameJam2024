@@ -20,6 +20,9 @@ TagManager:
   - PlayerRadius
   - Ground
   - HelperSphere
+  - Trees
+  - Post Processing
+  - 
   - 
   - Element
   - Structure
