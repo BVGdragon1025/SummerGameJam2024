@@ -16,11 +16,13 @@ public class BuildingManager : MonoBehaviour
     [HideInInspector] public bool isPlaced;
 
     private Building _building;
+    private bool _deathTimer;
 
     private int _numberOfObstacles;
 
     private void Awake()
     {
+        _deathTimer = false;
         hasValidPlacement = true;
         isPlaced = true;
         _numberOfObstacles = 0;
@@ -28,6 +30,20 @@ public class BuildingManager : MonoBehaviour
 
         InitializeMaterials();
 
+    }
+
+    private void Update()
+    {
+        if (_building.hasPlague && !_deathTimer)
+        {
+            StartCoroutine(nameof(DeathTimer));
+        }
+
+        if(!_building.hasPlague && _deathTimer)
+        {
+            _deathTimer = false;
+            StopCoroutine(nameof(DeathTimer));
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,7 +77,9 @@ public class BuildingManager : MonoBehaviour
             case BuildingState.Placed:
                 isPlaced = true;
                 hasValidPlacement = true;
-                StartCoroutine(_building.StartProduction());
+                if(gameObject.CompareTag("Building"))
+                    GameManager.Instance.structures.Add(_building);
+                _building.triggerGameObject.SetActive(true);
                 break;
             case BuildingState.Valid:
                 hasValidPlacement = true;
@@ -131,4 +149,12 @@ public class BuildingManager : MonoBehaviour
     {
         return ((1 << gameObject.layer) & BuildingPlacer.Instance.groundLayerMask.value) != 0;
     }
+
+    private IEnumerator DeathTimer()
+    {
+        _deathTimer = true;
+        yield return new WaitForSeconds(_building.MaxPlagueTime);
+        Destroy(gameObject);
+    }
+
 }

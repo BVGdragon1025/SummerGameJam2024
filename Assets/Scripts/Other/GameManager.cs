@@ -22,7 +22,10 @@ public class GameManager : MonoBehaviour
     private float _plagueIncreaseFrequency;
     [SerializeField, Tooltip("Specifies delay before first Plague Increase on level start, in seconds. 0 - player immediatly gets first batch of Plague")]
     private float _plagueIncreaseDelay;
+    [SerializeField, Tooltip("Specifies delay between Basic Structure infections, in seconds.")]
+    private float _infectTimer;
     public bool isLevelCompleted;
+    public List<Building> structures = new();
 
 
     public LevelData LevelData { get { return _levelData; } }
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
         _levelData.lvlPlagueValue = _maxLvlPlagueValue;
         _levelData.playerPlagueValue = 0;
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _plagueIncreaseFrequency);
+        InvokeRepeating(nameof(SelectBuidingToInfect), _infectTimer, _infectTimer);
     }
 
     private void Update()
@@ -57,6 +61,7 @@ public class GameManager : MonoBehaviour
         if (isLevelCompleted && IsInvoking(nameof(IncreasePlayerPlague)))
         {
             CancelInvoke(nameof(IncreasePlayerPlague));
+            CancelInvoke(nameof(SelectBuidingToInfect));
         }
     }
 
@@ -87,6 +92,22 @@ public class GameManager : MonoBehaviour
         if(!isLevelCompleted && (_levelData.playerPlagueValue >= _maxPlayerPlagueValue))
         {
             Debug.Log("Player is dead!");
+        }
+    }
+
+    private void SelectBuidingToInfect()
+    {
+        if(structures.Count > 0)
+        {
+            int random = Random.Range(0, structures.Count);
+            if (!structures[random].hasPlague)
+            {
+                structures[random].hasPlague = true;
+            }
+        }
+        else
+        {
+            Debug.Log("No buildings to infect. Trying once again!");
         }
     }
 

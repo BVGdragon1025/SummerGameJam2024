@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerRange
+  - Pond
+  - Meadow
+  - Tree
+  - Building
+  - BuildingSpecial
   layers:
   - Default
   - TransparentFX
@@ -14,10 +19,10 @@ TagManager:
   - UI
   - PlayerRadius
   - Ground
-  - Trees
+  - HelperSphere
   - 
-  - 
-  - 
+  - Element
+  - Structure
   - 
   - 
   - 
