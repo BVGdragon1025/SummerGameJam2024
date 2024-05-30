@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727ddbc0fd2f6204686b29e097c1e3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingCost: 1
+  buildingCost: 20
   currencyAmount: 0
   lvlPlagueLoss: 0
 --- !u!54 &5393486226494776568

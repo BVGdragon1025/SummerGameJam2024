@@ -61,7 +61,7 @@ public class BuildingManager : MonoBehaviour
             case BuildingState.Placed:
                 isPlaced = true;
                 hasValidPlacement = true;
-                GameManager.Instance.ChangeCurrencyValue(-_building.Currency);
+
                 break;
             case BuildingState.Valid:
                 hasValidPlacement = true;

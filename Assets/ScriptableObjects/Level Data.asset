@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Level Data
   m_EditorClassIdentifier: 
   lvlPlagueValue: 0
-  currency: 200
+  currency: 0
   playerPlagueValue: 0
