@@ -9,6 +9,7 @@ public class BuildingHelper : MonoBehaviour
     private void OnEnable()
     {
         _building = GetComponentInParent<Building>();
+        _building.triggerGameObject = gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,6 +53,11 @@ public class BuildingHelper : MonoBehaviour
     {
         _building.GiveResourceToPlayer();
         StartCoroutine(_building.StartProduction());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
 }

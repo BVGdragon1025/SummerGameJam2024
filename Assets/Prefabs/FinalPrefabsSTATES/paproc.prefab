@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4455075636392963924
 Transform:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3149849677774865193
 Transform:
   m_ObjectHideFlags: 0
@@ -266,6 +266,8 @@ GameObject:
   - component: {fileID: 5851844858946894058}
   - component: {fileID: 448255516047489083}
   - component: {fileID: 3353981173322340066}
+  - component: {fileID: 7744863029498504037}
+  - component: {fileID: 981843160696929691}
   m_Layer: 14
   m_Name: paproc
   m_TagString: Building
@@ -362,8 +364,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 4, z: 2.9999998}
-  m_Center: {x: -1.5, y: 0, z: 3}
+  m_Size: {x: 6, y: 1.7, z: 1.3}
+  m_Center: {x: -1.5, y: 0, z: 1.5}
 --- !u!54 &3353981173322340066
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -391,6 +393,49 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7744863029498504037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592349934990317625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validPlacementMaterial: {fileID: 0}
+  invalidPlacementMaterial: {fileID: 0}
+  meshComponents: []
+  hasValidPlacement: 0
+  isPlaced: 0
+--- !u!114 &981843160696929691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592349934990317625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798b7be73216aee43b14cd1322d5dec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 2
+  buildingCost: 0
+  resourceAmount: 0
+  _spawnRate: 0
+  _currentPlague: 0
+  _maxPlagueTime: 0
+  isInfected: 0
+  hasPlague: 0
+  hasFinished: 0
+  elementsInTrigger: 0
+  triggerGameObject: {fileID: 1324484041257345347}
+  healthyState: {fileID: 2880178888737646497}
+  infectedState: {fileID: 8877367438023573844}
+  plagueState: {fileID: 4061736197718167314}
 --- !u!1 &7872680365461191417
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7718929387550127250
 Transform:
   m_ObjectHideFlags: 0
