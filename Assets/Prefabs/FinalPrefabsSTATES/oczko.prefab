@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 1145150523493364140}
   - component: {fileID: 6962840003528300349}
   - component: {fileID: 5869131408416644841}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GodRays (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5043,7 +5043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6484646510016020891}
   - component: {fileID: 9114482291672412611}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: oczko zatrute
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -82,6 +82,7 @@ public class BuildingManager : MonoBehaviour
                 if(gameObject.CompareTag("Building"))
                     GameManager.Instance.structures.Add(_building);
                 _building.triggerGameObject.SetActive(true);
+                _building.GetComponent<Collider>().excludeLayers = 0;
                 break;
             case BuildingState.Valid:
                 hasValidPlacement = true;
