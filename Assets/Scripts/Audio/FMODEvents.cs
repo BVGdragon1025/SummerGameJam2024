@@ -8,6 +8,9 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Test SFX")]
     [field: SerializeField] public EventReference testSFXEvent;
 
+    [field: Header("Ambience")]
+    [field: SerializeField] public EventReference ambience;
+
     public static FMODEvents Instance { get; private set; }
 
     private void Awake()

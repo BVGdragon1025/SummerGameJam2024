@@ -2151,9 +2151,11 @@ MonoBehaviour:
   _healingElementDelay: 5
   _healingStructureDelay: 1
   _plagueElementPenalty: 10
+  _plagueStructurePenalty: 0
   _plagueHealingValue: 10
   _isHealingElement: 0
-  _isRestoringStructure: 0
+  _isHealingStructure: 0
+  _isCuringStructure: 0
   _structure: {fileID: 0}
   _element: {fileID: 0}
 --- !u!1 &1400172771
@@ -3001,6 +3003,13 @@ MonoBehaviour:
       Data3: -1656749405
       Data4: 950035895
     Path: event:/TestOneShotEvent
+  ambience:
+    Guid:
+      Data1: 428786541
+      Data2: 1105963969
+      Data3: -2071877750
+      Data4: -269865543
+    Path: event:/AMB_Main
 --- !u!1001 &2516442269631891663
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -27,9 +27,12 @@ public class GameManager : MonoBehaviour
     public bool isLevelCompleted;
     public List<Building> structures = new();
 
+    private FMODUnity.StudioEventEmitter _ambienceEmitter;
+    private FMOD.Studio.EventInstance _ambienceInstance;
 
     public LevelData LevelData { get { return _levelData; } }
     public static GameManager Instance;
+    private AudioManager _audioManager;
 
     private void Awake()
     {
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _audioManager = AudioManager.Instance;
         _levelData.lvlPlagueValue = _maxLvlPlagueValue;
         _levelData.playerPlagueValue = 0;
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _plagueIncreaseFrequency);
@@ -63,6 +67,9 @@ public class GameManager : MonoBehaviour
             CancelInvoke(nameof(IncreasePlayerPlague));
             CancelInvoke(nameof(SelectBuidingToInfect));
         }
+
+        ChangePoisonPlayerAmbient();
+
     }
 
     public void ChangeForestPlagueLevel(float value)
@@ -82,8 +89,11 @@ public class GameManager : MonoBehaviour
 
     private void IncreasePlayerPlague()
     {
+
         Debug.Log("Increasing player plague!");
+        
         ChangePlayerPlagueLevel(_plagueIncrease);
+        
 
     }
 
@@ -109,6 +119,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("No buildings to infect. Trying once again!");
         }
+    }
+
+    private void ChangePoisonPlayerAmbient()
+    {
+        float plagueLvl = _levelData.playerPlagueValue / _maxPlayerPlagueValue;
+        _audioManager.SetPublicVariable("Player_Poison", plagueLvl);
     }
 
 

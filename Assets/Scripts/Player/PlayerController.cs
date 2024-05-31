@@ -32,11 +32,14 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat("xValue", hInput);
         _animator.SetFloat("yValue", vInput);
 
+        /*
         //Test SFX
         if (Input.GetKeyDown(KeyCode.Space))
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.testSFXEvent, transform.position);
         }
+        */
+
         vfxRenderer.SetVector3("ColliderPos", new Vector3(transform.position.x, transform.position.z, transform.position.y));
 
     }
