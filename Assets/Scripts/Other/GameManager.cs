@@ -27,9 +27,6 @@ public class GameManager : MonoBehaviour
     public bool isLevelCompleted;
     public List<Building> structures = new();
 
-    private FMODUnity.StudioEventEmitter _ambienceEmitter;
-    private FMOD.Studio.EventInstance _ambienceInstance;
-
     public LevelData LevelData { get { return _levelData; } }
     public static GameManager Instance;
     private AudioManager _audioManager;
@@ -113,6 +110,7 @@ public class GameManager : MonoBehaviour
             if (!structures[random].isInfected)
             {
                 structures[random].isInfected = true;
+                _audioManager.SetPublicVariable("Plague_State", 1.0f);
             }
         }
         else
@@ -127,5 +125,14 @@ public class GameManager : MonoBehaviour
         _audioManager.SetPublicVariable("Player_Poison", plagueLvl);
     }
 
+    public void Timer(float timerValue)
+    {
+        //while
+    }
+
+    public void ResetTimer(float timerValue)
+    {
+
+    }
 
 }
