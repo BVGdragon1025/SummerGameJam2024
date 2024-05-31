@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 2110226628087602994}
   m_Layer: 13
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,8 +201,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 4, z: 2.9999998}
-  m_Center: {x: -1.5, y: 0, z: 3}
+  m_Size: {x: 15, y: 4, z: 2.9999998}
+  m_Center: {x: -0.81, y: 0, z: 1.5}
 --- !u!1 &6401062547841389112
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4581785481340908903
 Transform:
   m_ObjectHideFlags: 0
@@ -368,6 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8554269850702842034}
   - component: {fileID: 5851844858946894058}
+  - component: {fileID: 3064077325802126371}
   m_Layer: 13
   m_Name: drzewo liscie
   m_TagString: Untagged
@@ -444,6 +445,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3064077325802126371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592349934990317625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924d921ec8e17eb488ebdd575bc5e484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasPlague: 0
+  _objectWithPlague: {fileID: 1268442830188912301}
+  _healthyObject: {fileID: 6890493524798946481}
 --- !u!1 &7838206713717319744
 GameObject:
   m_ObjectHideFlags: 0
@@ -5365,9 +5381,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9002104545202879924}
     m_Modifications:
+    - target: {fileID: 2110226628087602994, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
+      propertyPath: m_Size.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110226628087602994, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
+      propertyPath: m_Center.x
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110226628087602994, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
+      propertyPath: m_Center.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5960500574751018701, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960500574751018701, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     - target: {fileID: 7592349934990317625, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
       propertyPath: m_Name

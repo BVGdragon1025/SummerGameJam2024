@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Debug.LogError($"More than one instance of {Instance.name} detected! GameObject: {name}. Instance has been deleted.");
             Destroy(Instance);
@@ -45,17 +45,17 @@ public class AudioManager : MonoBehaviour
         _eventInstances = new List<EventInstance>();
         _eventEmitters = new List<StudioEventEmitter>();
 
+        /*
         _masterBus = RuntimeManager.GetBus("bus:/");
         _musicBus = RuntimeManager.GetBus("bus:/Music");
         _ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
         _sfxBus = RuntimeManager.GetBus("bus:/SFX");
-
+        */
     }
 
     private void Start()
-    {   
-        // Uncomment, when we have music to play
-        //InitializeAmbience();
+    {
+
     }
 
     private void Update()
@@ -77,6 +77,11 @@ public class AudioManager : MonoBehaviour
         emitter.EventReference = eventReference;
         _eventEmitters.Add(emitter);
         return emitter;
+    }
+
+    public void SetPublicVariable(string name, float value)
+    {
+        RuntimeManager.StudioSystem.setParameterByName(name, value);
     }
 
     public EventInstance CreateEventInstance(EventReference eventReference)
