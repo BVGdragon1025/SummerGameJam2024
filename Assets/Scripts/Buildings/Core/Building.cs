@@ -7,8 +7,8 @@ public abstract class Building : MonoBehaviour
 {
     [Header("Building Data"), Tooltip("Resource values and other things")]
     [SerializeField]
-    private BuildingType _buildingType;
-    public BuildingType BuildingType { get { return _buildingType; } }
+    protected BuildingType buildingType;
+    public BuildingType BuildingType { get { return buildingType; } }
     [SerializeField]
     protected float buildingCost = 0;
     public float BuildingCost { get { return buildingCost; } }
@@ -24,12 +24,16 @@ public abstract class Building : MonoBehaviour
     [SerializeField, Tooltip("Time before this structure dies from Plague, in seconds")]
     private float _maxPlagueTime;
     public float MaxPlagueTime { get { return _maxPlagueTime; } set { _maxPlagueTime += value; } }
+    public bool isInfected;
     public bool hasPlague;
     public bool hasFinished;
 
     [Header("Other Data")]
     public int elementsInTrigger;
     public GameObject triggerGameObject;
+    public GameObject healthyState;
+    public GameObject infectedState;
+    public GameObject plagueState;
 
     protected GameManager gameManager;
 
@@ -52,7 +56,7 @@ public abstract class Building : MonoBehaviour
     public IEnumerator StartProduction()
     {
         hasFinished = false;
-        Debug.Log("Production start!");
+        Debug.Log($"Production start! Resource type: {buildingType}");
         yield return new WaitForSeconds(_spawnRate);
         hasFinished = true;
         Debug.Log("Production stop!");
