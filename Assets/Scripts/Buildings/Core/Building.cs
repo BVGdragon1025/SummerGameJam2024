@@ -20,7 +20,7 @@ public abstract class Building : MonoBehaviour
     public float SpawnRate { get { return _spawnRate; } set { _spawnRate += (_spawnRate * value); } }
     [SerializeField, Tooltip("Current amount of Plague this structure has, in normal units.")]
     private float _currentPlague;
-    public float CurrentPlague { get { return _currentPlague; } set { _currentPlague += value; } }
+    public float CurrentPlague { get { return _currentPlague; } set { _currentPlague = value; } }
     [SerializeField, Tooltip("Time before this structure dies from Plague, in seconds")]
     private float _maxPlagueTime;
     public float MaxPlagueTime { get { return _maxPlagueTime; } set { _maxPlagueTime += value; } }

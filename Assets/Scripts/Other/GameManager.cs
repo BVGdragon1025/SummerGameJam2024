@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private float _infectTimer;
     public bool isLevelCompleted;
     public List<Building> structures = new();
+    public int buildingsInfected;
 
     public LevelData LevelData { get { return _levelData; } }
     public static GameManager Instance;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
         }
 
         ChangePoisonPlayerAmbient();
+        ChangePlagueState();
 
     }
 
@@ -107,16 +109,17 @@ public class GameManager : MonoBehaviour
         if(structures.Count > 0)
         {
             int random = Random.Range(0, structures.Count);
-            if (!structures[random].isInfected)
+            if (!structures[random].isInfected && !structures[random].hasPlague)
             {
                 Debug.Log($"Building infected: {structures[random].name}");
                 structures[random].isInfected = true;
                 _audioManager.SetPublicVariable("Plague_State", 1.0f);
+                buildingsInfected += 1;
             }
         }
         else
         {
-            Debug.Log("No buildings to infect. Trying once again!");
+            SelectBuidingToInfect();
         }
     }
 
@@ -126,14 +129,29 @@ public class GameManager : MonoBehaviour
         _audioManager.SetPublicVariable("Player_Poison", plagueLvl);
     }
 
-    public void Timer(float timerValue)
+    private void ChangePlagueState()
     {
-        //while
+        if(buildingsInfected == 0 || buildingsInfected == structures.Count)
+        {
+            _audioManager.SetPublicVariable("Plague_State", 0.0f);
+        }
+    }
+
+    public float Timer(float timerValue, float timeLimit)
+    {
+        if(timerValue <= timeLimit)
+        {
+            timerValue += Time.deltaTime;
+
+        }
+
+        return timerValue / timeLimit;
+
     }
 
     public void ResetTimer(float timerValue)
     {
-
+        timerValue = 0.0f;
     }
 
 }

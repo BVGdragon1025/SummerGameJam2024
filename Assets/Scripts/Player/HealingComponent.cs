@@ -60,7 +60,7 @@ public class HealingComponent : MonoBehaviour
             Building building = _structure.GetComponent<Building>();
             if (building.isInfected)
             {
-                StartCoroutine(HealStructure(building));
+                HealStructure(building);
 
             }
         }
@@ -121,11 +121,6 @@ public class HealingComponent : MonoBehaviour
             _structure = null;
         }
 
-        if(_structure == null && _isHealingStructure)
-        {
-            StopCoroutine(nameof(HealStructure));
-            _isHealingStructure = false;
-        }
     }
 
     private IEnumerator HealElement(ElementsController element)
@@ -141,26 +136,30 @@ public class HealingComponent : MonoBehaviour
         _isHealingElement = false;
     }
 
-    private IEnumerator HealStructure(Building building)
+    private void HealStructure(Building building)
     {
-        _isHealingStructure = true;
         Debug.LogFormat("<color=orange>Structure healing start!</color>");
-        yield return new WaitForSeconds(_healingStructureDelay);
+        AudioManager.Instance.SetPublicVariable("Danger_Phase", 0.0f);
         building.isInfected = false;
         building.infectedState.SetActive(false);
         building.healthyState.SetActive(true);
-        _isHealingStructure = false;
+        building.CurrentPlague = 0.0f;
+        GameManager.Instance.buildingsInfected -= 1;
+        Debug.LogFormat("<color=green>Healing structure completed!</color>");
 
     }
 
     private IEnumerator CureStructure(Building building)
     {
         _isCuringStructure = true;
+        Debug.LogFormat("<color=green>Curing structure started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
+        GameManager.Instance.buildingsInfected -= 1;
         GameManager.Instance.ChangePlayerPlagueLevel(_plagueStructurePenalty);
         building.plagueState.SetActive(false);
         building.healthyState.SetActive(true);
         building.hasPlague = false;
+        Debug.LogFormat("<color=green>Curing structure completed!</color>");
         _isCuringStructure = false;
     }
 
