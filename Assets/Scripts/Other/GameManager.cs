@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
             int random = Random.Range(0, structures.Count);
             if (!structures[random].isInfected)
             {
+                Debug.Log($"Building infected: {structures[random].name}");
                 structures[random].isInfected = true;
                 _audioManager.SetPublicVariable("Plague_State", 1.0f);
             }

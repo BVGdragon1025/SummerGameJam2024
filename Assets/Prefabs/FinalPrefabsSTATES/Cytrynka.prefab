@@ -467,14 +467,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4.27, y: 4, z: 2.9999998}
-  m_Center: {x: -1.5, y: 0, z: 1.5}
+  m_Center: {x: -1.5, y: 0.5, z: 1.5}
 --- !u!54 &3353981173322340066
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -532,11 +532,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 1
-  buildingCost: 0
-  resourceAmount: 0
-  _spawnRate: 0
+  buildingCost: 30
+  resourceAmount: 20
+  _spawnRate: 10
   _currentPlague: 0
-  _maxPlagueTime: 0
+  _maxPlagueTime: 45
   isInfected: 0
   hasPlague: 0
   hasFinished: 0
