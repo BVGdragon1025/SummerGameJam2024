@@ -34,15 +34,17 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
-        if (_building.hasPlague && !_deathTimer)
+        if (_building.isInfected && !_deathTimer)
         {
+            _building.healthyState.SetActive(false);
+            _building.infectedState.SetActive(true);
             StartCoroutine(nameof(DeathTimer));
         }
 
-        if(!_building.hasPlague && _deathTimer)
+        if(!_building.isInfected && _deathTimer)
         {
-            _deathTimer = false;
             StopCoroutine(nameof(DeathTimer));
+            _deathTimer = false;
         }
     }
 
@@ -154,7 +156,11 @@ public class BuildingManager : MonoBehaviour
     {
         _deathTimer = true;
         yield return new WaitForSeconds(_building.MaxPlagueTime);
-        Destroy(gameObject);
+        _building.isInfected = false;
+        _building.hasPlague = true;
+        _building.infectedState.SetActive(false);
+        _building.plagueState.SetActive(true);
+        _deathTimer = false;
     }
 
 }

@@ -12,13 +12,17 @@ public class HealingComponent : MonoBehaviour
     [SerializeField]
     private float _plagueElementPenalty;
     [SerializeField]
+    private float _plagueStructurePenalty;
+    [SerializeField]
     private float _plagueHealingValue;
 
     [Header("Helper bools")]
     [SerializeField]
     private bool _isHealingElement;
     [SerializeField]
-    private bool _isRestoringStructure;
+    private bool _isHealingStructure;
+    [SerializeField]
+    private bool _isCuringStructure;
 
     [Header("Object References")]
     [SerializeField]
@@ -29,8 +33,9 @@ public class HealingComponent : MonoBehaviour
 
     private void Awake()
     {
-        _isRestoringStructure = false;
+        _isHealingStructure = false;
         _isHealingElement = false;
+        _isCuringStructure = false;
         _playerController = GetComponentInParent<PlayerController>();
 
     }
@@ -45,6 +50,19 @@ public class HealingComponent : MonoBehaviour
         if(other.gameObject.layer == LayerMask.NameToLayer("Structure"))
         {
             _structure = other.gameObject;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (_structure != null)
+        {
+            Building building = _structure.GetComponent<Building>();
+            if (building.isInfected)
+            {
+                StartCoroutine(HealStructure(building));
+
+            }
         }
     }
 
@@ -72,19 +90,21 @@ public class HealingComponent : MonoBehaviour
         if(_structure != null)
         {
             Building building = _structure.GetComponent<Building>();
-            if(building.hasPlague)
+
+            if (building.hasPlague)
             {
-                if(building.CurrentPlague > 0)
+                if(Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
                 {
-                    building.CurrentPlague = _plagueHealingValue;
+                    StartCoroutine(CureStructure(building));
                 }
-
-                if(building.CurrentPlague <= 0)
-                {
-                    building.hasPlague = false;
-                }
-
             }
+
+            if(_isCuringStructure && _playerController.PlayerMovement != 0)
+            {
+                StopAllCoroutines();
+                _isCuringStructure = false;
+            }
+
         }
 
     }
@@ -100,6 +120,12 @@ public class HealingComponent : MonoBehaviour
         {
             _structure = null;
         }
+
+        if(_structure == null && _isHealingStructure)
+        {
+            StopCoroutine(nameof(HealStructure));
+            _isHealingStructure = false;
+        }
     }
 
     private IEnumerator HealElement(ElementsController element)
@@ -108,6 +134,8 @@ public class HealingComponent : MonoBehaviour
         Debug.LogFormat("<color=green>Healing started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
         GameManager.Instance.ChangePlayerPlagueLevel(_plagueElementPenalty);
+        element.ObjectWithPlague.SetActive(false);
+        element.HealthyObject.SetActive(true);
         element.hasPlague = false;
         Debug.LogFormat("<color=green>Healing completed!</color>");
         _isHealingElement = false;
@@ -115,12 +143,25 @@ public class HealingComponent : MonoBehaviour
 
     private IEnumerator HealStructure(Building building)
     {
-        _isRestoringStructure = true;
+        _isHealingStructure = true;
         Debug.LogFormat("<color=orange>Structure healing start!</color>");
-        building.CurrentPlague = _plagueHealingValue;
         yield return new WaitForSeconds(_healingStructureDelay);
-        _isRestoringStructure = false;
+        building.isInfected = false;
+        building.infectedState.SetActive(false);
+        building.healthyState.SetActive(true);
+        _isHealingStructure = false;
 
+    }
+
+    private IEnumerator CureStructure(Building building)
+    {
+        _isCuringStructure = true;
+        yield return new WaitForSeconds(_healingElementDelay);
+        GameManager.Instance.ChangePlayerPlagueLevel(_plagueStructurePenalty);
+        building.plagueState.SetActive(false);
+        building.healthyState.SetActive(true);
+        building.hasPlague = false;
+        _isCuringStructure = false;
     }
 
 }

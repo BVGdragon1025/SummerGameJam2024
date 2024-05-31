@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         KillPlayer();
 
-        if (isLevelCompleted && IsInvoking(nameof(IncreasePlayerPlague)))
+        if (isLevelCompleted && IsInvoking(nameof(IncreasePlayerPlague)) && IsInvoking(nameof(SelectBuidingToInfect)))
         {
             CancelInvoke(nameof(IncreasePlayerPlague));
             CancelInvoke(nameof(SelectBuidingToInfect));
@@ -100,9 +100,9 @@ public class GameManager : MonoBehaviour
         if(structures.Count > 0)
         {
             int random = Random.Range(0, structures.Count);
-            if (!structures[random].hasPlague)
+            if (!structures[random].isInfected)
             {
-                structures[random].hasPlague = true;
+                structures[random].isInfected = true;
             }
         }
         else
