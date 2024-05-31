@@ -17,6 +17,7 @@ public class BuildingManager : MonoBehaviour
 
     private Building _building;
     private bool _deathTimer;
+    public float timer;
 
     private int _numberOfObstacles;
 
@@ -34,12 +35,20 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
-        if (_building.isInfected && !_deathTimer)
+        if (_building.isInfected)
         {
-            _building.healthyState.SetActive(false);
-            _building.infectedState.SetActive(true);
-            StartCoroutine(nameof(DeathTimer));
+            timer += GameManager.Instance.Timer(_building.CurrentPlague, _building.MaxPlagueTime);
+            AudioManager.Instance.SetPublicVariable("Danger_Phase", timer);
+            Debug.Log(timer);
+            if (!_deathTimer)
+            {
+                _building.healthyState.SetActive(false);
+                _building.infectedState.SetActive(true);
+                StartCoroutine(nameof(DeathTimer));
+            }
+            
         }
+
 
         if(!_building.isInfected && _deathTimer)
         {
@@ -161,6 +170,7 @@ public class BuildingManager : MonoBehaviour
         _building.hasPlague = true;
         _building.infectedState.SetActive(false);
         _building.plagueState.SetActive(true);
+        _building.CurrentPlague = 0.0f;
         _deathTimer = false;
     }
 

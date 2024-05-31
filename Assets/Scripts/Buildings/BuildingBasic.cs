@@ -9,10 +9,10 @@ public class BuildingBasic : Building
         switch(buildingType)
         {
             case BuildingType.Pond:
-                gameManager.ChangeForestPlagueLevel(resourceAmount);
+                gameManager.ChangeForestPlagueLevel(-resourceAmount);
                 break;
             case BuildingType.Meadow:
-                gameManager.ChangePlayerPlagueLevel(resourceAmount);
+                gameManager.ChangePlayerPlagueLevel(-resourceAmount);
                 break;
             case BuildingType.Tree:
                 gameManager.ChangeCurrencyValue(resourceAmount);

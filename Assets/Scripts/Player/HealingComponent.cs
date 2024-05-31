@@ -20,8 +20,6 @@ public class HealingComponent : MonoBehaviour
     [SerializeField]
     private bool _isHealingElement;
     [SerializeField]
-    private bool _isHealingStructure;
-    [SerializeField]
     private bool _isCuringStructure;
 
     [Header("Object References")]
@@ -30,13 +28,14 @@ public class HealingComponent : MonoBehaviour
     [SerializeField]
     private GameObject _element;
     private PlayerController _playerController;
+    private Animator _animator;
 
     private void Awake()
     {
-        _isHealingStructure = false;
         _isHealingElement = false;
         _isCuringStructure = false;
         _playerController = GetComponentInParent<PlayerController>();
+        _animator = GetComponentInParent<Animator>();
 
     }
 
@@ -60,7 +59,7 @@ public class HealingComponent : MonoBehaviour
             Building building = _structure.GetComponent<Building>();
             if (building.isInfected)
             {
-                StartCoroutine(HealStructure(building));
+                HealStructure(building);
 
             }
         }
@@ -75,6 +74,7 @@ public class HealingComponent : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.F) && !_isHealingElement)
                 {
+                    _animator.SetBool("isHealing", true);
                     StartCoroutine(HealElement(element));
                 }
             }
@@ -82,6 +82,7 @@ public class HealingComponent : MonoBehaviour
             if(_isHealingElement && _playerController.PlayerMovement != 0)
             {
                 StopAllCoroutines();
+                _animator.SetBool("isHealing", false);
                 _isHealingElement = false;
                 Debug.LogFormat("<color=red>Healing interupted!</color>");
             }   
@@ -95,6 +96,7 @@ public class HealingComponent : MonoBehaviour
             {
                 if(Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
                 {
+                    _animator.SetBool("isHealing", true);
                     StartCoroutine(CureStructure(building));
                 }
             }
@@ -102,6 +104,7 @@ public class HealingComponent : MonoBehaviour
             if(_isCuringStructure && _playerController.PlayerMovement != 0)
             {
                 StopAllCoroutines();
+                _animator.SetBool("isHealing", false);
                 _isCuringStructure = false;
             }
 
@@ -121,11 +124,6 @@ public class HealingComponent : MonoBehaviour
             _structure = null;
         }
 
-        if(_structure == null && _isHealingStructure)
-        {
-            StopCoroutine(nameof(HealStructure));
-            _isHealingStructure = false;
-        }
     }
 
     private IEnumerator HealElement(ElementsController element)
@@ -133,6 +131,7 @@ public class HealingComponent : MonoBehaviour
         _isHealingElement = true;
         Debug.LogFormat("<color=green>Healing started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
+        _animator.SetBool("isHealing", false);
         GameManager.Instance.ChangePlayerPlagueLevel(_plagueElementPenalty);
         element.ObjectWithPlague.SetActive(false);
         element.HealthyObject.SetActive(true);
@@ -141,26 +140,31 @@ public class HealingComponent : MonoBehaviour
         _isHealingElement = false;
     }
 
-    private IEnumerator HealStructure(Building building)
+    private void HealStructure(Building building)
     {
-        _isHealingStructure = true;
         Debug.LogFormat("<color=orange>Structure healing start!</color>");
-        yield return new WaitForSeconds(_healingStructureDelay);
+        AudioManager.Instance.SetPublicVariable("Danger_Phase", 0.0f);
         building.isInfected = false;
         building.infectedState.SetActive(false);
         building.healthyState.SetActive(true);
-        _isHealingStructure = false;
+        building.CurrentPlague = 0.0f;
+        GameManager.Instance.buildingsInfected -= 1;
+        Debug.LogFormat("<color=green>Healing structure completed!</color>");
 
     }
 
     private IEnumerator CureStructure(Building building)
     {
         _isCuringStructure = true;
+        Debug.LogFormat("<color=green>Curing structure started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
+        _animator.SetBool("isHealing", false);
+        GameManager.Instance.buildingsInfected -= 1;
         GameManager.Instance.ChangePlayerPlagueLevel(_plagueStructurePenalty);
         building.plagueState.SetActive(false);
         building.healthyState.SetActive(true);
         building.hasPlague = false;
+        Debug.LogFormat("<color=green>Curing structure completed!</color>");
         _isCuringStructure = false;
     }
 
