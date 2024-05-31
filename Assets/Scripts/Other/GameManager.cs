@@ -69,6 +69,13 @@ public class GameManager : MonoBehaviour
         ChangePoisonPlayerAmbient();
         ChangePlagueState();
 
+        if(_levelData.lvlPlagueValue <= 0)
+        {
+            isLevelCompleted = true;
+            _audioManager.SetPublicVariable("Forest_State", 1.0f);
+            _audioManager.SetPublicVariable("Danger_Phase", 0.0f);
+        }
+
     }
 
     public void ChangeForestPlagueLevel(float value)
