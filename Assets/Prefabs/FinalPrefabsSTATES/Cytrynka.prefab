@@ -519,6 +519,7 @@ MonoBehaviour:
   meshComponents: []
   hasValidPlacement: 0
   isPlaced: 0
+  timer: 0
 --- !u!114 &4682162221462606325
 MonoBehaviour:
   m_ObjectHideFlags: 0
