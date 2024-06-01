@@ -285,7 +285,6 @@
 		<property name="length">
 			<value>38.399999999999999</value>
 		</property>
-		<property name="name" />
 		<relationship name="event">
 			<destination>{18b3d030-c070-4927-845a-cb5c59d4aef7}</destination>
 		</relationship>
@@ -340,7 +339,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{3cd77e43-77c5-4ddd-a7f1-5b6e6f8fb5ef}">
 		<property name="name">
-			<value>Audio 4</value>
+			<value>Transition_AddOns</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{bf79986c-9aef-4ce1-8c92-c16ea14abb6b}</destination>
