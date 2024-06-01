@@ -38,6 +38,7 @@ public class BuildingPlacer : MonoBehaviour
                 Destroy(_toBuild);
                 _toBuild = null;
                 _buildingPrefab = null;
+                Cursor.visible = true;
                 return;
             }
 
@@ -85,7 +86,7 @@ public class BuildingPlacer : MonoBehaviour
                             else
                             {
                                 buildingManager.GetComponent<Collider>().isTrigger = false;
-
+                                Cursor.visible = true;
                                 _buildingPrefab = null;
                                 _toBuild = null;
                             }
@@ -118,6 +119,7 @@ public class BuildingPlacer : MonoBehaviour
         _buildingPrefab = prefab;
         PrepareBuilding();
         EventSystem.current.SetSelectedGameObject(null);
+        Cursor.visible = false;
     }
 
     private void PrepareBuilding()

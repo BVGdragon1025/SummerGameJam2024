@@ -53,7 +53,7 @@ public class BuildingManager : MonoBehaviour
         {
             StopCoroutine(nameof(DeathTimer));
             _deathTimer = false;
-            GameManager.Instance.ResetTimer(timer);
+            timer = GameManager.Instance.ResetTimer();
         }
     }
 
@@ -63,8 +63,14 @@ public class BuildingManager : MonoBehaviour
 
         if (IsPlaced(other.gameObject)) return;
 
-        _numberOfObstacles++;
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerRadius"))
+        {
+            Debug.Log("Player in sight!");
+            SetPlacementMode(BuildingState.Valid);
+            return;
+        }
 
+        _numberOfObstacles++;
         SetPlacementMode(BuildingState.NotValid);
 
     }
@@ -75,10 +81,20 @@ public class BuildingManager : MonoBehaviour
 
         if (IsPlaced(other.gameObject)) return;
 
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerRadius"))
+        {
+            Debug.Log("Lost sight of player!");
+            SetPlacementMode(BuildingState.NotValid);
+            return;
+        }
+
         _numberOfObstacles--;
 
+        
         if (_numberOfObstacles == 0)
             SetPlacementMode(BuildingState.Valid);
+        
+        
     }
 
     public void SetPlacementMode(BuildingState state)
@@ -171,7 +187,7 @@ public class BuildingManager : MonoBehaviour
         _building.infectedState.SetActive(false);
         _building.plagueState.SetActive(true);
         _building.CurrentPlague = 0.0f;
-        GameManager.Instance.ResetTimer(timer);
+        timer = GameManager.Instance.ResetTimer();
         _deathTimer = false;
     }
 
