@@ -19,8 +19,8 @@
 			<value>2</value>
 		</property>
 		<property name="enumerationLabels">
-			<value>Plague</value>
-			<value>Light</value>
+			<value>Infected</value>
+			<value>Healed</value>
 		</property>
 		<property name="isGlobal">
 			<value>true</value>

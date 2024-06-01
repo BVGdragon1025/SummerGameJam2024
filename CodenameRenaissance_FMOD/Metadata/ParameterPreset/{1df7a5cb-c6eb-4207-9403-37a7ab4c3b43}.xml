@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{1df7a5cb-c6eb-4207-9403-37a7ab4c3b43}">
 		<property name="name">
-			<value>Plague_State</value>
+			<value>Infection_State</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cb1218f7-d2ee-46cb-aea0-a054991ab4f4}</destination>
@@ -19,7 +19,7 @@
 			<value>2</value>
 		</property>
 		<property name="enumerationLabels">
-			<value>Dark</value>
+			<value>Normal</value>
 			<value>Danger</value>
 		</property>
 		<property name="isGlobal">
