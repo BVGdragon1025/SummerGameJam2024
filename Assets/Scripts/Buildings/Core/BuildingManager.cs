@@ -49,11 +49,11 @@ public class BuildingManager : MonoBehaviour
             
         }
 
-
         if(!_building.isInfected && _deathTimer)
         {
             StopCoroutine(nameof(DeathTimer));
             _deathTimer = false;
+            GameManager.Instance.ResetTimer(timer);
         }
     }
 
@@ -171,6 +171,7 @@ public class BuildingManager : MonoBehaviour
         _building.infectedState.SetActive(false);
         _building.plagueState.SetActive(true);
         _building.CurrentPlague = 0.0f;
+        GameManager.Instance.ResetTimer(timer);
         _deathTimer = false;
     }
 

@@ -59,7 +59,8 @@ public class BuildingPlacer : MonoBehaviour
                 if(_toBuild.activeSelf)
                     _toBuild.SetActive(true);
 
-                _toBuild.transform.position = new Vector3(_hit.point.x, transform.localScale.y / 2, _hit.point.z);
+                //_toBuild.transform.position = new Vector3(_hit.point.x, transform.localScale.y / 2, _hit.point.z);
+                _toBuild.transform.position = _hit.point;
 
                 BuildingManager buildingManager = _toBuild.GetComponent<BuildingManager>();
                 Building building = _toBuild.GetComponent<Building>();

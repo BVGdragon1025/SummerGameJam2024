@@ -17,7 +17,7 @@ public abstract class Building : MonoBehaviour
     public float Currency { get { return resourceAmount; } set { resourceAmount += value; } }
     [SerializeField, Tooltip("Rate at which this buiilding spawns it's resource, in seconds")]
     private float _spawnRate;
-    public float SpawnRate { get { return _spawnRate; } set { _spawnRate += (_spawnRate * value); } }
+    public float SpawnRate { get { return _spawnRate; } set { _spawnRate -= (_spawnRate * value); } }
     [SerializeField, Tooltip("Current amount of Plague this structure has, in normal units.")]
     private float _currentPlague;
     public float CurrentPlague { get { return _currentPlague; } set { _currentPlague = value; } }

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private float _maxPlayerPlagueValue;
     [SerializeField]
     private LevelData _levelData;
+    [SerializeField, Tooltip("Gives player additional Nature Points per second. Value can be decimal.")]
+    private float _additionalCurrency;
 
     [Header("Gameplay specific")]
     [SerializeField]
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
         _levelData.playerPlagueValue = 0;
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _plagueIncreaseFrequency);
         InvokeRepeating(nameof(SelectBuidingToInfect), _infectTimer, _infectTimer);
+        InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
     }
 
     private void Update()
@@ -64,6 +67,7 @@ public class GameManager : MonoBehaviour
         {
             CancelInvoke(nameof(IncreasePlayerPlague));
             CancelInvoke(nameof(SelectBuidingToInfect));
+            CancelInvoke(nameof(GiveSomePoints));
         }
 
         ChangePoisonPlayerAmbient();
@@ -159,6 +163,12 @@ public class GameManager : MonoBehaviour
     public void ResetTimer(float timerValue)
     {
         timerValue = 0.0f;
+    }
+
+    public void GiveSomePoints()
+    {
+        //Debug.LogFormat($"Some nature points! <color=#00ff00ff>{_additionalCurrency} pts!</color>");
+        ChangeCurrencyValue(_additionalCurrency);
     }
 
 }

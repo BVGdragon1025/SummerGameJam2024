@@ -240,7 +240,7 @@ Transform:
   m_GameObject: {fileID: 2880178888737646497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 3.1403089, y: 3.1403089, z: 3.1403089}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -356,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 4061736197718167314}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 3.1403089, y: 3.1403089, z: 3.1403089}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -556,8 +556,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 3, z: 1.5}
-  m_Center: {x: -1.8, y: 0, z: 1.5}
+  m_Size: {x: 2, y: 2, z: 1.5}
+  m_Center: {x: -1.8, y: 1.65, z: 1.2}
 --- !u!54 &3353981173322340066
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -597,9 +597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validPlacementMaterial: {fileID: 2100000, guid: 1598dab8cba5b9c41a83a1ed1877a6d9, type: 2}
-  invalidPlacementMaterial: {fileID: 2100000, guid: df53763d4a9111f4592844eba0ea7cbe, type: 2}
-  meshComponents: []
+  validPlacementMaterial: {fileID: 2100000, guid: 5b9c65b10a163d947810e6acb6bf7dde, type: 2}
+  invalidPlacementMaterial: {fileID: 2100000, guid: bd48883d84714104890c6600d80bf0c2, type: 2}
+  meshComponents:
+  - {fileID: 3621463842107248396}
   hasValidPlacement: 0
   isPlaced: 0
   timer: 0
@@ -654,7 +655,7 @@ Transform:
   m_GameObject: {fileID: 8877367438023573844}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 3.1403089, y: 3.1403089, z: 3.1403089}
   m_ConstrainProportionsScale: 0
   m_Children:

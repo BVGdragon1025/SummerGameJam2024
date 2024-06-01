@@ -240,7 +240,7 @@ Transform:
   m_GameObject: {fileID: 2880178888737646497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 3.1403089, y: 3.1403089, z: 3.1403089}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -356,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 4061736197718167314}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 3.1403089, y: 3.1403089, z: 3.1403089}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -474,7 +474,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4.27, y: 4, z: 2.9999998}
-  m_Center: {x: -1.5, y: 0.5, z: 1.5}
+  m_Center: {x: -1.5, y: 2.7, z: 1.5}
 --- !u!54 &3353981173322340066
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -514,9 +514,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validPlacementMaterial: {fileID: 0}
-  invalidPlacementMaterial: {fileID: 0}
-  meshComponents: []
+  validPlacementMaterial: {fileID: 2100000, guid: 1de305dda1e79e8448a565924640b63a, type: 2}
+  invalidPlacementMaterial: {fileID: 2100000, guid: 53f73894cbca3934b8b435a21b51fed1, type: 2}
+  meshComponents:
+  - {fileID: 8779556941666477678}
   hasValidPlacement: 0
   isPlaced: 0
   timer: 0
@@ -571,7 +572,7 @@ Transform:
   m_GameObject: {fileID: 8877367438023573844}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 3.1403089, y: 3.1403089, z: 3.1403089}
   m_ConstrainProportionsScale: 0
   m_Children:
