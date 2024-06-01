@@ -8,13 +8,16 @@ public class BuildingSpecialHelper : MonoBehaviour
 
     private void OnEnable()
     {
-        _building = GetComponent<Building>();
+        _building = GetComponentInParent<Building>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Building"))
         {
+            Debug.Log("Structure in trigger!");
+            _building.elementsInTrigger++;
+            Debug.Log($"Giving {_building.BuildingType} to {other.gameObject.name}");
             Building building = other.GetComponent<Building>();
             IncreaseStatistics(building);
         }
@@ -24,6 +27,9 @@ public class BuildingSpecialHelper : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Building"))
         {
+            Debug.Log("Element exited trigger!");
+            _building.elementsInTrigger--;
+            Debug.Log($"Taking away {gameObject.tag} from {other.gameObject.name}");
             Building building = other.GetComponent<Building>();
             DecreaseStatistics(building);
         }
