@@ -160,9 +160,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void ResetTimer(float timerValue)
+    public float ResetTimer()
     {
-        timerValue = 0.0f;
+        float timerValue = 0.0f;
+        return timerValue;
     }
 
     public void GiveSomePoints()
