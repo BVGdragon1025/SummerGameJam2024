@@ -20,6 +20,8 @@ public class BuildingManager : MonoBehaviour
     public float timer;
 
     private int _numberOfObstacles;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _element;
 
     private void Awake()
     {
@@ -59,15 +61,51 @@ public class BuildingManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        LayerMask playerLayer = LayerMask.NameToLayer("PlayerRadius");
+        LayerMask elementLayer = LayerMask.NameToLayer("ElementLayer");
+
         if (isPlaced) return;
 
-        if (IsPlaced(other.gameObject)) return;
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerRadius"))
+        if (other.gameObject.layer == playerLayer)
         {
-            Debug.Log("Player in sight!");
-            SetPlacementMode(BuildingState.Valid);
-            return;
+            _player = other.gameObject;
+        }
+
+        if (other.gameObject.layer == elementLayer)
+        {
+            _element = other.gameObject;
+        }
+
+        if (_building.CompareTag("Building"))
+        {
+            if (_player != null && _element != null)
+            {
+                Debug.Log("You can plant!");
+                SetPlacementMode(BuildingState.Valid);
+                if (IsPlaced(other.gameObject))
+                {
+                    Debug.Log("Checking layers!");
+                    SetPlacementMode(BuildingState.NotValid);
+                    return;
+                }
+                return;
+            }
+        }
+
+        if (_building.CompareTag("BuildingSpecial"))
+        {
+            if (_player != null)
+            {
+                Debug.Log("You can plant!");
+                SetPlacementMode(BuildingState.Valid);
+                if (IsPlaced(other.gameObject))
+                {
+                    Debug.Log("Checking layers!");
+                    SetPlacementMode(BuildingState.NotValid);
+                    return;
+                }
+                return;
+            }
         }
 
         _numberOfObstacles++;
@@ -77,24 +115,57 @@ public class BuildingManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        LayerMask playerLayer = LayerMask.NameToLayer("PlayerRadius");
+        LayerMask elementLayer = LayerMask.NameToLayer("ElementLayer");
+
         if (isPlaced) return;
 
         if (IsPlaced(other.gameObject)) return;
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerRadius"))
+        if (other.gameObject.layer == playerLayer)
         {
-            Debug.Log("Lost sight of player!");
-            SetPlacementMode(BuildingState.NotValid);
-            return;
+            _player = null;
         }
 
+        if (other.gameObject.layer == elementLayer)
+        {
+            _element = null;
+        }
+
+        if (_building.CompareTag("BuildingSpecial"))
+        {
+            if (_player == null)
+            {
+                SetPlacementMode(BuildingState.NotValid);
+                return;
+            }
+        }
+
+        if (_building.CompareTag("Building"))
+        {
+            if (_player == null || _element == null)
+            {
+                Debug.Log("You can't plant!");
+                SetPlacementMode(BuildingState.NotValid);
+                return;
+            }
+        }
+        
         _numberOfObstacles--;
 
-        
+
         if (_numberOfObstacles == 0)
-            SetPlacementMode(BuildingState.Valid);
-        
-        
+        {
+            Debug.Log("No obstacles!");
+            if (other.gameObject.CompareTag("Player") || other.gameObject.layer == LayerMask.NameToLayer("Element"))
+            {
+                SetPlacementMode(BuildingState.Valid);
+            }
+        }
+            
+        //SetPlacementMode(BuildingState.Valid);
+
+
     }
 
     public void SetPlacementMode(BuildingState state)
@@ -108,6 +179,11 @@ public class BuildingManager : MonoBehaviour
                     GameManager.Instance.structures.Add(_building);
                 _building.triggerGameObject.SetActive(true);
                 _building.GetComponent<Collider>().excludeLayers = 0;
+                ElementsHelper element = _element.GetComponent<ElementsHelper>();
+                if (element.buildingType == _building.BuildingType)
+                {
+                    element.AddStructureToList(gameObject);
+                }
                 break;
             case BuildingState.Valid:
                 hasValidPlacement = true;

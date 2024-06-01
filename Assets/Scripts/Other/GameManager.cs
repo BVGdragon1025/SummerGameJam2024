@@ -127,11 +127,9 @@ public class GameManager : MonoBehaviour
                 _audioManager.SetPublicVariable("Plague_State", 1.0f);
                 buildingsInfected += 1;
             }
+
         }
-        else
-        {
-            SelectBuidingToInfect();
-        }
+
     }
 
     private void ChangePoisonPlayerAmbient()

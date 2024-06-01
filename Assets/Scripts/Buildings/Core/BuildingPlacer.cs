@@ -10,6 +10,10 @@ public class BuildingPlacer : MonoBehaviour
     private Camera _mainCamera;
     private Ray _ray;
     private RaycastHit _hit;
+    [SerializeField] private float _buildingCooldown;
+    [SerializeField] private bool _hasCooldown;
+
+    private bool _coroutineStart;
 
     public LayerMask groundLayerMask;
     public static BuildingPlacer Instance;
@@ -66,7 +70,7 @@ public class BuildingPlacer : MonoBehaviour
                 BuildingManager buildingManager = _toBuild.GetComponent<BuildingManager>();
                 Building building = _toBuild.GetComponent<Building>();
 
-                if (building.HasCurrency())
+                if (building.HasCurrency() && !_hasCooldown)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
@@ -76,7 +80,10 @@ public class BuildingPlacer : MonoBehaviour
 
                             buildingManager.SetPlacementMode(BuildingState.Placed);
                             GameManager.Instance.ChangeCurrencyValue(-building.BuildingCost);
-
+                            if (!_coroutineStart)
+                            {
+                                StartCoroutine(Cooldown());
+                            }
 
                             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                             {
@@ -132,7 +139,17 @@ public class BuildingPlacer : MonoBehaviour
 
         BuildingManager buildingManager = _toBuild.GetComponent<BuildingManager>();
         buildingManager.isPlaced = false;
-        buildingManager.SetPlacementMode(BuildingState.Valid);
+        buildingManager.SetPlacementMode(BuildingState.NotValid);
+    }
+
+    private IEnumerator Cooldown()
+    {
+        _coroutineStart = true;
+        _hasCooldown = true;
+        Debug.LogFormat("<color=navy>COOLDOWN!</color>");
+        yield return new WaitForSeconds(_buildingCooldown);
+        _hasCooldown = false;
+        _coroutineStart = false;
     }
 
 }
