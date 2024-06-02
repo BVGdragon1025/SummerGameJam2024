@@ -628,8 +628,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Fern
   buildingType: 2
-  buildingCost: 20
-  resourceAmount: 20
+  buildingCost: 10
+  resourceAmount: 10
   _spawnRate: 10
   timerText: {fileID: 3495144509573511029}
   _currentPlague: 0

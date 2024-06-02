@@ -623,9 +623,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Reedmace
   buildingType: 0
-  buildingCost: 40
+  buildingCost: 50
   resourceAmount: 10
-  _spawnRate: 10
+  _spawnRate: 30
   timerText: {fileID: 205604178340245516}
   _currentPlague: 0
   _maxPlagueTime: 30
