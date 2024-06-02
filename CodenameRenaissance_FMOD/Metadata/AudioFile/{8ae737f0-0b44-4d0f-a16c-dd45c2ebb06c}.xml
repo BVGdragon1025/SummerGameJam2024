@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8ae737f0-0b44-4d0f-a16c-dd45c2ebb06c}">
+		<property name="assetPath">
+			<value>FX/A_AS_SL_Torch_001.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>19.622062499999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5d801934-ec96-45f0-92a4-7a574b230c28}</destination>
+		</relationship>
+	</object>
+</objects>
