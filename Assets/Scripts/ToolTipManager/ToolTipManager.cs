@@ -35,10 +35,25 @@ public class ToolTipManager : MonoBehaviour
         
     }
 
-    public void SetAndShowToolTip(string message)
+    public void SetAndShowToolTip(Building building)
     {
         gameObject.SetActive(true);
-        textComponent.text = message;
+        switch (building.BuildingType)
+        {
+            case BuildingType.ResourceUpgrade:
+                textComponent.text = $"Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: +{building.Currency} Resource Production, to all structures around.";
+                break;
+            case BuildingType.SpeedUpgrade:
+                textComponent.text = $"Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency * 100}% to Resource Speed, to all structures around.";
+                break;
+            case BuildingType.HealthUpgrade:
+                textComponent.text = $"Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency}s to Plague Timer, to all structures around.";
+                break;
+            default:
+                textComponent.text = $"Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency}/{building.SpawnRate}s, Requires element: {building.BuildingType}";
+                break;
+        }
+
     }
     public void HideToolTip()
     {

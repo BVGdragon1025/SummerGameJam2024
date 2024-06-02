@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,14 @@ public class GameManager : MonoBehaviour
     public List<Building> structures = new();
     public int buildingsInfected;
 
+    [Header("Sliders")]
+    [SerializeField]
+    private Slider _forestPlagueSlider;
+    [SerializeField]
+    private Slider _currencySlider;
+    [SerializeField]
+    private Slider _playerPlagueSlider;
+
     public LevelData LevelData { get { return _levelData; } }
     public static GameManager Instance;
     private AudioManager _audioManager;
@@ -46,6 +55,10 @@ public class GameManager : MonoBehaviour
         }
 
         isLevelCompleted = false;
+
+        _forestPlagueSlider.maxValue = _maxLvlPlagueValue;
+        _currencySlider.maxValue = _maxCurrency;
+        _playerPlagueSlider.maxValue = _maxPlayerPlagueValue;
 
     }
 
@@ -168,6 +181,13 @@ public class GameManager : MonoBehaviour
     {
         //Debug.LogFormat($"Some nature points! <color=#00ff00ff>{_additionalCurrency} pts!</color>");
         ChangeCurrencyValue(_additionalCurrency);
+    }
+
+    public void UpdateSliders()
+    {
+        _forestPlagueSlider.value = _levelData.lvlPlagueValue;
+        _currencySlider.value = _levelData.currency;
+        _playerPlagueSlider.value = _levelData.playerPlagueValue;
     }
 
 }
