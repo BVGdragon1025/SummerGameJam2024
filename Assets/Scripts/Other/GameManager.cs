@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateSliders()
     {
-        _forestPlagueSlider.value = _maxLvlPlagueValue - _levelData.lvlPlagueValue;
+        _forestPlagueSlider.value = _levelData.lvlPlagueValue;
         _currencySlider.value = _levelData.currency;
         _playerPlagueSlider.value = _levelData.playerPlagueValue;
     }
