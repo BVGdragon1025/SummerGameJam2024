@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using FMODUnity;
+using FMOD.Studio;
 
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 _movement;
     private Animator _animator;
+    [SerializeField]
+    private StudioEventEmitter _interactionsEmitter;
+    public StudioEventEmitter InteractionsEmiter { get { return _interactionsEmitter; } }
+
+    private EventInstance _footstepsInstance;
 
     public float PlayerMovement { get { return _movement.magnitude; } }
   
@@ -20,6 +27,11 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        _footstepsInstance = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
     }
 
     void Update()
@@ -31,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
         _animator.SetFloat("xValue", hInput);
         _animator.SetFloat("yValue", vInput);
+
+        UpdateSound();
 
         /*
         //Test SFX
@@ -53,6 +67,24 @@ public class PlayerController : MonoBehaviour
     void MovePlayer(Vector3 movementVector, float playerSpeed)
     {
         _rb.velocity = movementVector * playerSpeed;
+    }
+
+    void UpdateSound()
+    {
+        if(_rb.velocity.magnitude != 0)
+        {
+            PLAYBACK_STATE playbackState;
+            _footstepsInstance.getPlaybackState(out playbackState);
+
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                _footstepsInstance.start();
+            }
+        }
+        else
+        {
+            _footstepsInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
     }
 
 

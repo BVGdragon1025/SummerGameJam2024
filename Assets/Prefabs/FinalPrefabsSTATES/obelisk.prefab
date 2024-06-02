@@ -342,6 +342,8 @@ MonoBehaviour:
   hasValidPlacement: 0
   isPlaced: 0
   timer: 0
+  _player: {fileID: 0}
+  _element: {fileID: 0}
 --- !u!114 &767799241706675407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,10 +356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c63b34192cf3944927255baf528324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingName: Obelisk
   buildingType: 4
   buildingCost: 20
   resourceAmount: 0.15
   _spawnRate: 0
+  timerText: {fileID: 0}
   _currentPlague: 0
   _maxPlagueTime: 0
   isInfected: 0

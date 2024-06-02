@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log($"Building infected: {structures[random].name}");
                 structures[random].isInfected = true;
-                _audioManager.SetPublicVariable("Plague_State", 1.0f);
+                _audioManager.SetPublicVariable("Infection_State", 1.0f);
                 buildingsInfected += 1;
             }
 
@@ -135,14 +135,14 @@ public class GameManager : MonoBehaviour
     private void ChangePoisonPlayerAmbient()
     {
         float plagueLvl = _levelData.playerPlagueValue / _maxPlayerPlagueValue;
-        _audioManager.SetPublicVariable("Player_Poison", plagueLvl);
+        _audioManager.SetPublicVariable("Player_Infection", plagueLvl);
     }
 
     private void ChangePlagueState()
     {
         if(buildingsInfected == 0 || buildingsInfected == structures.Count)
         {
-            _audioManager.SetPublicVariable("Plague_State", 0.0f);
+            _audioManager.SetPublicVariable("Infection_State", 0.0f);
         }
     }
 

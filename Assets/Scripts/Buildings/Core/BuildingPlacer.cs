@@ -70,7 +70,7 @@ public class BuildingPlacer : MonoBehaviour
                 BuildingManager buildingManager = _toBuild.GetComponent<BuildingManager>();
                 Building building = _toBuild.GetComponent<Building>();
 
-                if (building.HasCurrency() && !_hasCooldown)
+                if (building.HasCurrency())
                 {
                     if (Input.GetMouseButtonDown(0))
                     {

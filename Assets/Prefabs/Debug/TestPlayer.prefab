@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7332344950362671256}
   - component: {fileID: 5074196927555677241}
   - component: {fileID: 986795018245419155}
+  - component: {fileID: 1303815914484683006}
   m_Layer: 8
   m_Name: LightCircle
   m_TagString: Player
@@ -212,6 +213,38 @@ MonoBehaviour:
   _isCuringStructure: 0
   _structure: {fileID: 0}
   _element: {fileID: 0}
+  _structuresEmitter: {fileID: 1303815914484683006}
+--- !u!114 &1303815914484683006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3464638151294507005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2132726457
+      Data2: 1163786998
+      Data3: 1172582808
+      Data4: -1197746068
+    Path: event:/FX/Interaction_Structure
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4880520021416111166
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,6 +733,7 @@ GameObject:
   - component: {fileID: 5775010927235962025}
   - component: {fileID: 5251165643807981933}
   - component: {fileID: 1179423324252533655}
+  - component: {fileID: 1167548883650633181}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Player
@@ -794,6 +828,7 @@ MonoBehaviour:
   _playerSpeed: 4
   vfxRenderer: {fileID: 0}
   _movement: {x: 0, y: 0, z: 0}
+  _interactionsEmitter: {fileID: 1167548883650633181}
 --- !u!65 &4924945977269998192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -886,6 +921,37 @@ MonoBehaviour:
   Event: 
   PlayEvent: 1
   StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1167548883650633181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544401763886088134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1696214614
+      Data2: 1139319720
+      Data3: 1041102208
+      Data4: 108564658
+    Path: event:/FX/Interaction_Player
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

@@ -5,11 +5,18 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
+    [field: Header("Player Footsteps")]
+    [field: SerializeField] public EventReference playerFootsteps { get; private set; }
+
     [field: Header("Test SFX")]
-    [field: SerializeField] public EventReference testSFXEvent;
+    [field: SerializeField] public EventReference testSFXEvent { get; private set; }
 
     [field: Header("Ambience")]
-    [field: SerializeField] public EventReference ambience;
+    [field: SerializeField] public EventReference ambience { get; private set; }
+
+    [field: Header("Effects")]
+    [field: SerializeField] public EventReference interactions { get; private set; }
+    [field: SerializeField] public EventReference structureInteractions { get; private set; }
 
     public static FMODEvents Instance { get; private set; }
 
