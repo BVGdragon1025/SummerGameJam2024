@@ -56,8 +56,10 @@ public class GameManager : MonoBehaviour
 
         isLevelCompleted = false;
 
-        _forestPlagueSlider.maxValue = _maxLvlPlagueValue;
+        _forestPlagueSlider.minValue = _maxLvlPlagueValue;
+        _forestPlagueSlider.maxValue = 0;
         _currencySlider.maxValue = _maxCurrency;
+        _playerPlagueSlider.minValue = 0;
         _playerPlagueSlider.maxValue = _maxPlayerPlagueValue;
 
     }
