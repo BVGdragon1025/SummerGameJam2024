@@ -204,14 +204,14 @@ public class GameManager : MonoBehaviour
 
     public void UpdateSliders()
     {
-        _forestPlagueSlider.value = _maxLvlPlagueValue - _levelData.lvlPlagueValue;
+        _forestPlagueSlider.value = _levelData.lvlPlagueValue;
         _currencySlider.value = _levelData.currency;
         _playerPlagueSlider.value = _levelData.playerPlagueValue;
     }
 
     private void GameOver()
     {
-
+        _death.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -221,6 +221,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("You win!");
             Time.timeScale = 0;
+            _victory.SetActive(true);
         }
     }
 
