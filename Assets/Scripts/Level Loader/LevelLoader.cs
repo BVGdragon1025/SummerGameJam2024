@@ -9,16 +9,6 @@ public class LevelLoader : MonoBehaviour
 
     public float transitionTime = 1f;
  
-
-    // Update is called once per frame
-    void Update()
-    {
-       if(Input.GetKeyDown(KeyCode.Q))
-       {
-           LoadNextLevel();
-       }
-    }
-
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
