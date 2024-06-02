@@ -535,10 +535,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingType: 1
   buildingCost: 30
-  resourceAmount: 20
+  resourceAmount: 8
   _spawnRate: 10
   _currentPlague: 0
-  _maxPlagueTime: 45
+  _maxPlagueTime: 30
   isInfected: 0
   hasPlague: 0
   hasFinished: 0

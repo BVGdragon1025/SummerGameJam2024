@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 2
-  buildingCost: 10
+  buildingCost: 20
   resourceAmount: 20
   _spawnRate: 10
   _currentPlague: 0
