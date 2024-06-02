@@ -5,15 +5,14 @@ using UnityEngine.UI;
 
 public class WayPoints : MonoBehaviour
 {
-    public List<Image> images = new List<Image>();
-    public List<Transform> targets = new List<Transform>();
+    public Image image;
+    public Transform target;
 
     private void Update()
     {
-        for (int i = 0; i < images.Count && i < targets.Count; i++)
-        {
-            UpdateWaypoint(images[i], targets[i]);
-        }
+
+        UpdateWaypoint(image, target);
+
     }
 
     private void UpdateWaypoint(Image img, Transform target)
@@ -45,10 +44,15 @@ public class WayPoints : MonoBehaviour
         img.transform.position = pos;
     }
 
-    public void AddWaypoint(Image img, Transform target)
+    public void TurnOffWaypoint()
     {
-        images.Add(img);
-        targets.Add(target);
+        image.gameObject.SetActive(false);
     }
+
+    public void TurnOnWaypoint()
+    {
+        image.gameObject.SetActive(true);
+    }
+
 }
 

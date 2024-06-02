@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         if(structures.Count > 0)
         {
             int random = Random.Range(0, structures.Count);
-            if (!structures[random].isInfected && !structures[random].hasPlague)
+            if (!structures[random].isInfected || !structures[random].hasPlague)
             {
                 Debug.Log($"Building infected: {structures[random].name}");
                 structures[random].isInfected = true;
