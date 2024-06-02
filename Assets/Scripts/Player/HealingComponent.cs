@@ -62,15 +62,45 @@ public class HealingComponent : MonoBehaviour
     {
         if (_structures.Count != 0)
         {
-            foreach(GameObject structure in _structures)
+            for(int i = 0; i < _structures.Count; i++)
             {
-                Building building = structure.GetComponent<Building>();
-                if (building.isInfected)
+                if (_structures[i] != null)
                 {
-                    HealStructure(building);
+                    Building building = _structures[i].GetComponent<Building>();
+                    if (building.isInfected)
+                    {
+                        HealStructure(building);
 
+                    }
                 }
+                
             }
+
+            int randomStructure = Random.Range(0, _structures.Count);
+
+            if (_structures[randomStructure] != null)
+            {
+                Building building = _structures[randomStructure].GetComponent<Building>();
+                if (building.hasPlague)
+                {
+                    if (Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
+                    {
+                        _animator.SetBool("isHealing", true);
+                        StartCoroutine(CureStructure(building));
+                    }
+                }
+
+                if (_isCuringStructure && _playerController.PlayerMovement != 0)
+                {
+                    StopAllCoroutines();
+                    _playerController.InteractionsEmiter.Stop();
+                    _animator.SetBool("isHealing", false);
+                    _isCuringStructure = false;
+                }
+
+            }
+
+            
         }
     }
 
@@ -102,25 +132,29 @@ public class HealingComponent : MonoBehaviour
         if(_structures.Count != 0)
         {
             int randomStructure = Random.Range(0, _structures.Count);
-            
-            Building building = _structures[randomStructure].GetComponent<Building>();
-            if (building.hasPlague)
+
+            if (_structures[randomStructure] != null)
             {
-                if (Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
+                Building building = _structures[randomStructure].GetComponent<Building>();
+                if (building.hasPlague)
                 {
-                    _animator.SetBool("isHealing", true);
-                    StartCoroutine(CureStructure(building));
+                    if (Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
+                    {
+                        _animator.SetBool("isHealing", true);
+                        StartCoroutine(CureStructure(building));
+                    }
                 }
-            }
 
-            if(_isCuringStructure && _playerController.PlayerMovement != 0)
-            {
-                StopAllCoroutines();
-                _playerController.InteractionsEmiter.Stop();
-                _animator.SetBool("isHealing", false);
-                _isCuringStructure = false;
-            }
+                if(_isCuringStructure && _playerController.PlayerMovement != 0)
+                {
+                    StopAllCoroutines();
+                    _playerController.InteractionsEmiter.Stop();
+                    _animator.SetBool("isHealing", false);
+                    _isCuringStructure = false;
+                }
 
+            }
+            
         }
 
     }
