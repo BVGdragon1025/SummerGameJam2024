@@ -128,3 +128,24 @@ MonoBehaviour:
       Data3: 1172582808
       Data4: -1197746068
     Path: event:/FX/Interaction_Structure
+  menuMusic:
+    Guid:
+      Data1: 571185788
+      Data2: 1075561577
+      Data3: 52228799
+      Data4: -1418972889
+    Path: event:/AMB/Healed_Forest
+  clickSFX:
+    Guid:
+      Data1: -1396708551
+      Data2: 1142496094
+      Data3: -1514375289
+      Data4: -400053653
+    Path: event:/UI/Click
+  hoverSFX:
+    Guid:
+      Data1: -937431714
+      Data2: 1100797582
+      Data3: -9356122
+      Data4: -921727624
+    Path: event:/UI/Hover

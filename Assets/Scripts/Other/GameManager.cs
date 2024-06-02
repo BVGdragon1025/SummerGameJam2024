@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -39,6 +40,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Slider _playerPlagueSlider;
 
+    [Header("GameOverScreens")]
+    [SerializeField]
+    private GameObject _victory;
+    [SerializeField]
+    private GameObject _death;
+
     public LevelData LevelData { get { return _levelData; } }
     public static GameManager Instance;
     private AudioManager _audioManager;
@@ -69,6 +76,7 @@ public class GameManager : MonoBehaviour
         _audioManager = AudioManager.Instance;
         _levelData.lvlPlagueValue = _maxLvlPlagueValue;
         _levelData.playerPlagueValue = 0;
+        _levelData.currency = 50.0f;
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _plagueIncreaseFrequency);
         InvokeRepeating(nameof(SelectBuidingToInfect), _infectTimer, _infectTimer);
         //InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
@@ -78,15 +86,23 @@ public class GameManager : MonoBehaviour
     {
         KillPlayer();
 
+        if (_levelData.lvlPlagueValue == 0)
+        {
+            isLevelCompleted = true;
+        }
+
+
         if (isLevelCompleted && IsInvoking(nameof(IncreasePlayerPlague)) && IsInvoking(nameof(SelectBuidingToInfect)))
         {
             CancelInvoke(nameof(IncreasePlayerPlague));
             CancelInvoke(nameof(SelectBuidingToInfect));
             //CancelInvoke(nameof(GiveSomePoints));
+            YouWin();
         }
 
         ChangePoisonPlayerAmbient();
         ChangePlagueState();
+        UpdateSliders();
 
         if(_levelData.lvlPlagueValue <= 0)
         {
@@ -127,6 +143,7 @@ public class GameManager : MonoBehaviour
         if(!isLevelCompleted && (_levelData.playerPlagueValue >= _maxPlayerPlagueValue))
         {
             Debug.Log("Player is dead!");
+            GameOver();
         }
     }
 
@@ -190,6 +207,31 @@ public class GameManager : MonoBehaviour
         _forestPlagueSlider.value = _maxLvlPlagueValue - _levelData.lvlPlagueValue;
         _currencySlider.value = _levelData.currency;
         _playerPlagueSlider.value = _levelData.playerPlagueValue;
+    }
+
+    private void GameOver()
+    {
+
+        Time.timeScale = 0;
+    }
+
+    private void YouWin()
+    {
+        if (isLevelCompleted)
+        {
+            Debug.Log("You win!");
+            Time.timeScale = 0;
+        }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
