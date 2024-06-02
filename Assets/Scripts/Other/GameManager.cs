@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         _levelData.playerPlagueValue = 0;
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _plagueIncreaseFrequency);
         InvokeRepeating(nameof(SelectBuidingToInfect), _infectTimer, _infectTimer);
-        InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
+        //InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
     }
 
     private void Update()
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             CancelInvoke(nameof(IncreasePlayerPlague));
             CancelInvoke(nameof(SelectBuidingToInfect));
-            CancelInvoke(nameof(GiveSomePoints));
+            //CancelInvoke(nameof(GiveSomePoints));
         }
 
         ChangePoisonPlayerAmbient();
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateSliders()
     {
-        _forestPlagueSlider.value = _levelData.lvlPlagueValue;
+        _forestPlagueSlider.value = _maxLvlPlagueValue - _levelData.lvlPlagueValue;
         _currencySlider.value = _levelData.currency;
         _playerPlagueSlider.value = _levelData.playerPlagueValue;
     }
