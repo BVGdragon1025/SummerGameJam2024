@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5074196927555677241}
   - component: {fileID: 986795018245419155}
   - component: {fileID: 1303815914484683006}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: LightCircle
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -204,14 +204,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb7ba49755e9d14394c78a3f28143dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healingElementDelay: 1
-  _healingStructureDelay: 1
+  _healingElementDelay: 3
+  _healingStructureDelay: 3
   _plagueElementPenalty: 4
   _plagueStructurePenalty: 3
   _plagueHealingValue: 2
   _isHealingElement: 0
   _isCuringStructure: 0
-  _structure: {fileID: 0}
+  _structures: []
   _element: {fileID: 0}
   _structuresEmitter: {fileID: 1303815914484683006}
 --- !u!114 &1303815914484683006
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c9b8f43c511184a97063b1cbd23938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 4
+  _playerSpeed: 4.5
   vfxRenderer: {fileID: 0}
   _movement: {x: 0, y: 0, z: 0}
   _interactionsEmitter: {fileID: 1167548883650633181}
