@@ -32,7 +32,7 @@ public class ToolTipManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Input.mousePosition;
+        
     }
 
     public void SetAndShowToolTip(string message)
