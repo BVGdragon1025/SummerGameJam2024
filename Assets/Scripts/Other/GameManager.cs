@@ -211,7 +211,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-
+        _death.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -221,6 +221,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("You win!");
             Time.timeScale = 0;
+            _victory.SetActive(true);
         }
     }
 
