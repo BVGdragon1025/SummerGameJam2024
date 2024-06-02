@@ -13,9 +13,9 @@ public class LevelUI : MonoBehaviour
     {
         if (levelData != null)
         {
-            healthText.text = "Health: " + levelData.playerPlagueValue;
-            moneyText.text = "Money: " + levelData.currency;
-            plagueText.text = "Plague: " + levelData.lvlPlagueValue;
+            healthText.text = $"{levelData.playerPlagueValue}";
+            moneyText.text = $"{levelData.currency}";
+            plagueText.text = $"{levelData.lvlPlagueValue}";
         }
     }
 }

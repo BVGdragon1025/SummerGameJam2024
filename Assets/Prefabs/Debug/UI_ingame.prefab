@@ -253,8 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelData: {fileID: 11400000, guid: d013b89de65073249a7d74267dded882, type: 2}
   healthText: {fileID: 3146016706747908602}
-  moneyText: {fileID: 0}
-  plagueText: {fileID: 0}
+  moneyText: {fileID: 6206264769920149429}
+  plagueText: {fileID: 9160548398558076348}
 --- !u!1 &3348373577635905433
 GameObject:
   m_ObjectHideFlags: 0
