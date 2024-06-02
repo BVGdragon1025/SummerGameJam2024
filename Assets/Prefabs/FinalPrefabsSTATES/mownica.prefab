@@ -295,7 +295,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 5, y: 2, z: 3}
-  m_Center: {x: -1.5, y: 2, z: -3}
+  m_Center: {x: -1.5, y: 1.8, z: -3}
 --- !u!54 &8768757496158321158
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   buildingName: Book Stand
   buildingType: 3
   buildingCost: 30
-  resourceAmount: 5
+  resourceAmount: 25
   _spawnRate: 0
   timerText: {fileID: 0}
   _currentPlague: 0
