@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,9 @@ using UnityEngine.UI;
 public abstract class Building : MonoBehaviour
 {
     [Header("Building Data"), Tooltip("Resource values and other things")]
+    [SerializeField]
+    protected string buildingName;
+    public string BuildingName {  get { return buildingName; } }
     [SerializeField]
     protected BuildingType buildingType;
     public BuildingType BuildingType { get { return buildingType; } }
@@ -19,6 +23,7 @@ public abstract class Building : MonoBehaviour
     [SerializeField, Tooltip("Rate at which this buiilding spawns it's resource, in seconds")]
     private float _spawnRate;
     public float SpawnRate { get { return _spawnRate; } set { _spawnRate -= (_spawnRate * value); } }
+    public TextMeshPro timerText;
     [SerializeField, Tooltip("Current amount of Plague this structure has, in normal units.")]
     private float _currentPlague;
     public float CurrentPlague { get { return _currentPlague; } set { _currentPlague = value; } }

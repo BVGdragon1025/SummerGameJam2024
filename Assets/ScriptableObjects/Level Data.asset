@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5954e6cb68ecca44a2e23f78260c5f5, type: 3}
   m_Name: Level Data
   m_EditorClassIdentifier: 
-  lvlPlagueValue: 200
-  currency: 60
-  playerPlagueValue: 33
+  lvlPlagueValue: 100
+  currency: 119.5
+  playerPlagueValue: 4

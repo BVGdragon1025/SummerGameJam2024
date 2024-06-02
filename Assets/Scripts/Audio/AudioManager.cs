@@ -1,8 +1,7 @@
-using System.Collections;
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
-using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -92,10 +91,15 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    private void InitializeAmbience(EventReference ambienceEventReference)
+    public void InitializeEvent(EventReference eventReference)
     {
-        _ambienceEventInstance = CreateEventInstance(ambienceEventReference);
+        _ambienceEventInstance = CreateEventInstance(eventReference);
         _ambienceEventInstance.start();
+    }
+
+    public void StopEvent(EventReference eventReference)
+    {
+        _ambienceEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void SetAmbienceParameter(string parameterName, float parameterValue)

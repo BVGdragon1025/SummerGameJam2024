@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+
+[RequireComponent(typeof(StudioEventEmitter))]
+[RequireComponent(typeof(StudioEventEmitter))]
 
 public class HealingComponent : MonoBehaviour
 {
@@ -24,11 +28,13 @@ public class HealingComponent : MonoBehaviour
 
     [Header("Object References")]
     [SerializeField]
-    private GameObject _structure;
+    private List<GameObject> _structures;
     [SerializeField]
     private GameObject _element;
     private PlayerController _playerController;
     private Animator _animator;
+    [SerializeField]
+    private StudioEventEmitter _structuresEmitter;
 
     private void Awake()
     {
@@ -36,7 +42,7 @@ public class HealingComponent : MonoBehaviour
         _isCuringStructure = false;
         _playerController = GetComponentInParent<PlayerController>();
         _animator = GetComponentInParent<Animator>();
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,19 +54,22 @@ public class HealingComponent : MonoBehaviour
 
         if(other.gameObject.layer == LayerMask.NameToLayer("Structure"))
         {
-            _structure = other.gameObject;
+            _structures.Add(other.gameObject);
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (_structure != null)
+        if (_structures.Count != 0)
         {
-            Building building = _structure.GetComponent<Building>();
-            if (building.isInfected)
+            foreach(GameObject structure in _structures)
             {
-                HealStructure(building);
+                Building building = structure.GetComponent<Building>();
+                if (building.isInfected)
+                {
+                    HealStructure(building);
 
+                }
             }
         }
     }
@@ -82,19 +91,22 @@ public class HealingComponent : MonoBehaviour
             if(_isHealingElement && _playerController.PlayerMovement != 0)
             {
                 StopAllCoroutines();
+                _playerController.InteractionsEmiter.Stop();
                 _animator.SetBool("isHealing", false);
+                AudioManager.Instance.StopEvent(FMODEvents.Instance.ambience);
                 _isHealingElement = false;
                 Debug.LogFormat("<color=red>Healing interupted!</color>");
             }   
         }
 
-        if(_structure != null)
+        if(_structures.Count != 0)
         {
-            Building building = _structure.GetComponent<Building>();
-
+            int randomStructure = Random.Range(0, _structures.Count);
+            
+            Building building = _structures[randomStructure].GetComponent<Building>();
             if (building.hasPlague)
             {
-                if(Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
+                if (Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
                 {
                     _animator.SetBool("isHealing", true);
                     StartCoroutine(CureStructure(building));
@@ -104,6 +116,7 @@ public class HealingComponent : MonoBehaviour
             if(_isCuringStructure && _playerController.PlayerMovement != 0)
             {
                 StopAllCoroutines();
+                _playerController.InteractionsEmiter.Stop();
                 _animator.SetBool("isHealing", false);
                 _isCuringStructure = false;
             }
@@ -121,7 +134,7 @@ public class HealingComponent : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Structure"))
         {
-            _structure = null;
+            _structures.Remove(other.gameObject);
         }
 
     }
@@ -129,6 +142,7 @@ public class HealingComponent : MonoBehaviour
     private IEnumerator HealElement(ElementsController element)
     {
         _isHealingElement = true;
+        _playerController.InteractionsEmiter.Play();
         Debug.LogFormat("<color=green>Healing started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
         _animator.SetBool("isHealing", false);
@@ -156,6 +170,7 @@ public class HealingComponent : MonoBehaviour
     private IEnumerator CureStructure(Building building)
     {
         _isCuringStructure = true;
+        _playerController.InteractionsEmiter.Play();
         Debug.LogFormat("<color=green>Curing structure started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
         _animator.SetBool("isHealing", false);
