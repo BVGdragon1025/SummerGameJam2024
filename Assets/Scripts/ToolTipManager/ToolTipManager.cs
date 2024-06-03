@@ -41,16 +41,25 @@ public class ToolTipManager : MonoBehaviour
         switch (building.BuildingType)
         {
             case BuildingType.ResourceUpgrade:
-                textComponent.text = $"Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: +{building.Currency} Resource Production, to all structures around.";
+                textComponent.text = $" Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: +{building.Currency} Resource Production, to all structures around.";
                 break;
             case BuildingType.SpeedUpgrade:
-                textComponent.text = $"Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency * 100}% to Resource Speed, to all structures around.";
+                textComponent.text = $" Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency * 100}% to Resource Speed, to all structures around.";
                 break;
             case BuildingType.HealthUpgrade:
-                textComponent.text = $"Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency}s to Plague Timer, to all structures around.";
+                textComponent.text = $" Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency}s to Plague Timer, to all structures around.";
+                break;
+            case BuildingType.Tree:
+                textComponent.text = $" Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency} Nature Points / {building.SpawnRate}s, \n Requires element: {building.BuildingType}";
+                break;
+            case BuildingType.Meadow:
+                textComponent.text = $" Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: -{building.Currency} Player Plague / {building.SpawnRate}s, \n Requires element: {building.BuildingType}";
+                break;
+            case BuildingType.Pond:
+                textComponent.text = $" Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: -{building.Currency} Forest Plague / {building.SpawnRate}s, \n Requires element: {building.BuildingType}";
                 break;
             default:
-                textComponent.text = $"Name: {building.BuildingName}, \n Cost: {building.BuildingCost}, \n Gives: {building.Currency}/{building.SpawnRate}s, Requires element: {building.BuildingType}";
+                textComponent.text = $"Holy Shit, is that an Easter Egg?";
                 break;
         }
 

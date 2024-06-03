@@ -175,15 +175,18 @@ public class BuildingManager : MonoBehaviour
             case BuildingState.Placed:
                 isPlaced = true;
                 hasValidPlacement = true;
-                if(gameObject.CompareTag("Building"))
+                if (gameObject.CompareTag("Building"))
+                {
                     GameManager.Instance.structures.Add(_building);
+                    ElementsHelper element = _element.GetComponent<ElementsHelper>();
+                    if (element.buildingType == _building.BuildingType)
+                    {
+                        element.AddStructureToList(gameObject);
+                    }
+                }
                 _building.triggerGameObject.SetActive(true);
                 _building.GetComponent<Collider>().excludeLayers = 0;
-                ElementsHelper element = _element.GetComponent<ElementsHelper>();
-                if (element.buildingType == _building.BuildingType)
-                {
-                    element.AddStructureToList(gameObject);
-                }
+                
                 break;
             case BuildingState.Valid:
                 hasValidPlacement = true;
