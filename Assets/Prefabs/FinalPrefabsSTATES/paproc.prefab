@@ -630,7 +630,7 @@ MonoBehaviour:
   buildingType: 2
   buildingCost: 10
   resourceAmount: 10
-  _spawnRate: 10
+  _spawnRate: 15
   timerText: {fileID: 3495144509573511029}
   _currentPlague: 0
   _maxPlagueTime: 30
