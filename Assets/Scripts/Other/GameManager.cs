@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private float _maxCurrency;
     [SerializeField]
     private float _maxPlayerPlagueValue;
+    [SerializeField, Tooltip("Amount of currency player starts with. Value can be decimal.")]
+    private float _startingCurrency;
     [SerializeField]
     private LevelData _levelData;
     [SerializeField, Tooltip("Gives player additional Nature Points per second. Value can be decimal.")]
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour
         _audioManager = AudioManager.Instance;
         _levelData.lvlPlagueValue = _maxLvlPlagueValue;
         _levelData.playerPlagueValue = 0;
-        _levelData.currency = 50.0f;
+        _levelData.currency = _startingCurrency;
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _plagueIncreaseFrequency);
         InvokeRepeating(nameof(SelectBuidingToInfect), _infectTimer, _infectTimer);
         //InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
