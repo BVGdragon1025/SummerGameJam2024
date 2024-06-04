@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
 
         isLevelCompleted = false;
 
-        _forestPlagueSlider.minValue = _maxLvlPlagueValue;
-        _forestPlagueSlider.maxValue = 0;
+        _forestPlagueSlider.minValue = 0;
+        _forestPlagueSlider.maxValue = _maxLvlPlagueValue;
         _currencySlider.maxValue = _maxCurrency;
         _playerPlagueSlider.minValue = 0;
         _playerPlagueSlider.maxValue = _maxPlayerPlagueValue;
@@ -168,6 +168,7 @@ public class GameManager : MonoBehaviour
     {
         float plagueLvl = _levelData.playerPlagueValue / _maxPlayerPlagueValue;
         _audioManager.SetPublicVariable("Player_Infection", plagueLvl);
+        Debug.Log($"Current FMOD Player_Infection value: {plagueLvl} ");
     }
 
     private void ChangePlagueState()
