@@ -49,6 +49,15 @@ public abstract class Building : MonoBehaviour
         hasFinished = false;
     }
 
+    private void Start()
+    {
+        //Special check for static structures (those already placed on level)
+        if(gameManager == null)
+        {
+            gameManager = GameManager.Instance;
+        }
+    }
+
     public bool HasCurrency()
     {
         if(gameManager.LevelData.currency < buildingCost)
