@@ -128,6 +128,13 @@ MonoBehaviour:
       Data3: 1172582808
       Data4: -1197746068
     Path: event:/FX/Interaction_Structure
+  <structureInfected>k__BackingField:
+    Guid:
+      Data1: 1174907870
+      Data2: 1164139543
+      Data3: -1127689079
+      Data4: 829514134
+    Path: event:/Muzyka/MUZ_Danger_Stab
   menuMusic:
     Guid:
       Data1: 571185788

@@ -17,6 +17,7 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Effects")]
     [field: SerializeField] public EventReference interactions { get; private set; }
     [field: SerializeField] public EventReference structureInteractions { get; private set; }
+    [field: SerializeField] public EventReference structureInfected { get; private set; }
 
     [field: Header("Menu")]
     [field: SerializeField] public EventReference menuMusic;

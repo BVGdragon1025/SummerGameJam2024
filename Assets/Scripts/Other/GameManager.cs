@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
         {
             isLevelCompleted = true;
             _audioManager.SetPublicVariable("Forest_State", 1.0f);
-            _audioManager.SetPublicVariable("Danger_Phase", 0.0f);
+            //_audioManager.SetPublicVariable("Danger_Phase", 0.0f);
         }
 
     }
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log($"Building infected: {structures[random].name}");
                 structures[random].isInfected = true;
-                _audioManager.SetPublicVariable("Infection_State", 1.0f);
+                _audioManager.PlayOneShot(FMODEvents.Instance.structureInfected, structures[random].transform.position);
                 buildingsInfected += 1;
             }
 
@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
     {
         if(buildingsInfected == 0 || buildingsInfected == structures.Count)
         {
-            _audioManager.SetPublicVariable("Infection_State", 0.0f);
+            //_audioManager.SetPublicVariable("Infection_State", 0.0f);
         }
     }
 

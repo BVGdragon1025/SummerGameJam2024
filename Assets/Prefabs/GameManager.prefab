@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6156311766080582350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4512150585266717227}
+  - component: {fileID: 3370292160280520136}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4512150585266717227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156311766080582350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31900245, y: 33.327152, z: -42.086155}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3370292160280520136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156311766080582350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273ed13c7c583664ca7ef999812ce22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLvlPlagueValue: 50
+  _maxCurrency: 80
+  _maxPlayerPlagueValue: 70
+  _levelData: {fileID: 11400000, guid: d013b89de65073249a7d74267dded882, type: 2}
+  _additionalCurrency: 0
+  _plagueIncrease: 1
+  _plagueIncreaseFrequency: 2
+  _plagueIncreaseDelay: 3
+  _infectTimer: 30
+  isLevelCompleted: 0
+  structures: []
+  buildingsInfected: 0
+  _forestPlagueSlider: {fileID: 0}
+  _currencySlider: {fileID: 0}
+  _playerPlagueSlider: {fileID: 0}
+  _victory: {fileID: 0}
+  _death: {fileID: 0}
