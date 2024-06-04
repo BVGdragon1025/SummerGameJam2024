@@ -982,8 +982,8 @@ MonoBehaviour:
   _maxPlayerPlagueValue: 150
   _levelData: {fileID: 11400000, guid: 29be6866e004b384fbf6ca67f2a2c4e1, type: 2}
   _additionalCurrency: 0
-  _plagueIncrease: 1
-  _plagueIncreaseFrequency: 1
+  _plagueIncrease: 1.5
+  _plagueIncreaseFrequency: 2
   _plagueIncreaseDelay: 3
   _infectTimer: 40
   isLevelCompleted: 0
