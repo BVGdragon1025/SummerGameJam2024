@@ -5025,7 +5025,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -5047,7 +5047,7 @@ GameObject:
   - component: {fileID: 8964434203668320766}
   m_Layer: 11
   m_Name: LightCircle
-  m_TagString: Untagged
+  m_TagString: Pond
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5060,12 +5060,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3756281963903383290}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0, z: -0, w: 0.9238796}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0.3}
-  m_LocalScale: {x: 45, y: 45, z: 1.4999998}
+  m_LocalRotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.08485284}
+  m_LocalScale: {x: 9, y: 9, z: 0.30000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8554269850702842034}
+  m_Father: {fileID: 4581785481340908903}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!212 &8778854250919290251
 SpriteRenderer:
@@ -10376,6 +10376,7 @@ Transform:
   m_LocalScale: {x: 5, y: 4.9999995, z: 4.9999995}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3636076110970862102}
   - {fileID: 1422638572123953404}
   - {fileID: 1145150523493364140}
   - {fileID: 607500102059848971}
@@ -10414,7 +10415,6 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.20000002, z: 0.20000002}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 3636076110970862102}
   - {fileID: 9002104545202879924}
   - {fileID: 4581785481340908903}
   m_Father: {fileID: 0}

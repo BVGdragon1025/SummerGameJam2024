@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
     {
         float plagueLvl = _levelData.playerPlagueValue / _maxPlayerPlagueValue;
         _audioManager.SetPublicVariable("Player_Infection", plagueLvl);
-        Debug.Log($"Current FMOD Player_Infection value: {plagueLvl} ");
+        //Debug.Log($"Current FMOD Player_Infection value: {plagueLvl} ");
     }
 
     private void ChangePlagueState()
@@ -231,6 +231,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1.0f;
     }
 
     public void BackToMenu()
