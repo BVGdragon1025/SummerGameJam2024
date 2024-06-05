@@ -37,6 +37,8 @@ public class BuildingSpecialHelper : MonoBehaviour
 
     void IncreaseStatistics(Building other)
     {
+        BuildingHelper buildingHelper = other.GetComponentInChildren<BuildingHelper>();
+
         switch(_building.BuildingType)
         {
             case BuildingType.HealthUpgrade:
@@ -44,6 +46,7 @@ public class BuildingSpecialHelper : MonoBehaviour
                 break;
             case BuildingType.SpeedUpgrade:
                 other.SpawnRate = _building.Currency;
+                buildingHelper.ResetProduction();
                 break;
             case BuildingType.ResourceUpgrade:
                 other.Currency = _building.Currency;
@@ -54,6 +57,8 @@ public class BuildingSpecialHelper : MonoBehaviour
 
     void DecreaseStatistics(Building other)
     {
+        BuildingHelper buildingHelper = other.GetComponentInChildren<BuildingHelper>();
+
         switch (_building.BuildingType)
         {
             case BuildingType.HealthUpgrade:
@@ -61,6 +66,7 @@ public class BuildingSpecialHelper : MonoBehaviour
                 break;
             case BuildingType.SpeedUpgrade:
                 other.SpawnRate = -_building.Currency;
+                buildingHelper.ResetProduction();
                 break;
             case BuildingType.ResourceUpgrade:
                 other.Currency = -_building.Currency;

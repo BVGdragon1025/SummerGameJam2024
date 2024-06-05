@@ -64,9 +64,6 @@ public class BuildingManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //LayerMask playerLayer = LayerMask.NameToLayer("PlayerRadius");
-        //LayerMask elementLayer = LayerMask.NameToLayer("ElementLayer");
-
         if (isPlaced) return;
 
         if (((1 << other.gameObject.layer) & _playerLayer.value) != 0)
@@ -74,9 +71,12 @@ public class BuildingManager : MonoBehaviour
             _player = other.gameObject;
         }
 
-        if (other.gameObject.CompareTag(_elementTag.ToString()))
+        if (_building.CompareTag("Building"))
         {
-            _element = other.gameObject;
+            if (other.gameObject.CompareTag(_elementTag.ToString()))
+            {
+                _element = other.gameObject;
+            }
         }
 
         if (_building.CompareTag("Building"))
@@ -127,10 +127,14 @@ public class BuildingManager : MonoBehaviour
             _player = null;
         }
 
-        if (other.gameObject.CompareTag(_elementTag.ToString()))
+        if (_building.CompareTag("Building"))
         {
-            _element = null;
+            if (other.gameObject.CompareTag(_elementTag.ToString()))
+            {
+                _element = null;
+            }
         }
+
 
         if (_building.CompareTag("BuildingSpecial"))
         {
@@ -162,10 +166,6 @@ public class BuildingManager : MonoBehaviour
                 SetPlacementMode(BuildingState.Valid);
             }
         }
-            
-        //SetPlacementMode(BuildingState.Valid);
-
-
     }
 
     public void SetPlacementMode(BuildingState state)
