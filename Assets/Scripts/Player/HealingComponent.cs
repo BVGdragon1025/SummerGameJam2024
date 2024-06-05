@@ -196,6 +196,10 @@ public class HealingComponent : MonoBehaviour
         building.infectedState.SetActive(false);
         building.healthyState.SetActive(true);
         building.CurrentPlague = 0.0f;
+        if(building.hasFinished)
+        {
+            building.GiveResourceToPlayer();
+        }
         GameManager.Instance.buildingsInfected -= 1;
         Debug.LogFormat("<color=green>Healing structure completed!</color>");
 

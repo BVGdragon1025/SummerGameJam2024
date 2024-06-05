@@ -68,15 +68,16 @@ public abstract class Building : MonoBehaviour
     }
 
 
-    public IEnumerator StartProduction()
+    public IEnumerator StartProduction(float time)
     {
         hasFinished = false;
-        Debug.Log($"Production start! Resource type: {buildingType}");
-        yield return new WaitForSeconds(_spawnRate);
+        Debug.Log($"Production start! Resource type: {buildingType}, time: {time}");
+        yield return new WaitForSeconds(time);
         hasFinished = true;
         Debug.Log("Production stop!");
     }
 
     public abstract void GiveResourceToPlayer();
+
 
 }
