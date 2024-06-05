@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateSound()
     {
-        if(_rb.velocity.magnitude != 0)
+        if(_movement.magnitude != 0)
         {
             PLAYBACK_STATE playbackState;
             _footstepsInstance.getPlaybackState(out playbackState);

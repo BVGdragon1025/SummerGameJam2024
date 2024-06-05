@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -101,8 +100,10 @@ public class BuildingHelper : MonoBehaviour
         }
         else
         {
+            Debug.Log($"SpawnRate: {_building.SpawnRate}, timer: {_timer}");
             float helper = _building.SpawnRate - _timer;
             _timer = _building.SpawnRate - helper;
+            Debug.Log($"SpawnRate: {_building.SpawnRate}, timer: {_timer}, helper: {helper}");
         }
         
     }
