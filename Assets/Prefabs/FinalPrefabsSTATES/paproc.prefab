@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 3353981173322340066}
   - component: {fileID: 7744863029498504037}
   - component: {fileID: 981843160696929691}
+  - component: {fileID: 7333172453407852190}
   m_Layer: 14
   m_Name: paproc
   m_TagString: Building
@@ -605,6 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waypointSprite: {fileID: 21300000, guid: d5d30884fa2c380459efc9a966e7e864, type: 3}
   validPlacementMaterial: {fileID: 2100000, guid: 2e6142a24580ad54d9b547ec33424d4b, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: 4e0025dec3faad0428b9355a242fe29a, type: 2}
   meshComponents:
@@ -616,8 +618,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _elementTag: 2
-  _player: {fileID: 0}
-  _element: {fileID: 0}
+  _wayPoints: {fileID: 0}
 --- !u!114 &981843160696929691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +647,20 @@ MonoBehaviour:
   healthyState: {fileID: 2880178888737646497}
   infectedState: {fileID: 8877367438023573844}
   plagueState: {fileID: 4061736197718167314}
+--- !u!114 &7333172453407852190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592349934990317625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39c0f8dcbc2622469d6c32689a1b7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
+  target: {fileID: 0}
 --- !u!1 &7872680365461191417
 GameObject:
   m_ObjectHideFlags: 0

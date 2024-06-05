@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(WayPoints))]
+
 public class BuildingManager : MonoBehaviour
 {
+
+    [Header("Waypoints data")]
+    [Tooltip("Sprite used by Waypoint")]
+    public Sprite _waypointSprite;
 
     [Header("Building Placement Data")]
     public Material validPlacementMaterial;
@@ -22,8 +28,12 @@ public class BuildingManager : MonoBehaviour
     private int _numberOfObstacles;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private BuildingType _elementTag;
-    [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _element;
+    private GameObject _player;
+    private GameObject _element;
+    private GameManager _gameManager;
+    private AudioManager _audioManager;
+    private BuildingPlacer _buildingPlacer;
+    [HideInInspector] public WayPoints _wayPoints;
 
     private void Awake()
     {
@@ -33,17 +43,25 @@ public class BuildingManager : MonoBehaviour
         _numberOfObstacles = 0;
         _building = GetComponent<Building>();
         _elementTag = _building.BuildingType;
-
+        _wayPoints = GetComponent<WayPoints>();
+        _wayPoints.enabled = false;
         InitializeMaterials();
 
+    }
+
+    private void Start()
+    {
+        _buildingPlacer = BuildingPlacer.Instance;
+        _gameManager = GameManager.Instance;
+        _audioManager = AudioManager.Instance;
     }
 
     private void Update()
     {
         if (_building.isInfected)
         {
-            timer += GameManager.Instance.Timer(_building.CurrentPlague, _building.MaxPlagueTime);
-            AudioManager.Instance.SetPublicVariable("Danger_Phase", timer);
+            timer += _gameManager.Timer(_building.CurrentPlague, _building.MaxPlagueTime);
+            _audioManager.SetPublicVariable("Danger_Phase", timer);
             Debug.Log(timer);
             if (!_deathTimer)
             {
@@ -58,7 +76,7 @@ public class BuildingManager : MonoBehaviour
         {
             StopCoroutine(nameof(DeathTimer));
             _deathTimer = false;
-            timer = GameManager.Instance.ResetTimer();
+            timer = _gameManager.ResetTimer();
         }
     }
 
@@ -177,7 +195,8 @@ public class BuildingManager : MonoBehaviour
                 hasValidPlacement = true;
                 if (gameObject.CompareTag("Building"))
                 {
-                    GameManager.Instance.structures.Add(_building);
+                    _wayPoints.enabled = true;
+                    _gameManager.structures.Add(_building);
                     ElementsHelper element = _element.GetComponent<ElementsHelper>();
                     if (element.buildingType == _building.BuildingType)
                     {
@@ -186,6 +205,7 @@ public class BuildingManager : MonoBehaviour
                 }
                 _building.triggerGameObject.SetActive(true);
                 _building.GetComponent<Collider>().excludeLayers = 0;
+                _buildingPlacer.CreateWaypoint(_wayPoints, _waypointSprite, transform);
                 
                 break;
             case BuildingState.Valid:
@@ -254,7 +274,7 @@ public class BuildingManager : MonoBehaviour
 
     private bool IsPlaced(GameObject gameObject)
     {
-        return ((1 << gameObject.layer) & BuildingPlacer.Instance.groundLayerMask.value) != 0;
+        return ((1 << gameObject.layer) & _buildingPlacer.groundLayerMask.value) != 0;
     }
 
     private IEnumerator DeathTimer()
@@ -266,9 +286,10 @@ public class BuildingManager : MonoBehaviour
         _building.infectedState.SetActive(false);
         _building.plagueState.SetActive(true);
         _building.CurrentPlague = 0.0f;
-        timer = GameManager.Instance.ResetTimer();
+        timer = _gameManager.ResetTimer();
         _deathTimer = false;
     }
+
 
 
 }
