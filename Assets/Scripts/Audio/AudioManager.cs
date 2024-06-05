@@ -41,6 +41,7 @@ public class AudioManager : MonoBehaviour
             Instance = this;
         }
 
+        SetPublicVariable("Forest_State", 0.0f);
         _eventInstances = new List<EventInstance>();
         _eventEmitters = new List<StudioEventEmitter>();
 
