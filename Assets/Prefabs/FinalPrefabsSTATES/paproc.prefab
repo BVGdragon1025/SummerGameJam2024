@@ -612,6 +612,10 @@ MonoBehaviour:
   hasValidPlacement: 0
   isPlaced: 0
   timer: 0
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _elementTag: 2
   _player: {fileID: 0}
   _element: {fileID: 0}
 --- !u!114 &981843160696929691

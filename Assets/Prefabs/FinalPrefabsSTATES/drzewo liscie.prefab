@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6808901253731756592}
   m_Layer: 11
   m_Name: LightCircle (1)
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,12 +59,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2677087169948302422}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0, z: -0, w: 0.9238796}
+  m_LocalRotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 45, y: 45, z: 1.4999998}
+  m_LocalScale: {x: 9, y: 9, z: 0.30000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8554269850702842034}
+  m_Father: {fileID: 4581785481340908903}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!212 &6207111891845965183
 SpriteRenderer:
@@ -318,7 +318,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -473,6 +473,7 @@ Transform:
   m_LocalScale: {x: 5, y: 4.9999995, z: 4.9999995}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6900150858818019675}
   - {fileID: 5761583615816757715}
   - {fileID: 4695658091654774271}
   - {fileID: 4068790092387541180}
@@ -514,7 +515,6 @@ Transform:
   m_Children:
   - {fileID: 9002104545202879924}
   - {fileID: 4581785481340908903}
-  - {fileID: 6900150858818019675}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!212 &5851844858946894058
@@ -5523,7 +5523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5960500574751018701, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
       propertyPath: m_TagString
-      value: Tree
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7592349934990317625, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
       propertyPath: m_Name

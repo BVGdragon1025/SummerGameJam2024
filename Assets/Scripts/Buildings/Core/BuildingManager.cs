@@ -20,6 +20,8 @@ public class BuildingManager : MonoBehaviour
     public float timer;
 
     private int _numberOfObstacles;
+    [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private BuildingType _elementTag;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _element;
 
@@ -30,6 +32,7 @@ public class BuildingManager : MonoBehaviour
         isPlaced = true;
         _numberOfObstacles = 0;
         _building = GetComponent<Building>();
+        _elementTag = _building.BuildingType;
 
         InitializeMaterials();
 
@@ -61,17 +64,17 @@ public class BuildingManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LayerMask playerLayer = LayerMask.NameToLayer("PlayerRadius");
-        LayerMask elementLayer = LayerMask.NameToLayer("ElementLayer");
+        //LayerMask playerLayer = LayerMask.NameToLayer("PlayerRadius");
+        //LayerMask elementLayer = LayerMask.NameToLayer("ElementLayer");
 
         if (isPlaced) return;
 
-        if (other.gameObject.layer == playerLayer)
+        if (((1 << other.gameObject.layer) & _playerLayer.value) != 0)
         {
             _player = other.gameObject;
         }
 
-        if (other.gameObject.layer == elementLayer)
+        if (other.gameObject.CompareTag(_elementTag.ToString()))
         {
             _element = other.gameObject;
         }
@@ -115,19 +118,16 @@ public class BuildingManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        LayerMask playerLayer = LayerMask.NameToLayer("PlayerRadius");
-        LayerMask elementLayer = LayerMask.NameToLayer("ElementLayer");
-
         if (isPlaced) return;
 
         if (IsPlaced(other.gameObject)) return;
 
-        if (other.gameObject.layer == playerLayer)
+        if (((1 << other.gameObject.layer) & _playerLayer.value) != 0)
         {
             _player = null;
         }
 
-        if (other.gameObject.layer == elementLayer)
+        if (other.gameObject.CompareTag(_elementTag.ToString()))
         {
             _element = null;
         }

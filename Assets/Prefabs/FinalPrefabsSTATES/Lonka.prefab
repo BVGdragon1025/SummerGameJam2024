@@ -10463,7 +10463,7 @@ GameObject:
   - component: {fileID: 5084604621815812699}
   m_Layer: 11
   m_Name: LightCircle
-  m_TagString: Untagged
+  m_TagString: Meadow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10476,12 +10476,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6763197213255456389}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3826834, y: -0, z: -0, w: 0.9238795}
+  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071069}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 45, y: 45, z: 1.4999998}
+  m_LocalScale: {x: 9, y: 9, z: 0.29999995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8554269850702842034}
+  m_Father: {fileID: 4581785481340908903}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!212 &2784942496273548510
 SpriteRenderer:
@@ -10601,6 +10601,7 @@ Transform:
   m_LocalScale: {x: 5, y: 4.9999995, z: 4.9999995}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8849075610566103366}
   - {fileID: 7421532886578340161}
   - {fileID: 29153979913933074}
   - {fileID: 5489269048754051776}
@@ -10721,7 +10722,6 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.20000002, z: 0.20000002}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8849075610566103366}
   - {fileID: 9002104545202879924}
   - {fileID: 4581785481340908903}
   m_Father: {fileID: 0}
@@ -10921,7 +10921,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
