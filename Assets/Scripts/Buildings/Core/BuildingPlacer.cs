@@ -162,7 +162,7 @@ public class BuildingPlacer : MonoBehaviour
     {
         _coroutineStart = true;
         _hasCooldown = true;
-        Debug.LogFormat("<color=navy>COOLDOWN!</color>");
+        //Debug.LogFormat("<color=navy>COOLDOWN!</color>");
         yield return new WaitForSeconds(_buildingCooldown);
         _hasCooldown = false;
         _coroutineStart = false;

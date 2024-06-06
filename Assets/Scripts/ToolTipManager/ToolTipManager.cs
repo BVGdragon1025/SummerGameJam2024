@@ -69,4 +69,15 @@ public class ToolTipManager : MonoBehaviour
         gameObject.SetActive(false);
         textComponent.text = string.Empty;
     }
+
+    public void ShowCursor()
+    {
+        Cursor.visible = true;
+    }
+
+    public void HideCursor()
+    {
+        Cursor.visible = false;
+    }
+
 }

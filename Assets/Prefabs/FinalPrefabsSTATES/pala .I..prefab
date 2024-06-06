@@ -656,6 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   target: {fileID: 0}
+  _displacement: {x: -0.5, y: 2, z: 2}
 --- !u!1 &8039488322987663909
 GameObject:
   m_ObjectHideFlags: 0

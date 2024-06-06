@@ -7,6 +7,7 @@ public class WayPoints : MonoBehaviour
 {
     public Image image;
     public Transform target;
+    [SerializeField] private Vector3 _displacement;
 
     private void Update()
     {
@@ -23,9 +24,9 @@ public class WayPoints : MonoBehaviour
         float minY = img.GetPixelAdjustedRect().height / 2;
         float maxY = Screen.height - minY;
 
-        Vector2 pos = Camera.main.WorldToScreenPoint(target.position);
+        Vector2 pos = Camera.main.WorldToScreenPoint(target.position + _displacement);
 
-        if (Vector3.Dot((target.position - transform.position), transform.forward) < 0)
+        if (Vector3.Dot(((target.position + _displacement) - transform.position), transform.forward) < 0)
         {
             // Target is behind the player
             if (pos.x < Screen.width / 2)

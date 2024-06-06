@@ -6,14 +6,12 @@ using UnityEngine;
 public class BuildingHelper : MonoBehaviour
 {
     private Building _building;
-    private BuildingManager _buildingManager;
     [SerializeField] private float _timer;
 
 
     private void OnEnable()
     {
         _building = GetComponentInParent<Building>();
-        _buildingManager = GetComponentInParent<BuildingManager>();
         _building.triggerGameObject = gameObject;
         Debug.Log(_timer);
 
@@ -102,10 +100,10 @@ public class BuildingHelper : MonoBehaviour
         }
         else
         {
-            Debug.Log($"SpawnRate: {_building.SpawnRate}, timer: {_timer}");
+            //Debug.Log($"SpawnRate: {_building.SpawnRate}, timer: {_timer}");
             float helper = _building.SpawnRate - _timer;
             _timer = _building.SpawnRate - helper;
-            Debug.Log($"SpawnRate: {_building.SpawnRate}, timer: {_timer}, helper: {helper}");
+            //Debug.Log($"SpawnRate: {_building.SpawnRate}, timer: {_timer}, helper: {helper}");
         }
         
     }
