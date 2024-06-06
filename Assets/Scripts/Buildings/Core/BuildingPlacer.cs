@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BuildingPlacer : MonoBehaviour
 {
+    [SerializeField, Tooltip("GameObject under Canvas, where Waypoint Images will be stored")]
+    private GameObject _waypointCanvas;
     private GameObject _buildingPrefab;
     private GameObject _toBuild;
     private Camera _mainCamera;
@@ -141,6 +144,19 @@ public class BuildingPlacer : MonoBehaviour
         buildingManager.isPlaced = false;
         buildingManager.SetPlacementMode(BuildingState.NotValid);
     }
+
+    public void CreateWaypoint(WayPoints waypointScript, Sprite waypointSprite, Transform buildingTransform)
+    {
+        GameObject waypoint = new GameObject();
+        waypoint.name = buildingTransform.gameObject.name;
+        Image waypointImage = waypoint.AddComponent<Image>();
+        waypointImage.sprite = waypointSprite;
+        waypoint.GetComponent<RectTransform>().SetParent(_waypointCanvas.transform);
+        waypointScript.image = waypointImage;
+        waypointScript.target = buildingTransform;
+        waypointScript.TurnOffWaypoint();
+    }
+
 
     private IEnumerator Cooldown()
     {

@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 8768757496158321158}
   - component: {fileID: 7948396919083635242}
   - component: {fileID: 5843313392685879804}
+  - component: {fileID: 7333172453407852190}
   m_Layer: 14
   m_Name: mownica
   m_TagString: BuildingSpecial
@@ -335,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waypointSprite: {fileID: 0}
   validPlacementMaterial: {fileID: 2100000, guid: bcf87c8565eb0654186e2f2b08b04942, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: fe368ee6f3b537f489ebf7bacca443f1, type: 2}
   meshComponents:
@@ -346,8 +348,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _elementTag: 0
-  _player: {fileID: 0}
-  _element: {fileID: 0}
+  _wayPoints: {fileID: 0}
 --- !u!114 &5843313392685879804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c63b34192cf3944927255baf528324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingName: Book Stand
+  buildingName: Rostrum
   buildingType: 3
   buildingCost: 30
   resourceAmount: 5
@@ -376,6 +377,20 @@ MonoBehaviour:
   healthyState: {fileID: 0}
   infectedState: {fileID: 0}
   plagueState: {fileID: 0}
+--- !u!114 &7333172453407852190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592349934990317625}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39c0f8dcbc2622469d6c32689a1b7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
+  target: {fileID: 0}
 --- !u!1 &9072746080177531238
 GameObject:
   m_ObjectHideFlags: 0
