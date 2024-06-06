@@ -8,6 +8,12 @@ public class WayPoints : MonoBehaviour
     public Image image;
     public Transform target;
     [SerializeField] private Vector3 _displacement;
+    private Camera _camera;
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
 
     private void Update()
     {
@@ -24,7 +30,11 @@ public class WayPoints : MonoBehaviour
         float minY = img.GetPixelAdjustedRect().height / 2;
         float maxY = Screen.height - minY;
 
-        Vector2 pos = Camera.main.WorldToScreenPoint(target.position + _displacement);
+        Vector2 pos = _camera.WorldToScreenPoint(target.position + _displacement);
+
+        Debug.Log($"Min X: {minX}, Max X: {maxX}. Min Y: {minY}, Max Y: {maxY}");
+
+        Debug.Log($"Raw waypoint position: {pos}");
 
         if (Vector3.Dot(((target.position + _displacement) - transform.position), transform.forward) < 0)
         {
@@ -37,10 +47,19 @@ public class WayPoints : MonoBehaviour
             {
                 pos.x = minX;
             }
+
+            if (pos.y > maxY)
+            {
+                pos.y = minY;
+            }
         }
 
+
+        Debug.Log($"Waypoint position after if statement:  {pos}");
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        Debug.Log($"Waypoint position after Mathf.Clamp: {pos}");
+
 
         img.transform.position = pos;
     }
