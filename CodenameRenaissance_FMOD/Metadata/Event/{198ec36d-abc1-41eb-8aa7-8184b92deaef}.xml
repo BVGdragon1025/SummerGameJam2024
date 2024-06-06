@@ -133,6 +133,7 @@
 		<property name="length">
 			<value>38.399999999999999</value>
 		</property>
+		<property name="name" />
 		<relationship name="event">
 			<destination>{ee2af644-ffa9-4f9c-92ed-5665a7518e3e}</destination>
 		</relationship>
