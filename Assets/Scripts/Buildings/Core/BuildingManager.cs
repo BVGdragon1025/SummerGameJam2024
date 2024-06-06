@@ -62,7 +62,7 @@ public class BuildingManager : MonoBehaviour
         {
             timer += _gameManager.Timer(_building.CurrentPlague, _building.MaxPlagueTime);
             _audioManager.SetPublicVariable("Danger_Phase", timer);
-            Debug.Log(timer);
+            //Debug.Log(timer);
             if (!_deathTimer)
             {
                 _wayPoints.TurnOnWaypoint();
@@ -107,7 +107,7 @@ public class BuildingManager : MonoBehaviour
                 SetPlacementMode(BuildingState.Valid);
                 if (IsPlaced(other.gameObject))
                 {
-                    Debug.Log("Checking layers!");
+                    //Debug.Log("Checking layers!");
                     SetPlacementMode(BuildingState.NotValid);
                     return;
                 }
@@ -292,7 +292,5 @@ public class BuildingManager : MonoBehaviour
         timer = _gameManager.ResetTimer();
         _deathTimer = false;
     }
-
-
 
 }
