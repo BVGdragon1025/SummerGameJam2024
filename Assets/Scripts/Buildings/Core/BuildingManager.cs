@@ -65,6 +65,7 @@ public class BuildingManager : MonoBehaviour
             Debug.Log(timer);
             if (!_deathTimer)
             {
+                _wayPoints.TurnOnWaypoint();
                 _building.healthyState.SetActive(false);
                 _building.infectedState.SetActive(true);
                 StartCoroutine(nameof(DeathTimer));
@@ -75,6 +76,7 @@ public class BuildingManager : MonoBehaviour
         if(!_building.isInfected && _deathTimer)
         {
             StopCoroutine(nameof(DeathTimer));
+            _wayPoints.TurnOffWaypoint();
             _deathTimer = false;
             timer = _gameManager.ResetTimer();
         }
@@ -283,6 +285,7 @@ public class BuildingManager : MonoBehaviour
         yield return new WaitForSeconds(_building.MaxPlagueTime);
         _building.isInfected = false;
         _building.hasPlague = true;
+        _wayPoints.TurnOffWaypoint();
         _building.infectedState.SetActive(false);
         _building.plagueState.SetActive(true);
         _building.CurrentPlague = 0.0f;
