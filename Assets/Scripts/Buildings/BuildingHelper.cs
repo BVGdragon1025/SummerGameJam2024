@@ -6,14 +6,12 @@ using UnityEngine;
 public class BuildingHelper : MonoBehaviour
 {
     private Building _building;
-    private BuildingManager _buildingManager;
     [SerializeField] private float _timer;
 
 
     private void OnEnable()
     {
         _building = GetComponentInParent<Building>();
-        _buildingManager = GetComponentInParent<BuildingManager>();
         _building.triggerGameObject = gameObject;
         Debug.Log(_timer);
 
