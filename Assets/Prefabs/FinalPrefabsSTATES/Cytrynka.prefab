@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 3353981173322340066}
   - component: {fileID: 9190814131385860371}
   - component: {fileID: 4682162221462606325}
+  - component: {fileID: 7333172453407852190}
   m_Layer: 14
   m_Name: Cytrynka
   m_TagString: Building
@@ -688,6 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waypointSprite: {fileID: 21300000, guid: e6bc80b3fbcd5334ea13f99778ef9a09, type: 3}
   validPlacementMaterial: {fileID: 2100000, guid: 1de305dda1e79e8448a565924640b63a, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: 53f73894cbca3934b8b435a21b51fed1, type: 2}
   meshComponents:
@@ -699,8 +701,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _elementTag: 1
-  _player: {fileID: 0}
-  _element: {fileID: 0}
+  _wayPoints: {fileID: 0}
 --- !u!114 &4682162221462606325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798b7be73216aee43b14cd1322d5dec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingName: Citrus Tree
+  buildingName: Lemon Tree
   buildingType: 1
   buildingCost: 30
   resourceAmount: 8
@@ -729,6 +730,20 @@ MonoBehaviour:
   healthyState: {fileID: 2880178888737646497}
   infectedState: {fileID: 8877367438023573844}
   plagueState: {fileID: 4061736197718167314}
+--- !u!114 &7333172453407852190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592349934990317625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39c0f8dcbc2622469d6c32689a1b7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
+  target: {fileID: 0}
 --- !u!1 &8877367438023573844
 GameObject:
   m_ObjectHideFlags: 0
