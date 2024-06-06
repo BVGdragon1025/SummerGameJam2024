@@ -260,6 +260,9 @@ Transform:
   - {fileID: 24060059}
   - {fileID: 796259698}
   - {fileID: 1275156717}
+  - {fileID: 1323928959}
+  - {fileID: 234536322}
+  - {fileID: 728857473}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &24060058
@@ -276,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554269850702842034, guid: 28e24e9a585af17479bd2c82d84d9db7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.74
+      value: 15.2
       objectReference: {fileID: 0}
     - target: {fileID: 8554269850702842034, guid: 28e24e9a585af17479bd2c82d84d9db7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -917,7 +920,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 14722729}
     m_Modifications:
     - target: {fileID: 7592349934990317625, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
       propertyPath: m_Name
@@ -929,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554269850702842034, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000019073486
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8554269850702842034, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -968,6 +971,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
+--- !u!4 &234536322 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8554269850702842034, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
+  m_PrefabInstance: {fileID: 234536321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &312233342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1369,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 14722729}
     m_Modifications:
     - target: {fileID: 7592349934990317625, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
       propertyPath: m_Name
@@ -1373,7 +1381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554269850702842034, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000019073486
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8554269850702842034, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1412,6 +1420,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
+--- !u!4 &728857473 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8554269850702842034, guid: 96428175d14a42c4ca57222b24aed1ac, type: 3}
+  m_PrefabInstance: {fileID: 728857472}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &774209430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3873,7 +3886,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 14722729}
     m_Modifications:
     - target: {fileID: 7592349934990317625, guid: 5dbc2451727aab74cb907831ed57c97b, type: 3}
       propertyPath: m_Name
@@ -3924,6 +3937,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dbc2451727aab74cb907831ed57c97b, type: 3}
+--- !u!4 &1323928959 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8554269850702842034, guid: 5dbc2451727aab74cb907831ed57c97b, type: 3}
+  m_PrefabInstance: {fileID: 1323928958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1454665516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4924,6 +4942,3 @@ SceneRoots:
   - {fileID: 1040715575}
   - {fileID: 1998416808}
   - {fileID: 14722729}
-  - {fileID: 1323928958}
-  - {fileID: 234536321}
-  - {fileID: 728857472}
