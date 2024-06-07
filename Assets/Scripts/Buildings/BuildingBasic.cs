@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BuildingBasic : Building
 {
+    [Header("Basic Structure Specific")]
+    [SerializeField, Tooltip("How many Nature Points player looses, when they collect resources from this building. 0 - none.")]
+    private float _natureCost;
+
     public override void GiveResourceToPlayer()
     {
         switch(buildingType)
@@ -18,5 +22,8 @@ public class BuildingBasic : Building
                 gameManager.ChangeCurrencyValue(resourceAmount);
                 break;
         }
+
+        gameManager.ChangeCurrencyValue(-_natureCost);
+
     }
 }
