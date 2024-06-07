@@ -10,11 +10,17 @@ public class HowToPlay_Menu : MonoBehaviour
     public GameObject Next_Butt;
     public GameObject Prev_Butt;
 
-    void Awake()
+    void OnEnable()
     {
         Index = 0;
         Boards[Index].SetActive(true);
         Prev_Butt.SetActive(false);
+        Next_Butt.SetActive(true);
+    }
+
+    void OnDisable()
+    {
+        Boards[Index].SetActive(false);
     }
 
     public void NextBoard()
