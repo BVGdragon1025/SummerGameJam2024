@@ -65,8 +65,12 @@ public class BuildingHelper : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && _building.hasFinished)
         {
-            _building.GiveResourceToPlayer();
-            ResetProduction();
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                _building.GiveResourceToPlayer();
+                ResetProduction();
+            }
+            
         }
     }
 
