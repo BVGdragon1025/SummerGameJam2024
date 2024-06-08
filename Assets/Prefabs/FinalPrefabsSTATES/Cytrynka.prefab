@@ -550,7 +550,6 @@ GameObject:
   - component: {fileID: 3353981173322340066}
   - component: {fileID: 9190814131385860371}
   - component: {fileID: 4682162221462606325}
-  - component: {fileID: 7333172453407852190}
   m_Layer: 14
   m_Name: Cytrynka
   m_TagString: Building
@@ -701,7 +700,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _elementTag: 1
-  _wayPoints: {fileID: 0}
+  _targetIndicator: {fileID: 0}
 --- !u!114 &4682162221462606325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,21 +729,7 @@ MonoBehaviour:
   healthyState: {fileID: 2880178888737646497}
   infectedState: {fileID: 8877367438023573844}
   plagueState: {fileID: 4061736197718167314}
---- !u!114 &7333172453407852190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7592349934990317625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f39c0f8dcbc2622469d6c32689a1b7f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  target: {fileID: 0}
-  _displacement: {x: -0.5, y: 2, z: 2}
+  _natureCost: 0
 --- !u!1 &8877367438023573844
 GameObject:
   m_ObjectHideFlags: 0

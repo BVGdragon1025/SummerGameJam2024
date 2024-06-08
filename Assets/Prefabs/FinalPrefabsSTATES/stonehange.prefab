@@ -80,7 +80,6 @@ GameObject:
   - component: {fileID: 1828341422352101435}
   - component: {fileID: 2761256249838957455}
   - component: {fileID: 1317396387153964912}
-  - component: {fileID: 7333172453407852190}
   m_Layer: 14
   m_Name: stonehange
   m_TagString: BuildingSpecial
@@ -229,7 +228,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _elementTag: 0
-  _wayPoints: {fileID: 0}
+  _targetIndicator: {fileID: 0}
 --- !u!114 &1317396387153964912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,20 +257,6 @@ MonoBehaviour:
   healthyState: {fileID: 0}
   infectedState: {fileID: 0}
   plagueState: {fileID: 0}
---- !u!114 &7333172453407852190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7592349934990317625}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f39c0f8dcbc2622469d6c32689a1b7f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  target: {fileID: 0}
 --- !u!1 &9072746080177531238
 GameObject:
   m_ObjectHideFlags: 0
