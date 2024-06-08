@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("Gives player additional Nature Points per second. Value can be decimal.")]
     private float _additionalCurrency;
 
+    public float MaxLvlPlagueValue { get { return _maxLvlPlagueValue; } set { _maxLvlPlagueValue += value; } }
+    public float MaxPlayerPlagueValue { get { return _maxPlayerPlagueValue; } set { _maxLvlPlagueValue += value; } }
+
     [Header("Gameplay specific")]
     [SerializeField]
     private float _plagueIncrease;

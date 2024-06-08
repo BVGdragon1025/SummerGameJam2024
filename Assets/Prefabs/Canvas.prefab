@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451e30f8eec64c2488849f2b76abecec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: {fileID: 8732601582670351157}
+  buildingName: {fileID: 8732601582670351157}
   cost: {fileID: 1836671933691558935}
   gives: {fileID: 27428764462877801}
   time: {fileID: 6322325851682508414}
