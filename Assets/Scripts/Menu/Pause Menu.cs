@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
 
     public bool isPaused;
 
+    public Animator HeaderAnimator;
+    public Animator HandAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,6 @@ public class PauseMenu : MonoBehaviour
             if(isPaused)
             {
                 ResumeGame();
-
             }
             else
             {
@@ -39,9 +40,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        HeaderAnimator.SetBool("Show", true);
+        HandAnimator.SetBool("Show", true);
     }
     public void ResumeGame()
     {
+        HeaderAnimator.SetBool("Show", false);
+        HandAnimator.SetBool("Show", false);
+        //yield return new WaitForSeconds(1.5f);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
