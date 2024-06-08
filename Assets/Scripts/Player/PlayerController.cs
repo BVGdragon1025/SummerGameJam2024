@@ -22,9 +22,20 @@ public class PlayerController : MonoBehaviour
     private EventInstance _footstepsInstance;
 
     public float PlayerMovement { get { return _movement.magnitude; } }
+    public static PlayerController Instance;
   
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            
+        }
+        else
+        {
+            Instance = this;
+        }
+
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
     }

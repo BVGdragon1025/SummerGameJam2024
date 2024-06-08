@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class BuildingPlacer : MonoBehaviour
 {
-    [SerializeField, Tooltip("GameObject under Canvas, where Waypoint Images will be stored")]
-    private GameObject _waypointCanvas;
+    [Header("Indicators Section")]
+    [SerializeField, Tooltip("GameObject under Player Brefab, where Indicator prefabs will be stored"), FormerlySerializedAs("_waypointCanvas")]
+    private Transform _indicatorsParent;
+    [SerializeField] private GameObject _indicatorObject;
+    [SerializeField, Tooltip("How far from player indicator should be")]
+    private float _indicatorDisplacement;
+
+    [Header("Building Section")]
     private GameObject _buildingPrefab;
     private GameObject _toBuild;
     private Camera _mainCamera;
@@ -145,16 +153,16 @@ public class BuildingPlacer : MonoBehaviour
         buildingManager.SetPlacementMode(BuildingState.NotValid);
     }
 
-    public void CreateWaypoint(WayPoints waypointScript, Sprite waypointSprite, Transform buildingTransform)
+    public GameObject CreateWaypoint(Transform buildingTransform)
     {
-        GameObject waypoint = new GameObject();
-        waypoint.name = buildingTransform.gameObject.name;
-        Image waypointImage = waypoint.AddComponent<Image>();
-        waypointImage.sprite = waypointSprite;
-        waypoint.GetComponent<RectTransform>().SetParent(_waypointCanvas.transform);
-        waypointScript.image = waypointImage;
-        waypointScript.target = buildingTransform;
-        waypointScript.TurnOffWaypoint();
+        GameObject indicator = Instantiate(_indicatorObject,
+            _indicatorsParent.position,
+            _indicatorsParent.rotation,
+            _indicatorsParent);
+        indicator.GetComponent<TargetIndicator>().targetTransform = buildingTransform;
+        indicator.SetActive(false);
+
+        return indicator;
     }
 
 

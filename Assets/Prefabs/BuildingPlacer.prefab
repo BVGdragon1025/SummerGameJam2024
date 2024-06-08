@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156ece0a8ed2bb94281d56d06d4a6198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _indicatorsParent: {fileID: 0}
+  _indicatorObject: {fileID: 7662180302064398947, guid: f631ecc31ad2a774d8a4685937186d96, type: 3}
+  _indicatorDisplacement: 0
   _buildingCooldown: 3
   _hasCooldown: 0
   groundLayerMask:
