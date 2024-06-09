@@ -12,8 +12,6 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField, Tooltip("GameObject under Player Brefab, where Indicator prefabs will be stored"), FormerlySerializedAs("_waypointCanvas")]
     private Transform _indicatorsParent;
     [SerializeField] private GameObject _indicatorObject;
-    [SerializeField, Tooltip("How far from player indicator should be")]
-    private float _indicatorDisplacement;
 
     [Header("Building Section")]
     private GameObject _buildingPrefab;
@@ -22,9 +20,7 @@ public class BuildingPlacer : MonoBehaviour
     private Ray _ray;
     private RaycastHit _hit;
     [SerializeField] private float _buildingCooldown;
-    [SerializeField] private bool _hasCooldown;
 
-    private bool _coroutineStart;
 
     public LayerMask groundLayerMask;
     public static BuildingPlacer Instance;
@@ -91,11 +87,6 @@ public class BuildingPlacer : MonoBehaviour
 
                             buildingManager.SetPlacementMode(BuildingState.Placed);
                             GameManager.Instance.ChangeCurrencyValue(-building.BuildingCost);
-                            if (!_coroutineStart)
-                            {
-                                StartCoroutine(Cooldown());
-                            }
-
                             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                             {
                                 _toBuild = null;
@@ -163,17 +154,6 @@ public class BuildingPlacer : MonoBehaviour
         indicator.SetActive(false);
 
         return indicator;
-    }
-
-
-    private IEnumerator Cooldown()
-    {
-        _coroutineStart = true;
-        _hasCooldown = true;
-        //Debug.LogFormat("<color=navy>COOLDOWN!</color>");
-        yield return new WaitForSeconds(_buildingCooldown);
-        _hasCooldown = false;
-        _coroutineStart = false;
     }
 
 }

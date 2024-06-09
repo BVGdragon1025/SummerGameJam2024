@@ -25,6 +25,8 @@ public class HealingComponent : MonoBehaviour
     private bool _isHealingElement;
     [SerializeField]
     private bool _isCuringStructure;
+    [SerializeField]
+    private bool _isCollecting;
 
     [Header("Object References")]
     [SerializeField]
@@ -35,14 +37,23 @@ public class HealingComponent : MonoBehaviour
     private Animator _animator;
     [SerializeField]
     private StudioEventEmitter _structuresEmitter;
+    private AudioManager _audioManager;
+    private GameManager _gameManager;
 
     private void Awake()
     {
         _isHealingElement = false;
         _isCuringStructure = false;
+        _isCollecting = false;
         _playerController = GetComponentInParent<PlayerController>();
         _animator = GetComponentInParent<Animator>();
         
+    }
+
+    private void Start()
+    {
+        _audioManager = AudioManager.Instance;
+        _gameManager = GameManager.Instance;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -123,7 +134,7 @@ public class HealingComponent : MonoBehaviour
                 StopAllCoroutines();
                 _playerController.InteractionsEmiter.Stop();
                 _animator.SetBool("isHealing", false);
-                AudioManager.Instance.StopEvent(FMODEvents.Instance.ambience);
+                _audioManager.StopEvent(FMODEvents.Instance.ambience);
                 _isHealingElement = false;
                 Debug.LogFormat("<color=red>Healing interupted!</color>");
             }   
@@ -152,9 +163,34 @@ public class HealingComponent : MonoBehaviour
                     _animator.SetBool("isHealing", false);
                     _isCuringStructure = false;
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && !_isCollecting)
+            {
+                foreach (GameObject structure in _structures)
+                {
+                    Building building = structure.GetComponent<Building>();
+                    BuildingHelper buildingHelper = structure.GetComponentInChildren<BuildingHelper>();
+
+                    if (building.hasFinished)
+                    {
+                        Debug.Log("Collecting resources");
+                        _animator.SetBool("isCollecting", true);
+                        StartCoroutine(CollectResources(building, buildingHelper));
+
+                    }
+                }
+            }
+
+            if (_isCollecting && _playerController.PlayerMovement != 0)
+            {
+                _isCollecting = false;
+                Debug.Log("Collecting interupted!");
+                StopAllCoroutines();
+                _animator.SetBool("isCollecting", false);
 
             }
-            
+
         }
 
     }
@@ -179,19 +215,15 @@ public class HealingComponent : MonoBehaviour
         _playerController.InteractionsEmiter.Play();
         Debug.LogFormat("<color=green>Healing started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
-        _animator.SetBool("isHealing", false);
-        GameManager.Instance.ChangePlayerPlagueLevel(_plagueElementPenalty);
-        element.ObjectWithPlague.SetActive(false);
-        element.HealthyObject.SetActive(true);
-        element.hasPlague = false;
-        Debug.LogFormat("<color=green>Healing completed!</color>");
+        HealElementMethod(element);
         _isHealingElement = false;
+
     }
 
     private void HealStructure(Building building)
     {
         Debug.LogFormat("<color=orange>Structure healing start!</color>");
-        AudioManager.Instance.SetPublicVariable("Danger_Phase", 0.0f);
+        _audioManager.SetPublicVariable("Danger_Phase", 0.0f);
         building.isInfected = false;
         building.infectedState.SetActive(false);
         building.healthyState.SetActive(true);
@@ -200,7 +232,7 @@ public class HealingComponent : MonoBehaviour
         {
             building.GiveResourceToPlayer();
         }
-        GameManager.Instance.buildingsInfected -= 1;
+        _gameManager.buildingsInfected -= 1;
         Debug.LogFormat("<color=green>Healing structure completed!</color>");
 
     }
@@ -211,14 +243,41 @@ public class HealingComponent : MonoBehaviour
         _playerController.InteractionsEmiter.Play();
         Debug.LogFormat("<color=green>Curing structure started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
+        CureStructureMethod(building);
+        _isCuringStructure = false;
+    }
+
+    private IEnumerator CollectResources(Building building, BuildingHelper buildingHelper)
+    {
+        _isCollecting = true;
+        yield return new WaitForSeconds(3.0f);
+        _isCollecting = false;
+        building.GiveResourceToPlayer();
+        _playerController.Animator.SetBool("isCollecting", false);
+        buildingHelper.ResetProduction();
+        Debug.Log("Collecting finished!");
+    }
+
+    private void HealElementMethod(ElementsController element)
+    {
         _animator.SetBool("isHealing", false);
-        GameManager.Instance.buildingsInfected -= 1;
-        GameManager.Instance.ChangePlayerPlagueLevel(_plagueStructurePenalty);
+        _gameManager.ChangePlayerPlagueLevel(_plagueElementPenalty);
+        element.ObjectWithPlague.SetActive(false);
+        element.HealthyObject.SetActive(true);
+        element.hasPlague = false;
+        Debug.LogFormat("<color=green>Healing completed!</color>");
+        
+    }
+
+    private void CureStructureMethod(Building building)
+    {
+        _animator.SetBool("isHealing", false);
+        _gameManager.buildingsInfected -= 1;
+        _gameManager.ChangePlayerPlagueLevel(_plagueStructurePenalty);
         building.plagueState.SetActive(false);
         building.healthyState.SetActive(true);
         building.hasPlague = false;
         Debug.LogFormat("<color=green>Curing structure completed!</color>");
-        _isCuringStructure = false;
     }
 
 }

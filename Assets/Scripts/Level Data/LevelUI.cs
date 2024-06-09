@@ -4,18 +4,24 @@ using TMPro;
 
 public class LevelUI : MonoBehaviour
 {
-    public LevelData levelData; // Referencja do ScriptableObject
     public TextMeshProUGUI healthText; // Referencja do Text dla zdrowia
     public TextMeshProUGUI moneyText; // Referencja do Text dla pieniêdzy
     public TextMeshProUGUI plagueText; // Referencja do Text dla plagi
 
+    private GameManager _gameManager;
+
+    private void Start()
+    {
+        _gameManager = GameManager.Instance;
+    }
+
     void Update()
     {
-        if (levelData != null)
+        if (_gameManager != null)
         {
-            healthText.text = $"{levelData.playerPlagueValue}";
-            moneyText.text = $"{levelData.currency}";
-            plagueText.text = $"{levelData.lvlPlagueValue}";
+            healthText.text = $"{_gameManager.CurrentPlayerPlague}";
+            moneyText.text = $"{_gameManager.CurrentCurrency}";
+            plagueText.text = $"{_gameManager.CurrentLvlPlague}";
         }
     }
 }

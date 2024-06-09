@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     public StudioEventEmitter InteractionsEmiter { get { return _interactionsEmitter; } }
 
     private EventInstance _footstepsInstance;
-
     public float PlayerMovement { get { return _movement.magnitude; } }
+    public Animator Animator { get { return _animator; } }
     public static PlayerController Instance;
   
     private void Awake()
@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _playerSpeed = GameManager.Instance.LevelData.playerSpeed;
         _footstepsInstance = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
     }
 
@@ -56,14 +57,6 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat("yValue", vInput);
 
         UpdateSound();
-
-        /*
-        //Test SFX
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.testSFXEvent, transform.position);
-        }
-        */
 
         vfxRenderer.SetVector3("ColliderPos", new Vector3(transform.position.x, transform.position.z, transform.position.y));
 

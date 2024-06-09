@@ -48,27 +48,13 @@ public class BuildingHelper : MonoBehaviour
 
             if (!other.GetComponentInParent<ElementsController>().hasPlague)
             {
-                ResetTimer();
+                ResetProduction();
                 _building.timerText.gameObject.SetActive(true);
                 Debug.LogFormat("Element is <color=green>healthy!</color>");
-                StartCoroutine(_building.StartProduction(_timer));
             }
             else
             {
                 Debug.LogWarningFormat("Element has <color=black>plague!</color>");
-            }
-            
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && _building.hasFinished)
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                _building.GiveResourceToPlayer();
-                ResetProduction();
             }
             
         }

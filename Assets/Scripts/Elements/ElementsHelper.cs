@@ -5,12 +5,14 @@ using UnityEngine;
 public class ElementsHelper : MonoBehaviour
 {
     public List<GameObject> structures;
-    [SerializeField] private int _maxStructures;
     public BuildingType buildingType;
+    private GameManager _gameManager;
 
     private void Awake()
     {
         structures = new();
+        _gameManager = GameManager.Instance;
+
     }
 
     public void AddStructureToList(GameObject gameObject)
@@ -20,7 +22,7 @@ public class ElementsHelper : MonoBehaviour
 
     private void Update()
     {
-        if (structures.Count == _maxStructures)
+        if (structures.Count == _gameManager.LevelData.maxBuildingInRange)
         {
             gameObject.SetActive(false);
         }

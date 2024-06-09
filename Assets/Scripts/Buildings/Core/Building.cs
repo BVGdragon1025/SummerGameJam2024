@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(BuildingManager))]
 public abstract class Building : MonoBehaviour
@@ -60,7 +59,7 @@ public abstract class Building : MonoBehaviour
 
     public bool HasCurrency()
     {
-        if(gameManager.LevelData.currency < buildingCost)
+        if(gameManager.CurrentCurrency < buildingCost)
         {
             return false;
         }
