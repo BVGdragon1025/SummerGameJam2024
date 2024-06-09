@@ -6,6 +6,6 @@ public class ArtifactPlayerSpeed : Artifact
 {
     protected override void ArtifactPower()
     {
-        gameManager.PlayerSpeed = artifactValue;
+        GameManager.Instance.PlayerSpeed = artifactValue;
     }
 }

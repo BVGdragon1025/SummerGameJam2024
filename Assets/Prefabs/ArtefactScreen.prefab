@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 3589850749870705457}
   - component: {fileID: 2552820576222546276}
   - component: {fileID: 2402297374217700632}
+  - component: {fileID: 7405667157005707307}
   m_Layer: 5
   m_Name: ArtefactScreen
   m_TagString: Untagged
@@ -791,6 +792,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7405667157005707307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388203533698015488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6501d4e97f8457d4189d45c0e7416305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forestArtifactDescription: {fileID: 8659167252673992967}
+  _artifactSO: {fileID: 11400000, guid: f2a355175aa76c94381a8799102b52d2, type: 2}
+  _artifactButtons:
+  - {fileID: 2381604399829594769}
+  - {fileID: 2914669856178037331}
+  - {fileID: 3406259259292144265}
+  _continueButton: {fileID: 169784583965653761}
 --- !u!1 &3478685789817101255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1055,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 126}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1598680971891894607
 CanvasRenderer:
@@ -1586,7 +1606,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 126}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8786901277978117605
 CanvasRenderer:
@@ -1990,7 +2010,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 126}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3937230777926981051
 CanvasRenderer:

@@ -28,6 +28,6 @@ public class LevelData : ScriptableObject
     [field: SerializeField] public float DefaultPlagueIncreaseFrequency { get; private set; }
     [field: SerializeField] public float DefaultInfectionFrequency { get; private set; }
     [field: SerializeField] public float DefaultPlayerSpeed { get; private set; }
-    [field: SerializeField] public float DefaultMaxBuildingInRange { get; private set; }
+    [field: SerializeField] public int DefaultMaxBuildingInRange { get; private set; }
 
 }
