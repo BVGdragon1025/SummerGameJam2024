@@ -33948,6 +33948,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8554269850702842034, guid: a0186e114bffa7b4ca07e994d82d0c5c, type: 3}
   m_PrefabInstance: {fileID: 1010139635}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1011155591 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2101227879671875170, guid: 3bb36fe27a32c624e959ad4e538f4fc9, type: 3}
+  m_PrefabInstance: {fileID: 1966010141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1011575838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8554269850702842034, guid: a0186e114bffa7b4ca07e994d82d0c5c, type: 3}
@@ -38288,7 +38293,7 @@ MonoBehaviour:
   _plagueIncrease: 1.5
   _plagueIncreaseFrequency: 2
   _plagueIncreaseDelay: 3
-  _infectTimer: 30
+  _infectTimer: 60
   isLevelCompleted: 0
   structures: []
   buildingsInfected: 0
@@ -49419,6 +49424,10 @@ PrefabInstance:
       propertyPath: _waypointCanvas
       value: 
       objectReference: {fileID: 570899420}
+    - target: {fileID: 2876875166567391673, guid: a1b3fc766a7963043af0132711323648, type: 3}
+      propertyPath: _indicatorsParent
+      value: 
+      objectReference: {fileID: 1011155591}
     - target: {fileID: 3208185016134170763, guid: a1b3fc766a7963043af0132711323648, type: 3}
       propertyPath: m_LocalPosition.x
       value: 247.42375
