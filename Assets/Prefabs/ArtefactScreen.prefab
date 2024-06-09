@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 2552820576222546276}
   - component: {fileID: 2402297374217700632}
   - component: {fileID: 7405667157005707307}
+  - component: {fileID: 6490850399246090773}
   m_Layer: 5
   m_Name: ArtefactScreen
   m_TagString: Untagged
@@ -811,6 +812,18 @@ MonoBehaviour:
   - {fileID: 2914669856178037331}
   - {fileID: 3406259259292144265}
   _continueButton: {fileID: 169784583965653761}
+--- !u!114 &6490850399246090773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388203533698015488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adc6dd41fba4184bb5bba2253f11e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3478685789817101255
 GameObject:
   m_ObjectHideFlags: 0

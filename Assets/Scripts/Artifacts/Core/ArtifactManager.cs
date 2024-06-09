@@ -10,9 +10,11 @@ public class ArtifactManager : MonoBehaviour
     [SerializeField] private ArtifactSO _artifactSO;
     [SerializeField] private List<Button> _artifactButtons;
     [SerializeField] private Button _continueButton;
+    [SerializeField] private MainMenu _mainMenu;
 
     private void OnEnable()
     {
+        _mainMenu = GetComponent<MainMenu>();
         GetRandomForestArtifact();
         GetRandomPlayerArtifacts();
         _continueButton.gameObject.SetActive(false);
