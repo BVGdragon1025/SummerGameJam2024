@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 _movement;
     private Animator _animator;
     [SerializeField]
+    private GameObject _indicator;
+    private GameManager _gameManager;
+    [SerializeField]
     private StudioEventEmitter _interactionsEmitter;
     public StudioEventEmitter InteractionsEmiter { get { return _interactionsEmitter; } }
 
@@ -42,7 +45,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _playerSpeed = GameManager.Instance.LevelData.playerSpeed;
+        _gameManager = GameManager.Instance;
+        _playerSpeed = _gameManager.LevelData.playerSpeed;
         _footstepsInstance = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
     }
 
@@ -59,6 +63,14 @@ public class PlayerController : MonoBehaviour
         UpdateSound();
 
         vfxRenderer.SetVector3("ColliderPos", new Vector3(transform.position.x, transform.position.z, transform.position.y));
+
+        if (_gameManager.isLevelCompleted)
+        {
+            if (!_indicator.activeInHierarchy)
+            {
+                _indicator.SetActive(true);
+            }
+        }
 
     }
     

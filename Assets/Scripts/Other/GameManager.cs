@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    #region Level Specific
     [Header("Level specific data")]
     //Private variables
     [SerializeField]
@@ -21,19 +22,25 @@ public class GameManager : MonoBehaviour
     private LevelData _levelData;
     [SerializeField, Tooltip("Gives player additional Nature Points per second. Value can be decimal.")]
     private float _additionalCurrency;
+    #endregion
 
+    #region Getters/Setters
     public float MaxLvlPlagueValue { get { return _levelData.lvlPlagueValue; } set { _levelData.lvlPlagueValue += value; } }
     public float MaxPlayerPlagueValue { get { return _levelData.playerPlagueValue; } set { _levelData.playerPlagueValue += value; } }
     public float MaxPlayerCurrency { get { return _levelData.currency; } set { _levelData.currency += value; } }
     public float CurrentLvlPlague { get { return _currentLvlPlagueValue; } }
     public float CurrentCurrency { get { return _currentCurrency; } }
     public float CurrentPlayerPlague { get { return _currentPlayerPlagueValue; } }
+    #endregion
 
+    #region Special Structures Buttons
     [Header("Special Structures Buttons")]
     [SerializeField] private GameObject _obeliskButton;
     [SerializeField] private GameObject _stonehengeButton;
     [SerializeField] private GameObject _rostrumButton;
+    #endregion
 
+    #region Gameplay Specific
     [Header("Gameplay specific")]
     [SerializeField, FormerlySerializedAs("_plagueIncrease"), Tooltip("Specifies how much Plague player receives on frequent basis.")]
     private float _plagueIncreaseValue;
@@ -46,7 +53,10 @@ public class GameManager : MonoBehaviour
     public bool isLevelCompleted;
     public List<Building> structures = new();
     public int buildingsInfected;
+    [SerializeField] private GameObject _exitTrigger;
+    #endregion
 
+    #region Sliders
     [Header("Sliders")]
     [SerializeField]
     private Slider _forestPlagueSlider;
@@ -54,16 +64,21 @@ public class GameManager : MonoBehaviour
     private Slider _currencySlider;
     [SerializeField]
     private Slider _playerPlagueSlider;
+    #endregion
 
+    #region Game Over Region
     [Header("GameOverScreens")]
     [SerializeField]
     private GameObject _victory;
     [SerializeField]
     private GameObject _death;
+    #endregion
 
+    #region Other
     public LevelData LevelData { get { return _levelData; } }
     public static GameManager Instance;
     private AudioManager _audioManager;
+    #endregion
 
     private void Awake()
     {
@@ -248,9 +263,10 @@ public class GameManager : MonoBehaviour
     {
         if (isLevelCompleted)
         {
-            Debug.Log("You win!");
-            Time.timeScale = 0;
-            _victory.SetActive(true);
+            if (!_exitTrigger.activeInHierarchy)
+            {
+                _exitTrigger.SetActive(true);
+            }
         }
     }
 

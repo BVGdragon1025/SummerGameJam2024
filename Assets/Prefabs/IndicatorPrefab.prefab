@@ -130,4 +130,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
-  hideDistance: 0
+  hideDistance: 5
