@@ -11,6 +11,7 @@ public class LevelData : ScriptableObject
     public float currency;
     public float playerPlagueValue;
     public float plagueIncreaseFrequency;
+    public float infectionFrequency;
 
     [Header("Player Specific Data")]
     public float playerSpeed;
@@ -23,6 +24,7 @@ public class LevelData : ScriptableObject
     [field: SerializeField] public float DefaultCurrency { get; private set; }
     [field: SerializeField] public float DefaultPlayerPlagueValue { get; private set; }
     [field: SerializeField] public float DefaultPlagueIncreaseFrequency { get; private set; }
+    [field: SerializeField] public float DefaultInfectionFrequency { get; private set; }
     [field: SerializeField] public float DefaultPlayerSpeed { get; private set; }
     [field: SerializeField] public float DefaultMaxBuildingInRange { get; private set; }
 

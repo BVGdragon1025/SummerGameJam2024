@@ -77,8 +77,8 @@ public class GameManager : MonoBehaviour
     {
         _audioManager = AudioManager.Instance;
         
-        InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _plagueIncreaseFrequency);
-        InvokeRepeating(nameof(SelectBuidingToInfect), _infectTimer, _infectTimer);
+        InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _levelData.plagueIncreaseFrequency);
+        InvokeRepeating(nameof(SelectBuidingToInfect), _levelData.infectionFrequency, _levelData.infectionFrequency);
         //InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
     }
 
