@@ -58,6 +58,7 @@ public class ArtifactManager : MonoBehaviour
         _continueButton.onClick.RemoveAllListeners();
         _continueButton.onClick.AddListener(artifact.UseArtifact);
         _continueButton.onClick.AddListener(delegate { RemoveArtifactFromList(artifact); });
+        _continueButton.onClick.AddListener(_mainMenu.Play);
     }
 
     private void RemoveArtifactFromList(Artifact artifact)
