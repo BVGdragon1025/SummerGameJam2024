@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5954e6cb68ecca44a2e23f78260c5f5, type: 3}
   m_Name: Level Data
   m_EditorClassIdentifier: 
-  lvlPlagueValue: 50
-  currency: 80
-  playerPlagueValue: 70
+  lvlPlagueValue: 90
+  currency: 70
+  playerPlagueValue: 150
   plagueIncreaseFrequency: 2
   infectionFrequency: 60
   playerSpeed: 4.5
@@ -22,9 +22,9 @@ MonoBehaviour:
   isObeliskUnlocked: 0
   isStonehengeUnlocked: 0
   isRostrumUnlocked: 0
-  <DefaultLvlPlagueValue>k__BackingField: 50
-  <DefaultCurrency>k__BackingField: 80
-  <DefaultPlayerPlagueValue>k__BackingField: 70
+  <DefaultLvlPlagueValue>k__BackingField: 90
+  <DefaultCurrency>k__BackingField: 70
+  <DefaultPlayerPlagueValue>k__BackingField: 150
   <DefaultPlagueIncreaseFrequency>k__BackingField: 2
   <DefaultInfectionFrequency>k__BackingField: 60
   <DefaultPlayerSpeed>k__BackingField: 4.5
