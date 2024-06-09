@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4522702339991695041}
   m_Layer: 0
-  m_Name: dwa_drzewabrama
+  m_Name: Gate_Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
