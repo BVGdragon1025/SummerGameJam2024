@@ -3970,6 +3970,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8554269850702842034, guid: a0186e114bffa7b4ca07e994d82d0c5c, type: 3}
   m_PrefabInstance: {fileID: 119839946}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &119891156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4394226690916507508, guid: 9f8fd2d40b4a8124ca4de80d68360ea4, type: 3}
+  m_PrefabInstance: {fileID: 640592639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &119891157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8753250639089743411, guid: 9f8fd2d40b4a8124ca4de80d68360ea4, type: 3}
+  m_PrefabInstance: {fileID: 640592639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &119891158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3149510113530368566, guid: 9f8fd2d40b4a8124ca4de80d68360ea4, type: 3}
+  m_PrefabInstance: {fileID: 640592639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &123452540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6283,16 +6298,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273ed13c7c583664ca7ef999812ce22f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLvlPlagueValue: 90
-  _maxCurrency: 70
-  _maxPlayerPlagueValue: 150
+  _currentLvlPlagueValue: 90
+  _currentCurrency: 70
+  _currentPlayerPlagueValue: 150
   _startingCurrency: 50
   _levelData: {fileID: 11400000, guid: d013b89de65073249a7d74267dded882, type: 2}
   _additionalCurrency: 0
-  _plagueIncrease: 1.5
-  _plagueIncreaseFrequency: 2
+  _obeliskButton: {fileID: 119891158}
+  _stonehengeButton: {fileID: 119891157}
+  _rostrumButton: {fileID: 119891156}
+  _plagueIncreaseValue: 1.5
   _plagueIncreaseDelay: 3
-  _infectTimer: 60
   isLevelCompleted: 0
   structures: []
   buildingsInfected: 0
