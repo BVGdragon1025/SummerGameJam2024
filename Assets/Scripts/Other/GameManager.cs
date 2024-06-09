@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     public List<Building> structures = new();
     public int buildingsInfected;
     [SerializeField] private GameObject _exitTrigger;
+    [SerializeField] private GameObject _infectedGate;
     #endregion
 
     #region Sliders
@@ -267,6 +268,7 @@ public class GameManager : MonoBehaviour
             if (!_exitTrigger.activeInHierarchy)
             {
                 _exitTrigger.SetActive(true);
+                _infectedGate.SetActive(false);
             }
         }
     }

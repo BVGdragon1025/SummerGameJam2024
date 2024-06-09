@@ -1890,6 +1890,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7252357429179642289, guid: 6abc8ee8c5757a1478849a65ba7c1ad0, type: 3}
   m_PrefabInstance: {fileID: 57688820}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &67106156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 729249984650838304, guid: 9f8fd2d40b4a8124ca4de80d68360ea4, type: 3}
+  m_PrefabInstance: {fileID: 640592639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &70169488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6642,7 +6647,8 @@ MonoBehaviour:
   isLevelCompleted: 0
   structures: []
   buildingsInfected: 0
-  _exitTrigger: {fileID: 0}
+  _exitTrigger: {fileID: 1261579325}
+  _infectedGate: {fileID: 1261579326}
   _forestPlagueSlider: {fileID: 640592645}
   _currencySlider: {fileID: 640592644}
   _playerPlagueSlider: {fileID: 640592643}
@@ -32780,6 +32786,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 147685256712382841, guid: 3bb36fe27a32c624e959ad4e538f4fc9, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1261579324}
     - target: {fileID: 8296324911407167827, guid: 3bb36fe27a32c624e959ad4e538f4fc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42.25
@@ -52361,11 +52371,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate_Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 7683030433139702966, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8117219027405892346, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+      propertyPath: _fog
+      value: 
+      objectReference: {fileID: 407117114}
+    - target: {fileID: 8117219027405892346, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+      propertyPath: _artifactScreen
+      value: 
+      objectReference: {fileID: 67106156}
+    - target: {fileID: 8117219027405892346, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+      propertyPath: _directionalLight
+      value: 
+      objectReference: {fileID: 1886480585}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+--- !u!4 &1261579324 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5040958505768919304, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+  m_PrefabInstance: {fileID: 1261579323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1261579325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7683030433139702966, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+  m_PrefabInstance: {fileID: 1261579323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1261579326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3124560520440214667, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+  m_PrefabInstance: {fileID: 1261579323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1262774968
 PrefabInstance:
   m_ObjectHideFlags: 0
