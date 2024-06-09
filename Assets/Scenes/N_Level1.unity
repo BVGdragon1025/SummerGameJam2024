@@ -24916,11 +24916,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate_Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 7683030433139702966, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8117219027405892346, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+      propertyPath: _fog
+      value: 
+      objectReference: {fileID: 1086053226}
+    - target: {fileID: 8117219027405892346, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+      propertyPath: _artifactScreen
+      value: 
+      objectReference: {fileID: 778468671}
+    - target: {fileID: 8117219027405892346, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+      propertyPath: _directionalLight
+      value: 
+      objectReference: {fileID: 1265602772}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+--- !u!4 &570213924 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5040958505768919304, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+  m_PrefabInstance: {fileID: 570213923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &570213925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7683030433139702966, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+  m_PrefabInstance: {fileID: 570213923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &570213926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3124560520440214667, guid: b90be5e062562f54bb68c29f59de1089, type: 3}
+  m_PrefabInstance: {fileID: 570213923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &570293311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32465,6 +32496,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0186e114bffa7b4ca07e994d82d0c5c, type: 3}
+--- !u!1 &778468671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 729249984650838304, guid: 9f8fd2d40b4a8124ca4de80d68360ea4, type: 3}
+  m_PrefabInstance: {fileID: 1266700735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &781396270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8554269850702842034, guid: a0186e114bffa7b4ca07e994d82d0c5c, type: 3}
@@ -46237,6 +46273,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 147685256712382841, guid: 3bb36fe27a32c624e959ad4e538f4fc9, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 570213924}
     - target: {fileID: 8296324911407167827, guid: 3bb36fe27a32c624e959ad4e538f4fc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.81
@@ -82248,7 +82288,8 @@ MonoBehaviour:
   isLevelCompleted: 0
   structures: []
   buildingsInfected: 0
-  _exitTrigger: {fileID: 0}
+  _exitTrigger: {fileID: 570213925}
+  _infectedGate: {fileID: 570213926}
   _forestPlagueSlider: {fileID: 1266700740}
   _currencySlider: {fileID: 1266700739}
   _playerPlagueSlider: {fileID: 1266700738}
