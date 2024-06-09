@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waypointSprite: {fileID: 21300000, guid: 2b1f7ab9f80006043b4c286ae2c5542a, type: 3}
+  _targetIndicator: {fileID: 0}
   validPlacementMaterial: {fileID: 2100000, guid: 5b9c65b10a163d947810e6acb6bf7dde, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: bd48883d84714104890c6600d80bf0c2, type: 2}
   meshComponents:
@@ -612,7 +612,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _elementTag: 0
-  _targetIndicator: {fileID: 0}
 --- !u!114 &9070783159007481199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,7 +640,7 @@ MonoBehaviour:
   healthyState: {fileID: 2880178888737646497}
   infectedState: {fileID: 8877367438023573844}
   plagueState: {fileID: 4061736197718167314}
-  _natureCost: 0
+  _natureCost: 5
 --- !u!1 &8039488322987663909
 GameObject:
   m_ObjectHideFlags: 0
