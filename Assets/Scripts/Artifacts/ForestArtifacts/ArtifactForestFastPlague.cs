@@ -6,6 +6,6 @@ public class ArtifactForestFastPlague : Artifact
 {
     protected override void ArtifactPower()
     {
-        gameManager.PlagueIncrease = artifactValue;
+        GameManager.Instance.PlagueIncrease = artifactValue;
     }
 }

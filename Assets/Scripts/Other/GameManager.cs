@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private float _plagueIncreaseDelay;
     public float InfectionFrequency { get { return _levelData.infectionFrequency;  }  set { _levelData.infectionFrequency -= value; } }
     public float PlayerSpeed { get { return _levelData.playerSpeed; } set { _levelData.playerSpeed += (_levelData.playerSpeed *  value); } }
-    public int MaxBuuildingLimit { get { return _levelData.maxBuildingInRange; } set { _levelData.maxBuildingInRange += value; } }
+    public int MaxBuildingLimit { get { return _levelData.maxBuildingInRange; } set { _levelData.maxBuildingInRange += value; } }
     public bool isLevelCompleted;
     public List<Building> structures = new();
     public int buildingsInfected;

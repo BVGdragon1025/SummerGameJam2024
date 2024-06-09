@@ -6,6 +6,6 @@ public class ArtifactPlayerCurrency : Artifact
 {
     protected override void ArtifactPower()
     {
-        gameManager.MaxPlayerCurrency = artifactValue;
+        GameManager.Instance.MaxPlayerCurrency = artifactValue;
     }
 }

@@ -6,6 +6,6 @@ public class ArtifactPlayerMoreBuildings : Artifact
 {
     protected override void ArtifactPower()
     {
-        gameManager.MaxBuuildingLimit = (int)artifactValue;
+        GameManager.Instance.MaxBuildingLimit = (int)artifactValue;
     }
 }

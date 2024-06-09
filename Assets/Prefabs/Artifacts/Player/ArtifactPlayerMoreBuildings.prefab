@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifactName: Force of Nature
-  artifactDescription: Increases Building Limit round Elements by 1
+  artifactDescription: Increases Building Limit around Elements by 1
   artifactValue: 1
   activeOnStart: 0

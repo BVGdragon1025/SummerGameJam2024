@@ -10,9 +10,9 @@ public class ArtifactPlayerSpecialBuilding : Artifact
     {
         switch (_buildingType)
         {
-            case ArtifactBuildingType.Obelisk: gameManager.LevelData.isObeliskUnlocked = true; break;
-            case ArtifactBuildingType.Stonehenge: gameManager.LevelData.isStonehengeUnlocked = true; break;
-            case ArtifactBuildingType.Rostrum: gameManager.LevelData.isRostrumUnlocked = true; break;
+            case ArtifactBuildingType.Obelisk: GameManager.Instance.LevelData.isObeliskUnlocked = true; break;
+            case ArtifactBuildingType.Stonehenge: GameManager.Instance.LevelData.isStonehengeUnlocked = true; break;
+            case ArtifactBuildingType.Rostrum: GameManager.Instance.LevelData.isRostrumUnlocked = true; break;
         }
     }
 }

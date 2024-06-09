@@ -6,6 +6,6 @@ public class ArtifactForestFrequentInfection : Artifact
 {
     protected override void ArtifactPower()
     {
-        gameManager.InfectionFrequency = artifactValue;
+        GameManager.Instance.InfectionFrequency = artifactValue;
     }
 }

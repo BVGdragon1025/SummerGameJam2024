@@ -6,7 +6,7 @@ public class ArtifactPlayerHealth : Artifact
 {
     protected override void ArtifactPower()
     {
-        gameManager.MaxPlayerPlagueValue = artifactValue;
+        GameManager.Instance.MaxPlayerPlagueValue = artifactValue;
     }
 
 }
