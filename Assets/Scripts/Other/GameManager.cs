@@ -98,7 +98,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _audioManager = AudioManager.Instance;
-        
+        _audioManager.SetPublicVariable("Forest_State", 0.0f);
+
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _levelData.plagueIncreaseFrequency);
         InvokeRepeating(nameof(SelectBuidingToInfect), _levelData.infectionFrequency, _levelData.infectionFrequency);
         //InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
