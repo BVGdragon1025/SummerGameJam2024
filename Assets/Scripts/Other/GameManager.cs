@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -23,19 +24,25 @@ public class GameManager : MonoBehaviour
 
     public float MaxLvlPlagueValue { get { return _levelData.lvlPlagueValue; } set { _levelData.lvlPlagueValue += value; } }
     public float MaxPlayerPlagueValue { get { return _levelData.playerPlagueValue; } set { _levelData.playerPlagueValue += value; } }
+    public float MaxPlayerCurrency { get { return _levelData.currency; } set { _levelData.currency += value; } }
     public float CurrentLvlPlague { get { return _currentLvlPlagueValue; } }
     public float CurrentCurrency { get { return _currentCurrency; } }
     public float CurrentPlayerPlague { get { return _currentPlayerPlagueValue; } }
 
+    [Header("Special Structures Buttons")]
+    [SerializeField] private GameObject _obeliskButton;
+    [SerializeField] private GameObject _stonehengeButton;
+    [SerializeField] private GameObject _rostrumButton;
+
     [Header("Gameplay specific")]
-    [SerializeField]
-    private float _plagueIncrease;
-    [SerializeField, Tooltip("Specifies delay between plague inrcreases, in seconds")]
-    private float _plagueIncreaseFrequency;
+    [SerializeField, FormerlySerializedAs("_plagueIncrease"), Tooltip("Specifies how much Plague player receives on frequent basis.")]
+    private float _plagueIncreaseValue;
+    public float PlagueIncrease { get { return _levelData.plagueIncreaseFrequency;  } set { _levelData.plagueIncreaseFrequency /= value; } }
     [SerializeField, Tooltip("Specifies delay before first Plague Increase on level start, in seconds. 0 - player immediatly gets first batch of Plague")]
     private float _plagueIncreaseDelay;
-    [SerializeField, Tooltip("Specifies delay between Basic Structure infections, in seconds.")]
-    private float _infectTimer;
+    public float InfectionFrequency { get { return _levelData.infectionFrequency;  }  set { _levelData.infectionFrequency -= value; } }
+    public float PlayerSpeed { get { return _levelData.playerSpeed; } set { _levelData.playerSpeed += (_levelData.playerSpeed *  value); } }
+    public int MaxBuuildingLimit { get { return _levelData.maxBuildingInRange; } set { _levelData.maxBuildingInRange += value; } }
     public bool isLevelCompleted;
     public List<Building> structures = new();
     public int buildingsInfected;
@@ -126,7 +133,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Increasing player plague!");
         
-        ChangePlayerPlagueLevel(_plagueIncrease);
+        ChangePlayerPlagueLevel(_plagueIncreaseValue);
         
 
     }
@@ -187,6 +194,7 @@ public class GameManager : MonoBehaviour
     private void SetupGame()
     {
         isLevelCompleted = false;
+        PrepareButtons();
 
         _forestPlagueSlider.minValue = 0;
         _forestPlagueSlider.maxValue = _levelData.lvlPlagueValue;
@@ -197,7 +205,6 @@ public class GameManager : MonoBehaviour
         _currentLvlPlagueValue = _levelData.lvlPlagueValue;
         _currentPlayerPlagueValue = 0;
         _currentCurrency = _startingCurrency;
-        _plagueIncreaseFrequency = _levelData.plagueIncreaseFrequency;
     }
 
     public float ResetTimer()
@@ -217,6 +224,18 @@ public class GameManager : MonoBehaviour
         _forestPlagueSlider.value = _currentLvlPlagueValue;
         _currencySlider.value = _currentCurrency;
         _playerPlagueSlider.value = _currentPlayerPlagueValue;
+    }
+
+    private void PrepareButtons()
+    {
+        UnlockSpecialStructure(_obeliskButton, _levelData.isObeliskUnlocked);
+        UnlockSpecialStructure(_stonehengeButton, _levelData.isStonehengeUnlocked);
+        UnlockSpecialStructure(_rostrumButton, _levelData.isRostrumUnlocked);
+    }
+
+    private void UnlockSpecialStructure(GameObject structureButton, bool isUnlocked)
+    {
+        structureButton.SetActive(isUnlocked);
     }
 
     private void GameOver()

@@ -7,4 +7,8 @@ public class ArtifactSO : ScriptableObject
 {
     public List<Artifact> forestArtifacts;
     public List<Artifact> playerArtifacts;
+
+    [field: Header("Default Lists")]
+    [field: SerializeField] public List<Artifact> DefaultForestArtifacts { get; private set; }
+    [field: SerializeField] public List<Artifact> DefaultPlayerArtifacts { get; private set; }
 }

@@ -16,11 +16,16 @@ MonoBehaviour:
   currency: 255
   playerPlagueValue: 70
   plagueIncreaseFrequency: 5
+  infectionFrequency: 30
   playerSpeed: 4.5
   maxBuildingInRange: 3
+  isObeliskUnlocked: 0
+  isStonehengeUnlocked: 0
+  isRostrumUnlocked: 0
   <DefaultLvlPlagueValue>k__BackingField: 50
   <DefaultCurrency>k__BackingField: 255
   <DefaultPlayerPlagueValue>k__BackingField: 70
   <DefaultPlagueIncreaseFrequency>k__BackingField: 5
+  <DefaultInfectionFrequency>k__BackingField: 30
   <DefaultPlayerSpeed>k__BackingField: 4.5
   <DefaultMaxBuildingInRange>k__BackingField: 3
