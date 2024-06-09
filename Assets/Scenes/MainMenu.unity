@@ -1162,8 +1162,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: -28}
-  m_SizeDelta: {x: 385, y: 150}
+  m_AnchoredPosition: {x: -430, y: -60}
+  m_SizeDelta: {x: 385, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &181681287
 MonoBehaviour:
@@ -1765,7 +1765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 396, y: 138}
+  m_AnchoredPosition: {x: 430, y: 138}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &246932991
@@ -2010,7 +2010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &365733681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5239,8 +5239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -28}
-  m_SizeDelta: {x: 460, y: 150}
+  m_AnchoredPosition: {x: 0, y: -60}
+  m_SizeDelta: {x: 460, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1232852225
 MonoBehaviour:
@@ -5376,8 +5376,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: -28}
-  m_SizeDelta: {x: 385, y: 150}
+  m_AnchoredPosition: {x: 430, y: -60}
+  m_SizeDelta: {x: 385, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1320549410
 MonoBehaviour:
@@ -5401,7 +5401,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'To harvest <i>Structures</i>
 
-    <b>press E</b>'
+    <b>press E</b>
+
+    Harvesting <i>Lemon
+    Trees</i> and <i>Reedmaces</i> cost 5 <i>Nature Power</i>.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
   m_sharedMaterial: {fileID: 6957120530936090379, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
@@ -5512,7 +5515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -88}
+  m_AnchoredPosition: {x: 0, y: -82}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352023994
@@ -7525,12 +7528,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'The player''s goal is to heal The Forest by reducing <i>Forest Plague</i>
-    to 0 by placing <i>Reedmaces</i>.
+    to 0 by harvesting <i>Reedmaces</i>.
 
 
-    But, be careful! Every 60 seconds random
-    <i>Structure</i> gets infected and stops producing resources untill you heal
-    it. '
+    But, be careful! Every 60 seconds
+    random <i>Structure</i> gets infected and stops producing resources untill you
+    heal it. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
   m_sharedMaterial: {fileID: 6957120530936090379, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
@@ -7756,7 +7759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1824713149
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7770,13 +7773,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 181681286}
-  - {fileID: 1604720967}
   - {fileID: 1232852224}
   - {fileID: 1320549409}
   - {fileID: 1837867220}
   - {fileID: 396906046}
   - {fileID: 246932990}
   - {fileID: 2046642164}
+  - {fileID: 1604720967}
   m_Father: {fileID: 365733681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7818,7 +7821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: 196}
+  m_AnchoredPosition: {x: -430, y: 196}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1837867221
@@ -8518,7 +8521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 404, y: 199}
+  m_AnchoredPosition: {x: 444, y: 199}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046642165
