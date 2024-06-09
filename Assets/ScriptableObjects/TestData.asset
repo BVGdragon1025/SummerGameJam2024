@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5954e6cb68ecca44a2e23f78260c5f5, type: 3}
   m_Name: TestData
   m_EditorClassIdentifier: 
-  lvlPlagueValue: 0
-  currency: 0
-  playerPlagueValue: 0
+  lvlPlagueValue: 50
+  currency: 255
+  playerPlagueValue: 70
+  plagueIncreaseFrequency: 5
+  playerSpeed: 4.5
+  maxBuildingInRange: 3
+  <DefaultLvlPlagueValue>k__BackingField: 50
+  <DefaultCurrency>k__BackingField: 255
+  <DefaultPlayerPlagueValue>k__BackingField: 70
+  <DefaultPlagueIncreaseFrequency>k__BackingField: 5
+  <DefaultPlayerSpeed>k__BackingField: 4.5
+  <DefaultMaxBuildingInRange>k__BackingField: 3

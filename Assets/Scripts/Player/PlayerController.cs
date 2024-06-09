@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _playerSpeed = GameManager.Instance.LevelData.playerSpeed;
         _footstepsInstance = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
     }
 

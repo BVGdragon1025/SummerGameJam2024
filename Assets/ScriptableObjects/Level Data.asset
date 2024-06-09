@@ -13,5 +13,14 @@ MonoBehaviour:
   m_Name: Level Data
   m_EditorClassIdentifier: 
   lvlPlagueValue: 50
-  currency: 30
-  playerPlagueValue: 14
+  currency: 80
+  playerPlagueValue: 70
+  plagueIncreaseFrequency: 2
+  playerSpeed: 4.5
+  maxBuildingInRange: 3
+  <DefaultLvlPlagueValue>k__BackingField: 50
+  <DefaultCurrency>k__BackingField: 80
+  <DefaultPlayerPlagueValue>k__BackingField: 70
+  <DefaultPlagueIncreaseFrequency>k__BackingField: 2
+  <DefaultPlayerSpeed>k__BackingField: 4.5
+  <DefaultMaxBuildingInRange>k__BackingField: 3

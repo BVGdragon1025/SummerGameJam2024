@@ -9,11 +9,11 @@ public class GameManager : MonoBehaviour
     [Header("Level specific data")]
     //Private variables
     [SerializeField]
-    private float _maxLvlPlagueValue;
+    private float _currentLvlPlagueValue;
     [SerializeField]
-    private float _maxCurrency;
+    private float _currentCurrency;
     [SerializeField]
-    private float _maxPlayerPlagueValue;
+    private float _currentPlayerPlagueValue;
     [SerializeField, Tooltip("Amount of currency player starts with. Value can be decimal.")]
     private float _startingCurrency;
     [SerializeField]
@@ -21,8 +21,11 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("Gives player additional Nature Points per second. Value can be decimal.")]
     private float _additionalCurrency;
 
-    public float MaxLvlPlagueValue { get { return _maxLvlPlagueValue; } set { _maxLvlPlagueValue += value; } }
-    public float MaxPlayerPlagueValue { get { return _maxPlayerPlagueValue; } set { _maxLvlPlagueValue += value; } }
+    public float MaxLvlPlagueValue { get { return _levelData.lvlPlagueValue; } set { _levelData.lvlPlagueValue += value; } }
+    public float MaxPlayerPlagueValue { get { return _levelData.playerPlagueValue; } set { _levelData.playerPlagueValue += value; } }
+    public float CurrentLvlPlague { get { return _currentLvlPlagueValue; } }
+    public float CurrentCurrency { get { return _currentCurrency; } }
+    public float CurrentPlayerPlague { get { return _currentPlayerPlagueValue; } }
 
     [Header("Gameplay specific")]
     [SerializeField]
@@ -66,22 +69,14 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-        isLevelCompleted = false;
-
-        _forestPlagueSlider.minValue = 0;
-        _forestPlagueSlider.maxValue = _maxLvlPlagueValue;
-        _currencySlider.maxValue = _maxCurrency;
-        _playerPlagueSlider.minValue = 0;
-        _playerPlagueSlider.maxValue = _maxPlayerPlagueValue;
+        SetupGame();
 
     }
 
     private void Start()
     {
         _audioManager = AudioManager.Instance;
-        _levelData.lvlPlagueValue = _maxLvlPlagueValue;
-        _levelData.playerPlagueValue = 0;
-        _levelData.currency = _startingCurrency;
+        
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _plagueIncreaseFrequency);
         InvokeRepeating(nameof(SelectBuidingToInfect), _infectTimer, _infectTimer);
         //InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
@@ -91,16 +86,9 @@ public class GameManager : MonoBehaviour
     {
         KillPlayer();
 
-        if (_levelData.lvlPlagueValue == 0)
+        if (isLevelCompleted)
         {
-            isLevelCompleted = true;
-        }
-
-
-        if (isLevelCompleted && IsInvoking(nameof(IncreasePlayerPlague)) && IsInvoking(nameof(SelectBuidingToInfect)))
-        {
-            CancelInvoke(nameof(IncreasePlayerPlague));
-            CancelInvoke(nameof(SelectBuidingToInfect));
+            CancelInvoke();
             //CancelInvoke(nameof(GiveSomePoints));
             YouWin();
         }
@@ -109,7 +97,7 @@ public class GameManager : MonoBehaviour
         ChangePlagueState();
         UpdateSliders();
 
-        if(_levelData.lvlPlagueValue <= 0)
+        if(_currentLvlPlagueValue <= 0)
         {
             isLevelCompleted = true;
             _audioManager.SetPublicVariable("Forest_State", 1.0f);
@@ -120,17 +108,17 @@ public class GameManager : MonoBehaviour
 
     public void ChangeForestPlagueLevel(float value)
     {
-        _levelData.lvlPlagueValue = Mathf.Clamp(_levelData.lvlPlagueValue + value, 0, _maxLvlPlagueValue);
+        _currentLvlPlagueValue = Mathf.Clamp(_currentLvlPlagueValue + value, 0, _levelData.lvlPlagueValue);
     }
 
     public void ChangeCurrencyValue(float value)
     {
-        _levelData.currency = Mathf.Clamp(_levelData.currency + value, 0, _maxCurrency);
+        _currentCurrency = Mathf.Clamp(_currentCurrency + value, 0, _levelData.currency);
     }
 
     public void ChangePlayerPlagueLevel(float value)
     {
-        _levelData.playerPlagueValue = Mathf.Clamp(_levelData.playerPlagueValue + value, 0, _maxPlayerPlagueValue);
+        _currentPlayerPlagueValue = Mathf.Clamp(_currentPlayerPlagueValue + value, 0, _levelData.playerPlagueValue);
     }
 
     private void IncreasePlayerPlague()
@@ -145,7 +133,7 @@ public class GameManager : MonoBehaviour
 
     private void KillPlayer()
     {
-        if(!isLevelCompleted && (_levelData.playerPlagueValue >= _maxPlayerPlagueValue))
+        if(!isLevelCompleted && (_currentPlayerPlagueValue >= _levelData.playerPlagueValue))
         {
             Debug.Log("Player is dead!");
             GameOver();
@@ -171,7 +159,7 @@ public class GameManager : MonoBehaviour
 
     private void ChangePoisonPlayerAmbient()
     {
-        float plagueLvl = _levelData.playerPlagueValue / _maxPlayerPlagueValue;
+        float plagueLvl = _currentPlayerPlagueValue / _levelData.lvlPlagueValue;
         _audioManager.SetPublicVariable("Player_Infection", plagueLvl);
         //Debug.Log($"Current FMOD Player_Infection value: {plagueLvl} ");
     }
@@ -196,6 +184,22 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void SetupGame()
+    {
+        isLevelCompleted = false;
+
+        _forestPlagueSlider.minValue = 0;
+        _forestPlagueSlider.maxValue = _levelData.lvlPlagueValue;
+        _currencySlider.maxValue = _levelData.currency;
+        _playerPlagueSlider.minValue = 0;
+        _playerPlagueSlider.maxValue = _levelData.playerPlagueValue;
+
+        _currentLvlPlagueValue = _levelData.lvlPlagueValue;
+        _currentPlayerPlagueValue = 0;
+        _currentCurrency = _startingCurrency;
+        _plagueIncreaseFrequency = _levelData.plagueIncreaseFrequency;
+    }
+
     public float ResetTimer()
     {
         float timerValue = 0.0f;
@@ -210,9 +214,9 @@ public class GameManager : MonoBehaviour
 
     public void UpdateSliders()
     {
-        _forestPlagueSlider.value = _levelData.lvlPlagueValue;
-        _currencySlider.value = _levelData.currency;
-        _playerPlagueSlider.value = _levelData.playerPlagueValue;
+        _forestPlagueSlider.value = _currentLvlPlagueValue;
+        _currencySlider.value = _currentCurrency;
+        _playerPlagueSlider.value = _currentPlayerPlagueValue;
     }
 
     private void GameOver()

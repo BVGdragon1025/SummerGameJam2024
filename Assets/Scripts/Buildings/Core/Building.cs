@@ -59,7 +59,7 @@ public abstract class Building : MonoBehaviour
 
     public bool HasCurrency()
     {
-        if(gameManager.LevelData.currency < buildingCost)
+        if(gameManager.CurrentCurrency < buildingCost)
         {
             return false;
         }
