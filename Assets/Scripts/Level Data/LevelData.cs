@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Level Data", menuName = "Data Container/Level Data")]
 public class LevelData : ScriptableObject
@@ -18,6 +17,9 @@ public class LevelData : ScriptableObject
 
     [Header("Building Specific Data")]
     public int maxBuildingInRange;
+    public bool isObeliskUnlocked;
+    public bool isStonehengeUnlocked;
+    public bool isRostrumUnlocked;
 
     [field: Header("Default values")]
     [field: SerializeField] public float DefaultLvlPlagueValue { get; private set; }
