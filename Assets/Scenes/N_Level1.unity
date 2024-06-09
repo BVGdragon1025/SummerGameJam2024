@@ -14805,6 +14805,10 @@ PrefabInstance:
       propertyPath: _waypointCanvas
       value: 
       objectReference: {fileID: 2140837171}
+    - target: {fileID: 2876875166567391673, guid: a1b3fc766a7963043af0132711323648, type: 3}
+      propertyPath: _indicatorsParent
+      value: 
+      objectReference: {fileID: 1132611183}
     - target: {fileID: 3208185016134170763, guid: a1b3fc766a7963043af0132711323648, type: 3}
       propertyPath: m_LocalPosition.x
       value: 247.42375
@@ -40557,6 +40561,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bb36fe27a32c624e959ad4e538f4fc9, type: 3}
+--- !u!4 &1132611183 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2101227879671875170, guid: 3bb36fe27a32c624e959ad4e538f4fc9, type: 3}
+  m_PrefabInstance: {fileID: 1132611182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1133795878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72170,7 +72179,7 @@ MonoBehaviour:
   _plagueIncrease: 1.5
   _plagueIncreaseFrequency: 2
   _plagueIncreaseDelay: 3
-  _infectTimer: 40
+  _infectTimer: 60
   isLevelCompleted: 0
   structures: []
   buildingsInfected: 0
