@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     public Animator HeaderAnimator;
     public Animator HandAnimator;
+    public Animator PanelAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -42,11 +43,13 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         HeaderAnimator.SetBool("Show", true);
         HandAnimator.SetBool("Show", true);
+        PanelAnimator.SetBool("Show", true);
     }
     public void ResumeGame()
     {
         HeaderAnimator.SetBool("Show", false);
         HandAnimator.SetBool("Show", false);
+        PanelAnimator.SetBool("Show", false);
         //yield return new WaitForSeconds(1.5f);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
