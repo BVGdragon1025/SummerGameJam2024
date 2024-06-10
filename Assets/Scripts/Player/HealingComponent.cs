@@ -111,7 +111,7 @@ public class HealingComponent : MonoBehaviour
 
             }
 
-            
+
         }
     }
 
@@ -169,16 +169,20 @@ public class HealingComponent : MonoBehaviour
             {
                 foreach (GameObject structure in _structures)
                 {
-                    Building building = structure.GetComponent<Building>();
-                    BuildingHelper buildingHelper = structure.GetComponentInChildren<BuildingHelper>();
-
-                    if (building.hasFinished)
+                    if(structure != null)
                     {
-                        Debug.Log("Collecting resources");
-                        _animator.SetBool("isCollecting", true);
-                        StartCoroutine(CollectResources(building, buildingHelper));
+                        Building building = structure.GetComponent<Building>();
+                        BuildingHelper buildingHelper = structure.GetComponentInChildren<BuildingHelper>();
 
+                        if (building.hasFinished)
+                        {
+                            Debug.Log("Collecting resources");
+                            _animator.SetBool("isCollecting", true);
+                            StartCoroutine(CollectResources(building, buildingHelper));
+
+                        }
                     }
+                    
                 }
             }
 
