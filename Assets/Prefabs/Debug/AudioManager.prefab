@@ -121,6 +121,13 @@ MonoBehaviour:
       Data3: 1041102208
       Data4: 108564658
     Path: event:/FX/Interaction_Player
+  <collecting>k__BackingField:
+    Guid:
+      Data1: -264845447
+      Data2: 1149658765
+      Data3: -1268183162
+      Data4: 1262514490
+    Path: event:/FX/Interaction_Player 2
   <structureInteractions>k__BackingField:
     Guid:
       Data1: 2132726457
@@ -156,3 +163,17 @@ MonoBehaviour:
       Data3: -9356122
       Data4: -921727624
     Path: event:/UI/Hover
+  infectedHoverSFX:
+    Guid:
+      Data1: 1818312909
+      Data2: 1124031833
+      Data3: 1339156671
+      Data4: 497422540
+    Path: event:/UI/Hover_Infected
+  infectedClickSFX:
+    Guid:
+      Data1: 1955521793
+      Data2: 1306327099
+      Data3: -1331182916
+      Data4: -349566071
+    Path: event:/UI/Click_Infected

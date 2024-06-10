@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private StudioEventEmitter _interactionsEmitter;
     public StudioEventEmitter InteractionsEmiter { get { return _interactionsEmitter; } }
+    [SerializeField]
+    private StudioEventEmitter _collectingEmitter;
+    public StudioEventEmitter CollectingEmitter { get { return _collectingEmitter; } }
 
     private EventInstance _footstepsInstance;
     public float PlayerMovement { get { return _movement.magnitude; } }

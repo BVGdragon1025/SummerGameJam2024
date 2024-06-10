@@ -5,7 +5,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
-
+    public AudioManager audioManager;
     public KeyCode pauseKey;
 
     public bool isPaused;
@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        audioManager = AudioManager.Instance;
     }
 
     // Update is called once per frame
@@ -55,5 +56,16 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
     }
+
+    public void PlayInfectedClick()
+    {
+        audioManager.PlayOneShot(FMODEvents.Instance.infectedClickSFX, transform.position);
+    }
+
+    public void PlayInfectedHover()
+    {
+        audioManager.PlayOneShot(FMODEvents.Instance.infectedHoverSFX, transform.position);
+    }
+
 }
  

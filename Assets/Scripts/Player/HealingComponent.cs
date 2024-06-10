@@ -167,6 +167,7 @@ public class HealingComponent : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && !_isCollecting)
             {
+                _playerController.CollectingEmitter.Play();
                 foreach (GameObject structure in _structures)
                 {
                     if(structure != null)
@@ -190,6 +191,7 @@ public class HealingComponent : MonoBehaviour
             {
                 _isCollecting = false;
                 Debug.Log("Collecting interupted!");
+                _playerController.CollectingEmitter.Stop();
                 StopAllCoroutines();
                 _animator.SetBool("isCollecting", false);
 
