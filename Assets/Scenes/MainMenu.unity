@@ -895,6 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9adc6dd41fba4184bb5bba2253f11e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scenesData: {fileID: 11400000, guid: 566c77487212f064092920e010ee838c, type: 2}
 --- !u!1 &365733680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3112517496972776899, guid: a57a5c0732f38074f9062646c3bb2ac7, type: 3}
@@ -2408,6 +2409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelData: {fileID: 11400000, guid: d013b89de65073249a7d74267dded882, type: 2}
   _artifactsData: {fileID: 11400000, guid: 68b1bc1d78a34cd46877b932c7c35e80, type: 2}
+  _scenesData: {fileID: 11400000, guid: 566c77487212f064092920e010ee838c, type: 2}
 --- !u!4 &908207654
 Transform:
   m_ObjectHideFlags: 0
