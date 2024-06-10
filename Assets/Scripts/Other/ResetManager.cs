@@ -6,11 +6,13 @@ public class ResetManager : MonoBehaviour
 {
     [SerializeField] private LevelData _levelData;
     [SerializeField] private ArtifactSO _artifactsData;
+    [SerializeField] private ScenesData _scenesData;
 
     private void Awake()
     {
         ResetLevelData();
         ResetArtifacts();
+        ResetScenes();
     }
 
     private void ResetLevelData()
@@ -44,6 +46,19 @@ public class ResetManager : MonoBehaviour
             _artifactsData.playerArtifacts.Clear();
         }
         _artifactsData.playerArtifacts = new(_artifactsData.DefaultPlayerArtifacts);
+    }
+
+    private void ResetScenes()
+    {
+        Debug.LogWarning("Reseting scenes order!");
+        if(_scenesData.scenesList.Count > 0)
+        {
+            _scenesData.scenesList.Clear();
+        }
+        _scenesData.scenesList = new(_scenesData.defaultSceneList);
+
+        _scenesData.scenesPlayed = 0;
+
     }
 
 }

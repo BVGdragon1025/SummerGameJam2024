@@ -118,15 +118,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ac4f62376cc4544af31aaf4893d4de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scenesData: {fileID: 11400000, guid: 566c77487212f064092920e010ee838c, type: 2}
+  _endScreenDelay: 3
   _defaultColor:
     serializedVersion: 2
     rgba: 16754644
   _healedColor:
     serializedVersion: 2
     rgba: 11861503
-  _transitionSpeed: 1
+  _transitionSpeed: 0.2
   _directionalLight: {fileID: 0}
   _defaultIntensity: 3
   _healedIntensity: 6.5
   _fog: {fileID: 0}
   _artifactScreen: {fileID: 0}
+  _victoryScreen: {fileID: 0}

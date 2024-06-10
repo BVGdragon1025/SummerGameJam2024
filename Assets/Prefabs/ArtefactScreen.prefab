@@ -806,12 +806,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forestArtifactDescription: {fileID: 8659167252673992967}
-  _artifactSO: {fileID: 11400000, guid: f2a355175aa76c94381a8799102b52d2, type: 2}
+  _artifactSO: {fileID: 11400000, guid: 68b1bc1d78a34cd46877b932c7c35e80, type: 2}
   _artifactButtons:
   - {fileID: 2381604399829594769}
   - {fileID: 2914669856178037331}
   - {fileID: 3406259259292144265}
   _continueButton: {fileID: 169784583965653761}
+  _mainMenu: {fileID: 0}
 --- !u!114 &6490850399246090773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9adc6dd41fba4184bb5bba2253f11e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scenesData: {fileID: 11400000, guid: 566c77487212f064092920e010ee838c, type: 2}
+  _resetManager: {fileID: 0}
 --- !u!1 &3478685789817101255
 GameObject:
   m_ObjectHideFlags: 0

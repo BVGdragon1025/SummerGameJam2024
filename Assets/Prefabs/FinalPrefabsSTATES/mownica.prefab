@@ -295,7 +295,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 5, y: 2, z: 3.4}
-  m_Center: {x: -1.5, y: 2, z: -2}
+  m_Center: {x: -1.5, y: 1, z: -2}
 --- !u!54 &8768757496158321158
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waypointSprite: {fileID: 0}
+  _targetIndicator: {fileID: 0}
   validPlacementMaterial: {fileID: 2100000, guid: bcf87c8565eb0654186e2f2b08b04942, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: fe368ee6f3b537f489ebf7bacca443f1, type: 2}
   meshComponents:
@@ -347,7 +347,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _elementTag: 0
-  _targetIndicator: {fileID: 0}
 --- !u!114 &5843313392685879804
 MonoBehaviour:
   m_ObjectHideFlags: 0

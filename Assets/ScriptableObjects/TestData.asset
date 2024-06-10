@@ -19,7 +19,7 @@ MonoBehaviour:
   infectionFrequency: 30
   playerSpeed: 4.5
   maxBuildingInRange: 3
-  isObeliskUnlocked: 0
+  isObeliskUnlocked: 1
   isStonehengeUnlocked: 0
   isRostrumUnlocked: 0
   <DefaultLvlPlagueValue>k__BackingField: 50
