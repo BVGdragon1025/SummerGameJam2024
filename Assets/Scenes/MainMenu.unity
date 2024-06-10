@@ -896,6 +896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scenesData: {fileID: 11400000, guid: 566c77487212f064092920e010ee838c, type: 2}
+  _resetManager: {fileID: 0}
 --- !u!1 &365733680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3112517496972776899, guid: a57a5c0732f38074f9062646c3bb2ac7, type: 3}

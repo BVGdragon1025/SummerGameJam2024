@@ -16,6 +16,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("Effects")]
     [field: SerializeField] public EventReference interactions { get; private set; }
+    [field: SerializeField] public EventReference collecting { get; private set; }
     [field: SerializeField] public EventReference structureInteractions { get; private set; }
     [field: SerializeField] public EventReference structureInfected { get; private set; }
 
@@ -23,6 +24,8 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference menuMusic;
     [field: SerializeField] public EventReference clickSFX;
     [field: SerializeField] public EventReference hoverSFX;
+    [field: SerializeField] public EventReference infectedHoverSFX;
+    [field: SerializeField] public EventReference infectedClickSFX;
 
     public static FMODEvents Instance { get; private set; }
 
