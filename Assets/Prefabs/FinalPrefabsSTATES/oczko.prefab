@@ -5154,7 +5154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structures: []
-  _maxStructures: 5
   buildingType: 0
 --- !u!1 &5050147846621204752
 GameObject:
@@ -10235,7 +10234,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -6.952088e+24}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 4.5e-44, z: 4.3478e-41, w: 1}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10546,7 +10545,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0447c02ab209531438d7d49b50102307, type: 2}
+  - {fileID: 2100000, guid: b20ea71a34eb5c343a28d640d78234da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
