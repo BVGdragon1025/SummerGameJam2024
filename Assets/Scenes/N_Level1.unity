@@ -82346,7 +82346,7 @@ MonoBehaviour:
   _obeliskButton: {fileID: 401619799}
   _stonehengeButton: {fileID: 24991878}
   _rostrumButton: {fileID: 1538593979}
-  _plagueIncreaseValue: 1.5
+  _plagueIncreaseValue: 1
   _plagueIncreaseDelay: 3
   isLevelCompleted: 0
   structures: []

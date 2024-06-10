@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Around healed <i>Meadows</i> you can place <i>Lemon Trees</i>. It gives
-    -9 <b>Player Plague</b>/20s and costs \n30 <i>Nature Power</i>."
+    -10 <b>Player Plague</b>/20s and costs \n30 <i>Nature Power</i>."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
   m_sharedMaterial: {fileID: 6957120530936090379, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
@@ -4176,7 +4176,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<b>Player Plague</b>
 
-    Increases +1.5/2s and when it reaches maximum
+    Increases +1/2s and when it reaches maximum
     amount
 
     - you perish.'
