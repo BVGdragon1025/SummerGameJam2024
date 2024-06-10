@@ -167,24 +167,29 @@ public class HealingComponent : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && !_isCollecting)
             {
-                _playerController.CollectingEmitter.Play();
+                
                 foreach (GameObject structure in _structures)
                 {
                     if(structure != null)
                     {
-                        Building building = structure.GetComponent<Building>();
+                        BuildingBasic building = structure.GetComponent<BuildingBasic>();
                         BuildingHelper buildingHelper = structure.GetComponentInChildren<BuildingHelper>();
 
-                        if (building.hasFinished)
+                        if (building.hasFinished && _gameManager.CurrentCurrency >= building.NatureCost)
                         {
                             Debug.Log("Collecting resources");
                             _animator.SetBool("isCollecting", true);
                             StartCoroutine(CollectResources(building, buildingHelper));
+                            if (!_playerController.CollectingEmitter.IsPlaying())
+                            {
+                                _playerController.CollectingEmitter.Play();
+                            }
 
                         }
                     }
                     
                 }
+                
             }
 
             if (_isCollecting && _playerController.PlayerMovement != 0)

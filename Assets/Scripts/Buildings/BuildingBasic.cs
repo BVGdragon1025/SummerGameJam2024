@@ -7,6 +7,7 @@ public class BuildingBasic : Building
     [Header("Basic Structure Specific")]
     [SerializeField, Tooltip("How many Nature Points player looses, when they collect resources from this building. 0 - none.")]
     private float _natureCost;
+    public float NatureCost { get { return _natureCost; } }
 
     public override void GiveResourceToPlayer()
     {
