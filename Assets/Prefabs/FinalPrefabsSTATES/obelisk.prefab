@@ -215,7 +215,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.23006001, y: 0.23006001, z: 0.23006001}
+  m_LocalScale: {x: 0.23006, y: 0.23006, z: 0.23006}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3400037246018934843}
@@ -295,7 +295,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 6.7000003, y: 5, z: 6}
-  m_Center: {x: -1.5000001, y: 3.5, z: -3.0000002}
+  m_Center: {x: -1.5000001, y: 2.5, z: -3.0000002}
 --- !u!54 &3345215623312707609
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a2b5b41c0b79c4998fa393b6b455e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waypointSprite: {fileID: 0}
+  _targetIndicator: {fileID: 0}
   validPlacementMaterial: {fileID: 2100000, guid: 10a5c659bf8f62849a95b4f3e06a44fd, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: a246b0b78e8e08d4587f74d84889156a, type: 2}
   meshComponents:
@@ -347,7 +347,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _elementTag: 0
-  _targetIndicator: {fileID: 0}
 --- !u!114 &767799241706675407
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,18 +31,18 @@ public class ArtifactManager : MonoBehaviour
 
     private void GetRandomPlayerArtifacts()
     {
-        List<Artifact> artfactList = new(_artifactSO.playerArtifacts);
+        List<Artifact> artifactList = new(_artifactSO.playerArtifacts);
 
         for(int i = 0; i < _artifactButtons.Count; i++)
         {
-            int random = Random.Range(0, _artifactSO.playerArtifacts.Count);
-            Artifact artifact = _artifactSO.playerArtifacts[random];
+            int random = Random.Range(0, artifactList.Count);
+            Artifact artifact = artifactList[random];
             var texts = _artifactButtons[i].gameObject.GetComponentsInChildren<TextMeshProUGUI>(includeInactive: true);
             texts[0].text = artifact.ArtifactName;
             texts[1].text = artifact.ArtifactDescription;
             _artifactButtons[i].onClick.RemoveAllListeners();
             _artifactButtons[i].onClick.AddListener(delegate { SetContinueButton(artifact); });
-            artfactList.Remove(artifact);
+            artifactList.Remove(artifact);
 
         }
     }
