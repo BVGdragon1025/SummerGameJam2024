@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
         }
 
         SetupGame();
+        Time.timeScale = 1.0f;
 
     }
 
