@@ -44,4 +44,9 @@ public class MainMenu : MonoBehaviour
 		SceneManager.LoadScene(GetRandomScene());
     }
 
+	public void StopMusicInMenu()
+	{
+		AudioManager.Instance.StopEvent(FMODEvents.Instance.menuMusic);
+	}
+
 }

@@ -170,7 +170,7 @@ public class HealingComponent : MonoBehaviour
                 
                 foreach (GameObject structure in _structures)
                 {
-                    if(structure != null)
+                    if(structure != null && structure.CompareTag("Building"))
                     {
                         BuildingBasic building = structure.GetComponent<BuildingBasic>();
                         BuildingHelper buildingHelper = structure.GetComponentInChildren<BuildingHelper>();
