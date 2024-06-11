@@ -258,6 +258,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        Cursor.visible = true;
         _death.SetActive(true);
         Time.timeScale = 0;
     }

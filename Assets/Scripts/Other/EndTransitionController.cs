@@ -53,6 +53,7 @@ public class EndTransitionController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && _scenesData.scenesPlayed < _scenesData.defaultSceneList.Count)
         {
+            Cursor.visible = true;
             Time.timeScale = 0;
             _artifactScreen.SetActive(true);
         }
@@ -62,6 +63,7 @@ public class EndTransitionController : MonoBehaviour
     {
         Debug.Log("Ending the game!");
         yield return new WaitForSeconds(_endScreenDelay);
+        Cursor.visible = true;
         _victoryScreen.SetActive(true);
         Time.timeScale = 0;
         

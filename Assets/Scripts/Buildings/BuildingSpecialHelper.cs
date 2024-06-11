@@ -46,7 +46,10 @@ public class BuildingSpecialHelper : MonoBehaviour
                 break;
             case BuildingType.SpeedUpgrade:
                 other.SpawnRate = _building.Currency;
-                buildingHelper.ResetProduction();
+                if (!buildingHelper.GetComponentInParent<Building>().hasFinished)
+                {
+                    buildingHelper.ResetProduction();
+                }
                 break;
             case BuildingType.ResourceUpgrade:
                 other.Currency = _building.Currency;
@@ -66,7 +69,10 @@ public class BuildingSpecialHelper : MonoBehaviour
                 break;
             case BuildingType.SpeedUpgrade:
                 other.SpawnRate = -_building.Currency;
-                buildingHelper.ResetProduction();
+                if (!buildingHelper.GetComponentInParent<Building>().hasFinished)
+                {
+                    buildingHelper.ResetProduction();
+                }
                 break;
             case BuildingType.ResourceUpgrade:
                 other.Currency = -_building.Currency;
