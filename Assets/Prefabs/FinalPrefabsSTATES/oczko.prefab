@@ -10579,7 +10579,7 @@ GameObject:
   - component: {fileID: 3603389117401536027}
   m_Layer: 13
   m_Name: Collider
-  m_TagString: Pond
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
