@@ -12,8 +12,7 @@ public class ElementsController : MonoBehaviour
     private GameObject _healthyObject;
     public GameObject HealthyObject { get { return _healthyObject; } }
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         hasPlague = true;
     }

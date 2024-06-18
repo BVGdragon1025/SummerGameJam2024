@@ -279,14 +279,19 @@ public class BuildingManager : MonoBehaviour
     {
         _deathTimer = true;
         yield return new WaitForSeconds(_building.MaxPlagueTime);
-        _building.isInfected = false;
-        _building.hasPlague = true;
-        _targetIndicator.SetActive(false);
-        _building.infectedState.SetActive(false);
-        _building.plagueState.SetActive(true);
-        _building.CurrentPlague = 0.0f;
-        timer = _gameManager.ResetTimer();
-        _deathTimer = false;
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (isPlaced)
+        {
+            _element.GetComponent<ElementsHelper>().RemoveStructureFromList(gameObject);
+            _gameManager.buildingsInfected -= 1;
+            _gameManager.structures.Remove(_building);
+            Destroy(_targetIndicator);
+        }
+
     }
 
 }

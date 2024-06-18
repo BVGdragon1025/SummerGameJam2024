@@ -87,32 +87,6 @@ public class HealingComponent : MonoBehaviour
                 }
                 
             }
-
-            int randomStructure = Random.Range(0, _structures.Count);
-
-            if (_structures[randomStructure] != null)
-            {
-                Building building = _structures[randomStructure].GetComponent<Building>();
-                if (building.hasPlague)
-                {
-                    if (Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
-                    {
-                        _animator.SetBool("isHealing", true);
-                        StartCoroutine(CureStructure(building));
-                    }
-                }
-
-                if (_isCuringStructure && _playerController.PlayerMovement != 0)
-                {
-                    StopAllCoroutines();
-                    _playerController.InteractionsEmiter.Stop();
-                    _animator.SetBool("isHealing", false);
-                    _isCuringStructure = false;
-                }
-
-            }
-
-
         }
     }
 
@@ -143,30 +117,7 @@ public class HealingComponent : MonoBehaviour
 
         if(_structures.Count != 0)
         {
-            int randomStructure = Random.Range(0, _structures.Count);
-
-            if (_structures[randomStructure] != null)
-            {
-                Building building = _structures[randomStructure].GetComponent<Building>();
-                if (building.hasPlague)
-                {
-                    if (Input.GetKeyDown(KeyCode.F) && !_isCuringStructure)
-                    {
-                        _animator.SetBool("isHealing", true);
-                        StartCoroutine(CureStructure(building));
-                    }
-                }
-
-                if(_isCuringStructure && _playerController.PlayerMovement != 0)
-                {
-                    StopAllCoroutines();
-                    _playerController.InteractionsEmiter.Stop();
-                    _animator.SetBool("isHealing", false);
-                    _isCuringStructure = false;
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) && !_isCollecting)
+            if (Input.GetKeyDown(KeyCode.F) && !_isCollecting)
             {
                 foreach (GameObject structure in _structures)
                 {
@@ -245,16 +196,6 @@ public class HealingComponent : MonoBehaviour
 
     }
 
-    private IEnumerator CureStructure(Building building)
-    {
-        _isCuringStructure = true;
-        _playerController.InteractionsEmiter.Play();
-        Debug.LogFormat("<color=green>Curing structure started</color>");
-        yield return new WaitForSeconds(_healingElementDelay);
-        CureStructureMethod(building);
-        _isCuringStructure = false;
-    }
-
     private IEnumerator CollectResources(Building building, BuildingHelper buildingHelper)
     {
         _isCollecting = true;
@@ -276,17 +217,6 @@ public class HealingComponent : MonoBehaviour
         element.hasPlague = false;
         Debug.LogFormat("<color=green>Healing completed!</color>");
         
-    }
-
-    private void CureStructureMethod(Building building)
-    {
-        _animator.SetBool("isHealing", false);
-        _gameManager.buildingsInfected -= 1;
-        _gameManager.ChangePlayerPlagueLevel(_plagueStructurePenalty);
-        building.plagueState.SetActive(false);
-        building.healthyState.SetActive(true);
-        building.hasPlague = false;
-        Debug.LogFormat("<color=green>Curing structure completed!</color>");
     }
 
     private void PlayCollectSound()
