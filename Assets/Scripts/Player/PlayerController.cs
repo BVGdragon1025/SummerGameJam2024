@@ -21,9 +21,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private StudioEventEmitter _interactionsEmitter;
     public StudioEventEmitter InteractionsEmiter { get { return _interactionsEmitter; } }
-    [SerializeField]
-    private StudioEventEmitter _collectingEmitter;
-    public StudioEventEmitter CollectingEmitter { get { return _collectingEmitter; } }
 
     private EventInstance _footstepsInstance;
     public float PlayerMovement { get { return _movement.magnitude; } }
@@ -92,8 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if(_movement.magnitude != 0)
         {
-            PLAYBACK_STATE playbackState;
-            _footstepsInstance.getPlaybackState(out playbackState);
+            _footstepsInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
 
             if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
             {

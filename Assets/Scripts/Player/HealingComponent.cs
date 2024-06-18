@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
 
-[RequireComponent(typeof(StudioEventEmitter))]
 [RequireComponent(typeof(StudioEventEmitter))]
 
 public class HealingComponent : MonoBehaviour
@@ -35,10 +35,10 @@ public class HealingComponent : MonoBehaviour
     private GameObject _element;
     private PlayerController _playerController;
     private Animator _animator;
-    [SerializeField]
-    private StudioEventEmitter _structuresEmitter;
     private AudioManager _audioManager;
     private GameManager _gameManager;
+
+    private EventInstance _collectingInstance;
 
     private void Awake()
     {
@@ -54,6 +54,7 @@ public class HealingComponent : MonoBehaviour
     {
         _audioManager = AudioManager.Instance;
         _gameManager = GameManager.Instance;
+        _collectingInstance = _audioManager.CreateEventInstance(FMODEvents.Instance.collecting);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -167,7 +168,6 @@ public class HealingComponent : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && !_isCollecting)
             {
-                
                 foreach (GameObject structure in _structures)
                 {
                     if(structure != null && structure.CompareTag("Building"))
@@ -180,10 +180,7 @@ public class HealingComponent : MonoBehaviour
                             Debug.Log("Collecting resources");
                             _animator.SetBool("isCollecting", true);
                             StartCoroutine(CollectResources(building, buildingHelper));
-                            if (!_playerController.CollectingEmitter.IsPlaying())
-                            {
-                                _playerController.CollectingEmitter.Play();
-                            }
+                            PlayCollectSound();
 
                         }
                     }
@@ -196,7 +193,7 @@ public class HealingComponent : MonoBehaviour
             {
                 _isCollecting = false;
                 Debug.Log("Collecting interupted!");
-                _playerController.CollectingEmitter.Stop();
+                _collectingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 StopAllCoroutines();
                 _animator.SetBool("isCollecting", false);
 
@@ -265,6 +262,7 @@ public class HealingComponent : MonoBehaviour
         _isCollecting = false;
         building.GiveResourceToPlayer();
         _playerController.Animator.SetBool("isCollecting", false);
+        _collectingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         buildingHelper.ResetProduction();
         Debug.Log("Collecting finished!");
     }
@@ -289,6 +287,17 @@ public class HealingComponent : MonoBehaviour
         building.healthyState.SetActive(true);
         building.hasPlague = false;
         Debug.LogFormat("<color=green>Curing structure completed!</color>");
+    }
+
+    private void PlayCollectSound()
+    {
+        _collectingInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
+
+        if(playbackState.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            Debug.Log("Playing collect sound!");
+            _collectingInstance.start();
+        }
     }
 
 }

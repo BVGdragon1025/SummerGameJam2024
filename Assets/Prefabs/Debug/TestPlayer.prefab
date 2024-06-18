@@ -214,7 +214,6 @@ MonoBehaviour:
   _isCollecting: 0
   _structures: []
   _element: {fileID: 0}
-  _structuresEmitter: {fileID: 1303815914484683006}
 --- !u!114 &1303815914484683006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,7 +753,6 @@ GameObject:
   - component: {fileID: 4945525649432778072}
   - component: {fileID: 1179423324252533655}
   - component: {fileID: 1167548883650633181}
-  - component: {fileID: 5776991054986530597}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Player
@@ -852,7 +850,7 @@ MonoBehaviour:
   _movement: {x: 0, y: 0, z: 0}
   _indicator: {fileID: 6469228738083428533}
   _interactionsEmitter: {fileID: 1167548883650633181}
-  _collectingEmitter: {fileID: 5776991054986530597}
+  _collectingEmitter: {fileID: 0}
 --- !u!65 &4924945977269998192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -986,37 +984,6 @@ MonoBehaviour:
       Data3: 1041102208
       Data4: 108564658
     Path: event:/FX/Interaction_Player
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &5776991054986530597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8544401763886088134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -264845447
-      Data2: 1149658765
-      Data3: -1268183162
-      Data4: 1262514490
-    Path: event:/FX/Interaction_Player 2
   Event: 
   PlayEvent: 0
   StopEvent: 0
