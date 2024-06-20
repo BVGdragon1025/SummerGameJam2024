@@ -170,10 +170,10 @@ public class GameManager : MonoBehaviour
         if(structures.Count > 0)
         {
             int random = Random.Range(0, structures.Count);
-            if (!structures[random].isInfected && !structures[random].hasPlague)
+            if (structures[random].PlagueState == PlagueState.Healthy)
             {
                 Debug.Log($"Building infected: {structures[random].name}");
-                structures[random].isInfected = true;
+                structures[random].ChangePlagueState(PlagueState.Infected);
                 _audioManager.PlayOneShot(FMODEvents.Instance.structureInfected, structures[random].transform.position);
                 buildingsInfected += 1;
             }

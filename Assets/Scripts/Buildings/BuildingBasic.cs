@@ -8,8 +8,61 @@ public class BuildingBasic : Building
     [SerializeField, Tooltip("How many Nature Points player looses, when they collect resources from this building. 0 - none.")]
     private float _natureCost;
     public float NatureCost { get { return _natureCost; } }
+    [SerializeField]
+    private float _productionTimer;
 
-    public override void GiveResourceToPlayer()
+    private void OnEnable()
+    {
+        ResetProduction();
+        timerText.gameObject.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if(_productionTimer > 0)
+        {
+            if(plagueState == PlagueState.Healthy)
+            {
+                timerText.text = ProductionTimer();
+            }
+        }
+        else
+        {
+            timerText.text = "Ready!";
+        }
+    
+    }
+
+    protected string ProductionTimer()
+    {
+        _productionTimer -= Time.deltaTime;
+        int timeInSeconds = (int)(_productionTimer % 60);
+        return string.Format("{0:00}", timeInSeconds);
+    }
+
+    protected void ResetTimer()
+    {
+        if (_productionTimer <= 0.0f)
+        {
+            _productionTimer = spawnRate;
+
+        }
+        else
+        {
+            float helper = spawnRate - _productionTimer;
+            _productionTimer = spawnRate - helper;
+
+        }
+
+    }
+
+    public override void ResetProduction()
+    {
+        ResetTimer();
+        StartCoroutine(StartProduction(_productionTimer));
+    }
+
+    public override void GiveResource()
     {
         switch(buildingType)
         {
@@ -24,6 +77,7 @@ public class BuildingBasic : Building
                 break;
         }
 
+        ResetProduction();
         gameManager.ChangeCurrencyValue(-_natureCost);
 
     }

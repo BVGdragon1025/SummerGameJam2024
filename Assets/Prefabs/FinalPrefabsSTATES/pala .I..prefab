@@ -619,16 +619,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7592349934990317625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 798b7be73216aee43b14cd1322d5dec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Reedmace
   buildingType: 0
+  plagueState: 0
   buildingCost: 50
   resourceAmount: 10
-  _spawnRate: 30
+  spawnRate: 30
   timerText: {fileID: 205604178340245516}
   _currentPlague: 0
   _maxPlagueTime: 30
@@ -639,8 +640,9 @@ MonoBehaviour:
   triggerGameObject: {fileID: 1324484041257345347}
   healthyState: {fileID: 2880178888737646497}
   infectedState: {fileID: 8877367438023573844}
-  plagueState: {fileID: 4061736197718167314}
+  plagueGameObject: {fileID: 4061736197718167314}
   _natureCost: 5
+  _productionTimer: 0
 --- !u!1 &8039488322987663909
 GameObject:
   m_ObjectHideFlags: 0

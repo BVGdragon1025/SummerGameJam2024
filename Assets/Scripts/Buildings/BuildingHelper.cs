@@ -21,7 +21,7 @@ public class BuildingHelper : MonoBehaviour
     {
         if (_timer > 0)
         {
-            if( !_building.isInfected )
+            if( _building.PlagueState == PlagueState.Healthy )
             {
                 _building.timerText.text = ProductionTimer();
             }
@@ -46,7 +46,7 @@ public class BuildingHelper : MonoBehaviour
             Debug.Log("Element in trigger!");
             _building.elementsInTrigger++;
 
-            if (!other.GetComponentInParent<ElementsController>().hasPlague)
+            if (other.GetComponentInParent<ElementsController>().PlagueState == PlagueState.Healthy)
             {
                 ResetProduction();
                 _building.timerText.gameObject.SetActive(true);
@@ -90,10 +90,8 @@ public class BuildingHelper : MonoBehaviour
         }
         else
         {
-            //Debug.Log($"SpawnRate: {_building.SpawnRate}, timer: {_timer}");
             float helper = _building.SpawnRate - _timer;
             _timer = _building.SpawnRate - helper;
-            //Debug.Log($"SpawnRate: {_building.SpawnRate}, timer: {_timer}, helper: {helper}");
         }
         
     }

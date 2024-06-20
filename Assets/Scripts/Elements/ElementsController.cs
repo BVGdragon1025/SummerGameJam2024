@@ -4,17 +4,37 @@ using UnityEngine;
 
 public class ElementsController : MonoBehaviour
 {
-    public bool hasPlague;
+    private PlagueState _plagueState;
+    public PlagueState PlagueState { get { return _plagueState; } }
     [SerializeField]
     private GameObject _objectWithPlague;
-    public GameObject ObjectWithPlague { get { return _objectWithPlague; } }
     [SerializeField]
     private GameObject _healthyObject;
-    public GameObject HealthyObject { get { return _healthyObject; } }
 
     void OnEnable()
     {
-        hasPlague = true;
+        ChangePlagueState(PlagueState.Infected);
+    }
+
+    public void ChangePlagueState(PlagueState plagueState)
+    {
+        switch(plagueState)
+        {
+            case PlagueState.Infected:
+                _healthyObject.SetActive(false);
+                _objectWithPlague.SetActive(true);
+                break;
+            case PlagueState.Healthy:
+                _objectWithPlague.SetActive(false);
+                _healthyObject.SetActive(true);
+                break;
+            default:
+                _objectWithPlague.SetActive(false);
+                _healthyObject.SetActive(true);
+                break;
+        }
+
+        _plagueState = plagueState;
     }
 
 }

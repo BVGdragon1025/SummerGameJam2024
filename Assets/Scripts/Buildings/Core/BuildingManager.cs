@@ -54,7 +54,7 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
-        if (_building.isInfected)
+        if (_building.PlagueState == PlagueState.Infected)
         {
             timer += _gameManager.Timer(_building.CurrentPlague, _building.MaxPlagueTime);
             _audioManager.SetPublicVariable("Danger_Phase", timer);
@@ -62,14 +62,13 @@ public class BuildingManager : MonoBehaviour
             if (!_deathTimer)
             {
                 _targetIndicator.SetActive(true);
-                _building.healthyState.SetActive(false);
-                _building.infectedState.SetActive(true);
+                _building.ChangePlagueState(PlagueState.Infected);
                 StartCoroutine(nameof(DeathTimer));
             }
             
         }
 
-        if(!_building.isInfected && _deathTimer)
+        if(_building.PlagueState == PlagueState.Healthy && _deathTimer)
         {
             StopCoroutine(nameof(DeathTimer));
             _targetIndicator.SetActive(false);
@@ -201,7 +200,7 @@ public class BuildingManager : MonoBehaviour
                         element.AddStructureToList(gameObject);
                     }
                 }
-                _building.triggerGameObject.SetActive(true);
+                _building.enabled = true;
                 _building.GetComponent<Collider>().excludeLayers = 0;
                 
                 

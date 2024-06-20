@@ -79,7 +79,7 @@ public class HealingComponent : MonoBehaviour
                 if (_structures[i] != null)
                 {
                     Building building = _structures[i].GetComponent<Building>();
-                    if (building.isInfected)
+                    if (building.PlagueState == PlagueState.Infected)
                     {
                         HealStructure(building);
 
@@ -95,7 +95,7 @@ public class HealingComponent : MonoBehaviour
         if(_element != null)
         {
             ElementsController element = _element.GetComponentInParent<ElementsController>();
-            if (element.hasPlague)
+            if (element.PlagueState == PlagueState.Infected)
             {
                 if (Input.GetKeyDown(KeyCode.F) && !_isHealingElement)
                 {
@@ -124,13 +124,12 @@ public class HealingComponent : MonoBehaviour
                     if(structure != null && structure.CompareTag("Building"))
                     {
                         BuildingBasic building = structure.GetComponent<BuildingBasic>();
-                        BuildingHelper buildingHelper = structure.GetComponentInChildren<BuildingHelper>();
 
                         if (building.hasFinished && _gameManager.CurrentCurrency >= building.NatureCost)
                         {
                             Debug.Log("Collecting resources");
                             _animator.SetBool("isCollecting", true);
-                            StartCoroutine(CollectResources(building, buildingHelper));
+                            StartCoroutine(CollectResources(building));
                             PlayCollectSound();
 
                         }
@@ -183,28 +182,24 @@ public class HealingComponent : MonoBehaviour
     {
         Debug.LogFormat("<color=orange>Structure healing start!</color>");
         _audioManager.SetPublicVariable("Danger_Phase", 0.0f);
-        building.isInfected = false;
-        building.infectedState.SetActive(false);
-        building.healthyState.SetActive(true);
-        building.CurrentPlague = 0.0f;
-        if(building.hasFinished)
+        if (building.hasFinished)
         {
-            building.GiveResourceToPlayer();
+            building.GiveResource();
         }
+        building.ChangePlagueState(PlagueState.Healthy);
         _gameManager.buildingsInfected -= 1;
         Debug.LogFormat("<color=green>Healing structure completed!</color>");
 
     }
 
-    private IEnumerator CollectResources(Building building, BuildingHelper buildingHelper)
+    private IEnumerator CollectResources(Building building)
     {
         _isCollecting = true;
         yield return new WaitForSeconds(3.0f);
         _isCollecting = false;
-        building.GiveResourceToPlayer();
+        building.GiveResource();
         _playerController.Animator.SetBool("isCollecting", false);
         _collectingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        buildingHelper.ResetProduction();
         Debug.Log("Collecting finished!");
     }
 
@@ -212,9 +207,7 @@ public class HealingComponent : MonoBehaviour
     {
         _animator.SetBool("isHealing", false);
         _gameManager.ChangePlayerPlagueLevel(_plagueElementPenalty);
-        element.ObjectWithPlague.SetActive(false);
-        element.HealthyObject.SetActive(true);
-        element.hasPlague = false;
+        element.ChangePlagueState(PlagueState.Healthy);
         Debug.LogFormat("<color=green>Healing completed!</color>");
         
     }

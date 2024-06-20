@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(BuildingManager))]
 public abstract class Building : MonoBehaviour
@@ -14,14 +15,17 @@ public abstract class Building : MonoBehaviour
     protected BuildingType buildingType;
     public BuildingType BuildingType { get { return buildingType; } }
     [SerializeField]
+    protected PlagueState plagueState;
+    public PlagueState PlagueState { get { return plagueState; } }
+    [SerializeField]
     protected float buildingCost = 0;
     public float BuildingCost { get { return buildingCost; } }
     [SerializeField, Tooltip("The amount of resource this building gives")]
     protected float resourceAmount;
     public float Currency { get { return resourceAmount; } set { resourceAmount += value; } }
-    [SerializeField, Tooltip("Rate at which this buiilding spawns it's resource, in seconds")]
-    private float _spawnRate;
-    public float SpawnRate { get { return _spawnRate; } set { _spawnRate -= (_spawnRate * value); } }
+    [SerializeField, Tooltip("Rate at which this buiilding spawns it's resource, in seconds"), FormerlySerializedAs("_spawnRate")]
+    protected float spawnRate;
+    public float SpawnRate { get { return spawnRate; } set { spawnRate -= (spawnRate * value); } }
     public TextMeshPro timerText;
     [SerializeField, Tooltip("Current amount of Plague this structure has, in normal units.")]
     private float _currentPlague;
@@ -38,7 +42,8 @@ public abstract class Building : MonoBehaviour
     public GameObject triggerGameObject;
     public GameObject healthyState;
     public GameObject infectedState;
-    public GameObject plagueState;
+    [FormerlySerializedAs("plagueState")]
+    public GameObject plagueGameObject;
 
     protected GameManager gameManager;
 
@@ -46,6 +51,7 @@ public abstract class Building : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         hasFinished = false;
+        ChangePlagueState(PlagueState.Healthy);
     }
 
     private void Start()
@@ -76,7 +82,38 @@ public abstract class Building : MonoBehaviour
         //Debug.Log("Production stop!");
     }
 
-    public abstract void GiveResourceToPlayer();
+    public void ChangePlagueState(PlagueState state)
+    {
+        switch (state)
+        {
+            case PlagueState.Healthy:
+                healthyState.SetActive(true);
+                infectedState.SetActive(false);
+                plagueGameObject.SetActive(false);
+                timerText.gameObject.SetActive(true);
+                _currentPlague = 0.0f;
+                break;
+            case PlagueState.Infected:
+                infectedState.SetActive(true);
+                healthyState.SetActive(false);
+                plagueGameObject.SetActive(false);
+                timerText.gameObject.SetActive(false);
+                StopAllCoroutines();
+                break;
+            case PlagueState.Healing:
+
+                break;
+            default:
+                Debug.LogWarning($"{name} encountered unknown state! State name: {state}");
+                break;
+        }
+        plagueState = state;
+
+    }
+
+    public abstract void GiveResource();
+
+    public abstract void ResetProduction();
 
 
 }
