@@ -196,10 +196,10 @@ public class HealingComponent : MonoBehaviour
     {
         _isCollecting = true;
         yield return new WaitForSeconds(3.0f);
+        _collectingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         _isCollecting = false;
         building.GiveResource();
         _playerController.Animator.SetBool("isCollecting", false);
-        _collectingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         Debug.Log("Collecting finished!");
     }
 

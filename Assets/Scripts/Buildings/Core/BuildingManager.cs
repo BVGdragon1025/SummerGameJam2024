@@ -190,20 +190,16 @@ public class BuildingManager : MonoBehaviour
             case BuildingState.Placed:
                 isPlaced = true;
                 hasValidPlacement = true;
+                _building.enabled = true;
+                _building.GetComponent<Collider>().excludeLayers = 0;
                 if (gameObject.CompareTag("Building"))
                 {
+                    StartCoroutine(_building.StartProduction(_building.SpawnRate));
                     _targetIndicator = _buildingPlacer.CreateWaypoint(transform);
                     _gameManager.structures.Add(_building);
                     ElementsHelper element = _element.GetComponent<ElementsHelper>();
-                    if (element.buildingType == _building.BuildingType)
-                    {
-                        element.AddStructureToList(gameObject);
-                    }
+                    element.AmountOfStructures++;
                 }
-                _building.enabled = true;
-                _building.GetComponent<Collider>().excludeLayers = 0;
-                
-                
                 break;
             case BuildingState.Valid:
                 hasValidPlacement = true;
@@ -285,10 +281,19 @@ public class BuildingManager : MonoBehaviour
     {
         if (isPlaced)
         {
-            _element.GetComponent<ElementsHelper>().RemoveStructureFromList(gameObject);
-            _gameManager.buildingsInfected -= 1;
-            _gameManager.structures.Remove(_building);
-            Destroy(_targetIndicator);
+            if(_element != null)
+            {
+                _element.GetComponent<ElementsHelper>().AmountOfStructures--;
+            }
+
+            if(_gameManager != null)
+            {
+                _gameManager.buildingsInfected--;
+                _gameManager.structures.Remove(_building);
+            }
+
+            if(_targetIndicator != null)
+                _targetIndicator.SetActive(false);
         }
 
     }

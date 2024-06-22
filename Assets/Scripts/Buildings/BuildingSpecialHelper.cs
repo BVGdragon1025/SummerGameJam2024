@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class BuildingSpecialHelper : MonoBehaviour
 {
-    private Building _building;
+    private BuildingSpecial _building;
 
     private void OnEnable()
     {
-        _building = GetComponentInParent<Building>();
+        _building = GetComponentInParent<BuildingSpecial>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Building"))
         {
+            Building building = other.GetComponent<Building>();
+
             Debug.Log("Structure in trigger!");
             _building.elementsInTrigger++;
             Debug.Log($"Giving {_building.BuildingType} to {other.gameObject.name}");
-            Building building = other.GetComponent<Building>();
+            
             IncreaseStatistics(building);
         }
     }
@@ -27,18 +29,18 @@ public class BuildingSpecialHelper : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Building"))
         {
-            Debug.Log("Element exited trigger!");
+            Building building = other.GetComponent<Building>();
+
+            Debug.Log("Structure exited trigger!");
             _building.elementsInTrigger--;
             Debug.Log($"Taking away {gameObject.tag} from {other.gameObject.name}");
-            Building building = other.GetComponent<Building>();
+            
             DecreaseStatistics(building);
         }
     }
 
     void IncreaseStatistics(Building other)
     {
-        BuildingHelper buildingHelper = other.GetComponentInChildren<BuildingHelper>();
-
         switch(_building.BuildingType)
         {
             case BuildingType.HealthUpgrade:
@@ -46,9 +48,9 @@ public class BuildingSpecialHelper : MonoBehaviour
                 break;
             case BuildingType.SpeedUpgrade:
                 other.SpawnRate = _building.Currency;
-                if (!buildingHelper.GetComponentInParent<Building>().hasFinished)
+                if (!other.GetComponent<Building>().hasFinished)
                 {
-                    buildingHelper.ResetProduction();
+                    other.ResetProduction();
                 }
                 break;
             case BuildingType.ResourceUpgrade:
@@ -60,8 +62,6 @@ public class BuildingSpecialHelper : MonoBehaviour
 
     void DecreaseStatistics(Building other)
     {
-        BuildingHelper buildingHelper = other.GetComponentInChildren<BuildingHelper>();
-
         switch (_building.BuildingType)
         {
             case BuildingType.HealthUpgrade:
@@ -69,9 +69,9 @@ public class BuildingSpecialHelper : MonoBehaviour
                 break;
             case BuildingType.SpeedUpgrade:
                 other.SpawnRate = -_building.Currency;
-                if (!buildingHelper.GetComponentInParent<Building>().hasFinished)
+                if (!other.GetComponent<Building>().hasFinished)
                 {
-                    buildingHelper.ResetProduction();
+                    other.ResetProduction();
                 }
                 break;
             case BuildingType.ResourceUpgrade:

@@ -354,27 +354,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7592349934990317625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90c63b34192cf3944927255baf528324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Rostrum
   buildingType: 3
+  plagueState: 0
   buildingCost: 30
   resourceAmount: 5
-  _spawnRate: 0
+  spawnRate: 0
   timerText: {fileID: 0}
   _currentPlague: 0
   _maxPlagueTime: 0
-  isInfected: 0
-  hasPlague: 0
   hasFinished: 0
   elementsInTrigger: 0
   triggerGameObject: {fileID: 5960500574751018701}
   healthyState: {fileID: 0}
   infectedState: {fileID: 0}
-  plagueState: {fileID: 0}
+  plagueGameObject: {fileID: 0}
 --- !u!1 &9072746080177531238
 GameObject:
   m_ObjectHideFlags: 0

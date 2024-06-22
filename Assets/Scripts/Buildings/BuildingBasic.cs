@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BuildingManager))]
+
 public class BuildingBasic : Building
 {
     [Header("Basic Structure Specific")]
@@ -13,7 +15,6 @@ public class BuildingBasic : Building
 
     private void OnEnable()
     {
-        ResetProduction();
         timerText.gameObject.SetActive(true);
     }
 
@@ -42,7 +43,7 @@ public class BuildingBasic : Building
 
     protected void ResetTimer()
     {
-        if (_productionTimer <= 0.0f)
+        if (_productionTimer <= 0.0f || _productionTimer >= spawnRate)
         {
             _productionTimer = spawnRate;
 

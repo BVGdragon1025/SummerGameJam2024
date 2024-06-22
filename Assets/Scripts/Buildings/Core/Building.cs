@@ -33,13 +33,9 @@ public abstract class Building : MonoBehaviour
     [SerializeField, Tooltip("Time before this structure dies from Plague, in seconds")]
     private float _maxPlagueTime;
     public float MaxPlagueTime { get { return _maxPlagueTime; } set { _maxPlagueTime += value; } }
-    public bool isInfected;
-    public bool hasPlague;
     public bool hasFinished;
 
     [Header("Other Data")]
-    public int elementsInTrigger;
-    public GameObject triggerGameObject;
     public GameObject healthyState;
     public GameObject infectedState;
     [FormerlySerializedAs("plagueState")]
@@ -51,7 +47,8 @@ public abstract class Building : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         hasFinished = false;
-        ChangePlagueState(PlagueState.Healthy);
+        if(CompareTag("Building"))
+            ChangePlagueState(PlagueState.Healthy);
     }
 
     private void Start()
@@ -92,6 +89,8 @@ public abstract class Building : MonoBehaviour
                 plagueGameObject.SetActive(false);
                 timerText.gameObject.SetActive(true);
                 _currentPlague = 0.0f;
+                if(!hasFinished)
+                    ResetProduction();
                 break;
             case PlagueState.Infected:
                 infectedState.SetActive(true);

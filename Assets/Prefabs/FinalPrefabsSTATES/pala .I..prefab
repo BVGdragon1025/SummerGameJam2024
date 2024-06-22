@@ -83,140 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &1324484041257345347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4455075636392963924}
-  - component: {fileID: 7806270934424280510}
-  - component: {fileID: 6053961681014627962}
-  m_Layer: 8
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4455075636392963924
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324484041257345347}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00000005960463, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.523, y: -0.257, z: 0.566}
-  m_LocalScale: {x: 0.31844, y: 0.31844, z: 0.31844}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1951660563277261752}
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
---- !u!135 &7806270934424280510
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324484041257345347}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6053961681014627962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324484041257345347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682f88e046f67084f8630b187f5d4de7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 0
---- !u!1 &2751546484352406231
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6986257458401931564}
-  - component: {fileID: 1778083565396764221}
-  - component: {fileID: 4123045323065235698}
-  m_Layer: 8
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6986257458401931564
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2751546484352406231}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00000005960463, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.523, y: -0.257, z: 0.566}
-  m_LocalScale: {x: 0.31844002, y: 0.31844, z: 0.31844}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7718929387550127250}
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
---- !u!135 &1778083565396764221
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2751546484352406231}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4123045323065235698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2751546484352406231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682f88e046f67084f8630b187f5d4de7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timer: 0
 --- !u!1 &2880178888737646497
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +113,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4826732013592716588}
-  - {fileID: 4455075636392963924}
   m_Father: {fileID: 8554269850702842034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3511412252915316125
@@ -633,11 +498,9 @@ MonoBehaviour:
   timerText: {fileID: 205604178340245516}
   _currentPlague: 0
   _maxPlagueTime: 30
-  isInfected: 0
-  hasPlague: 0
   hasFinished: 0
   elementsInTrigger: 0
-  triggerGameObject: {fileID: 1324484041257345347}
+  triggerGameObject: {fileID: 0}
   healthyState: {fileID: 2880178888737646497}
   infectedState: {fileID: 8877367438023573844}
   plagueGameObject: {fileID: 4061736197718167314}
@@ -843,7 +706,6 @@ Transform:
   m_LocalScale: {x: 3.1403089, y: 3.1403089, z: 3.1403089}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6986257458401931564}
   - {fileID: 5455636496186468405}
   m_Father: {fileID: 8554269850702842034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
