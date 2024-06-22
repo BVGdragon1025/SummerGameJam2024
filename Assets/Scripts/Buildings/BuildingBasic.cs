@@ -65,6 +65,7 @@ public class BuildingBasic : Building
 
     public override void GiveResource()
     {
+        Debug.Log($"{name} gives {resourceAmount} of {BuildingType} ");
         switch(buildingType)
         {
             case BuildingType.Pond:
