@@ -27,26 +27,32 @@ public abstract class Building : MonoBehaviour
     protected float spawnRate;
     public float SpawnRate { get { return spawnRate; } set { spawnRate -= (spawnRate * value); } }
     public TextMeshPro timerText;
-    [SerializeField, Tooltip("Current amount of Plague this structure has, in normal units.")]
-    private float _currentPlague;
-    public float CurrentPlague { get { return _currentPlague; } set { _currentPlague = value; } }
     [SerializeField, Tooltip("Time before this structure dies from Plague, in seconds")]
     private float _maxPlagueTime;
     public float MaxPlagueTime { get { return _maxPlagueTime; } set { _maxPlagueTime += value; } }
-    public bool hasFinished;
+    [SerializeField, Tooltip("Time before this structure is healed from infection")]
+    private float _maxHealingTime;
+    public float MaxHealingTime { get { return _maxHealingTime; } set { _maxHealingTime += value; } }
+    private bool _hasFinished;
+    public bool HasFinished { get { return _hasFinished; } }
 
     [Header("Other Data")]
+    public Material healthyMaterial;
+    public Material infectedMaterial;
+    public Material plagueMaterial;
     public GameObject healthyState;
     public GameObject infectedState;
     [FormerlySerializedAs("plagueState")]
     public GameObject plagueGameObject;
+    private Renderer _renderer;
 
     protected GameManager gameManager;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
-        hasFinished = false;
+        _hasFinished = false;
+        _renderer = GetComponent<Renderer>();
         if(CompareTag("Building"))
             ChangePlagueState(PlagueState.Healthy);
     }
@@ -72,10 +78,10 @@ public abstract class Building : MonoBehaviour
 
     public IEnumerator StartProduction(float time)
     {
-        hasFinished = false;
+        _hasFinished = false;
         //Debug.Log($"Production start! Resource type: {buildingType}, time: {time}");
         yield return new WaitForSeconds(time);
-        hasFinished = true;
+        _hasFinished = true;
         //Debug.Log("Production stop!");
     }
 
@@ -88,8 +94,7 @@ public abstract class Building : MonoBehaviour
                 infectedState.SetActive(false);
                 plagueGameObject.SetActive(false);
                 timerText.gameObject.SetActive(true);
-                _currentPlague = 0.0f;
-                if(!hasFinished)
+                if(!_hasFinished)
                     ResetProduction();
                 break;
             case PlagueState.Infected:

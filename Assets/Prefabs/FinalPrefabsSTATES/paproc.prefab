@@ -477,7 +477,6 @@ MonoBehaviour:
   - {fileID: 396727582097316250}
   hasValidPlacement: 0
   isPlaced: 0
-  timer: 0
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -503,9 +502,7 @@ MonoBehaviour:
   timerText: {fileID: 3495144509573511029}
   _currentPlague: 0
   _maxPlagueTime: 30
-  hasFinished: 0
-  elementsInTrigger: 0
-  triggerGameObject: {fileID: 0}
+  _maxHealingTime: 3
   healthyState: {fileID: 2880178888737646497}
   infectedState: {fileID: 8877367438023573844}
   plagueGameObject: {fileID: 4061736197718167314}

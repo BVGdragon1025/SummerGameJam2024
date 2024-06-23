@@ -65,22 +65,26 @@ public class BuildingBasic : Building
 
     public override void GiveResource()
     {
-        Debug.Log($"{name} gives {resourceAmount} of {BuildingType} ");
-        switch(buildingType)
+        if(gameManager.CurrentCurrency >= _natureCost)
         {
-            case BuildingType.Pond:
-                gameManager.ChangeForestPlagueLevel(-resourceAmount);
-                break;
-            case BuildingType.Meadow:
-                gameManager.ChangePlayerPlagueLevel(-resourceAmount);
-                break;
-            case BuildingType.Tree:
-                gameManager.ChangeCurrencyValue(resourceAmount);
-                break;
-        }
+            Debug.Log($"{name} gives {resourceAmount} of {BuildingType} ");
+            switch (buildingType)
+            {
+                case BuildingType.Pond:
+                    gameManager.ChangeForestPlagueLevel(-resourceAmount);
+                    break;
+                case BuildingType.Meadow:
+                    gameManager.ChangePlayerPlagueLevel(-resourceAmount);
+                    break;
+                case BuildingType.Tree:
+                    gameManager.ChangeCurrencyValue(resourceAmount);
+                    break;
+            }
 
-        ResetProduction();
-        gameManager.ChangeCurrencyValue(-_natureCost);
+            ResetProduction();
+            gameManager.ChangeCurrencyValue(-_natureCost);
+        }
+        
 
     }
 }

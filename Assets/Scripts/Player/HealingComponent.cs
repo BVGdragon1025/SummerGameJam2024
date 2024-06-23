@@ -12,19 +12,15 @@ public class HealingComponent : MonoBehaviour
     [SerializeField]
     private float _healingElementDelay;
     [SerializeField]
-    private float _healingStructureDelay;
+    private float _collectingDelay;
     [SerializeField]
     private float _plagueElementPenalty;
     [SerializeField]
     private float _plagueStructurePenalty;
 
-    [Header("Helper bools")]
+    [Header("Interaction State")]
     [SerializeField]
-    private bool _isHealingElement;
-    [SerializeField]
-    private bool _isHealingStructure;
-    [SerializeField]
-    private bool _isCollecting;
+    private InteractionsEnum _interactions;
 
     [Header("Object References")]
     [SerializeField]
@@ -41,9 +37,7 @@ public class HealingComponent : MonoBehaviour
 
     private void Awake()
     {
-        _isHealingElement = false;
-        _isHealingStructure = false;
-        _isCollecting = false;
+        _interactions = InteractionsEnum.NotInteracting;
         _playerController = GetComponentInParent<PlayerController>();
         _animator = GetComponentInParent<Animator>();
         
@@ -80,15 +74,14 @@ public class HealingComponent : MonoBehaviour
                     Building building = _structures[i].GetComponent<Building>();
                     if (building.PlagueState == PlagueState.Infected)
                     {
-                        StopCoroutine(CollectResources(building));
-                        HealStructure(building);
+                        building.ChangePlagueState(PlagueState.Healing);
 
                     }
                 }
 
             }
 
-            if (Input.GetKeyDown(KeyCode.F) && !_isCollecting)
+            if (Input.GetKeyDown(KeyCode.F) && _interactions == InteractionsEnum.NotInteracting)
             {
                 foreach (GameObject structure in _structures)
                 {
@@ -96,7 +89,7 @@ public class HealingComponent : MonoBehaviour
                     {
                         BuildingBasic building = structure.GetComponent<BuildingBasic>();
 
-                        if (building.hasFinished && _gameManager.CurrentCurrency >= building.NatureCost)
+                        if (building.HasFinished && building.PlagueState == PlagueState.Healthy)
                         {
                             Debug.Log("Collecting resources");
                             _animator.SetBool("isCollecting", true);
@@ -116,7 +109,7 @@ public class HealingComponent : MonoBehaviour
             ElementsController element = _element.GetComponentInParent<ElementsController>();
             if (element.PlagueState == PlagueState.Infected)
             {
-                if (Input.GetKeyDown(KeyCode.F) && !_isHealingElement)
+                if (Input.GetKeyDown(KeyCode.F) && _interactions == InteractionsEnum.NotInteracting)
                 {
                     _animator.SetBool("isHealing", true);
                     _healingElementCoroutine = StartCoroutine(HealElement(element));
@@ -126,23 +119,23 @@ public class HealingComponent : MonoBehaviour
 
         if (_playerController.PlayerMovement != 0)
         {
-            if (_isCollecting)
+            if (_interactions == InteractionsEnum.Collecting)
             {
-                _isCollecting = false;
+                StopAllCoroutines();
+                _interactions = InteractionsEnum.NotInteracting;
                 Debug.Log("Collecting interupted!");
                 _collectingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 _animator.SetBool("isCollecting", false);
-                StopAllCoroutines();
             }
 
-            if (_isHealingElement)
+            if (_interactions == InteractionsEnum.CuringElement)
             {
                 _playerController.InteractionsEmiter.Stop();
                 _animator.SetBool("isHealing", false);
                 _audioManager.StopEvent(FMODEvents.Instance.ambience);
-                _isHealingElement = false;
-                Debug.LogFormat("<color=red>Healing interupted!</color>");
                 StopCoroutine(_healingElementCoroutine);
+                _interactions = InteractionsEnum.NotInteracting;
+                Debug.LogFormat("<color=red>Healing interupted!</color>");
             }
         }
 
@@ -157,6 +150,10 @@ public class HealingComponent : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Structure"))
         {
+            if (other.TryGetComponent(out Building component) && component.PlagueState == PlagueState.Healing)
+            {
+                component.ChangePlagueState(PlagueState.Infected);
+            }
             _structures.Remove(other.gameObject);
         }
 
@@ -164,39 +161,40 @@ public class HealingComponent : MonoBehaviour
 
     private IEnumerator HealElement(ElementsController element)
     {
-        _isHealingElement = true;
+        _interactions = InteractionsEnum.CuringElement;
         _playerController.InteractionsEmiter.Play();
         Debug.LogFormat("<color=green>Healing started</color>");
         yield return new WaitForSeconds(_healingElementDelay);
         HealElementMethod(element);
-        _isHealingElement = false;
+        _interactions = InteractionsEnum.NotInteracting;
 
     }
 
     private void HealStructure(Building building)
     {
-        _isHealingStructure = true;
         Debug.LogFormat("<color=orange>Structure healing start!</color>");
         _audioManager.SetPublicVariable("Danger_Phase", 0.0f);
-        if (building.hasFinished)
+        if (building.HasFinished)
         {
             building.GiveResource();
         }
         building.ChangePlagueState(PlagueState.Healthy);
         _gameManager.buildingsInfected -= 1;
         Debug.LogFormat("<color=green>Healing structure completed!</color>");
-        _isHealingStructure = false;
 
     }
 
     private IEnumerator CollectResources(Building building)
     {
-        _isCollecting = true;
-        yield return new WaitForSeconds(3.0f);
+        _interactions = InteractionsEnum.Collecting;
+        yield return new WaitForSeconds(_collectingDelay);
         _collectingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        _isCollecting = false;
-        building.GiveResource();
+        if (building.PlagueState == PlagueState.Healthy)
+        {
+            building.GiveResource();
+        }
         _playerController.Animator.SetBool("isCollecting", false);
+        _interactions = InteractionsEnum.NotInteracting;
         Debug.Log("Collecting finished!");
     }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-
     [Header("Indicator data")]
     [Tooltip("Indicator Game Object")]
     public GameObject _targetIndicator;
@@ -20,8 +19,14 @@ public class BuildingManager : MonoBehaviour
     [HideInInspector] public bool isPlaced;
 
     private Building _building;
-    private bool _deathTimer;
-    public float timer;
+    private bool _isDying;
+    private bool _hasCoroutineStarted;
+    [SerializeField]
+    private float _infectionTimer;
+    public float InfectionTimer { get { return _infectionTimer; } }
+    [SerializeField]
+    private float _healingTimer;
+    public float HealingTimer { get { return _healingTimer; } }
 
     private int _numberOfObstacles;
     [SerializeField] private LayerMask _playerLayer;
@@ -31,11 +36,12 @@ public class BuildingManager : MonoBehaviour
     private GameManager _gameManager;
     private AudioManager _audioManager;
     private BuildingPlacer _buildingPlacer;
+    private Coroutine _deathCoroutine;
     
 
     private void Awake()
     {
-        _deathTimer = false;
+        _isDying = false;
         hasValidPlacement = true;
         isPlaced = true;
         _numberOfObstacles = 0;
@@ -56,24 +62,39 @@ public class BuildingManager : MonoBehaviour
     {
         if (_building.PlagueState == PlagueState.Infected)
         {
-            timer += _gameManager.Timer(_building.CurrentPlague, _building.MaxPlagueTime);
-            _audioManager.SetPublicVariable("Danger_Phase", timer);
-            //Debug.Log(timer);
-            if (!_deathTimer)
+            _infectionTimer += _gameManager.Timer(0.0f, _building.MaxPlagueTime);
+            _audioManager.SetPublicVariable("Danger_Phase", _infectionTimer);
+            //Debug.Log(_infectionTimer);
+            if (!_isDying)
             {
+                _deathCoroutine = StartCoroutine(DeathTimer());
                 _targetIndicator.SetActive(true);
-                _building.ChangePlagueState(PlagueState.Infected);
-                StartCoroutine(nameof(DeathTimer));
             }
             
         }
 
-        if(_building.PlagueState == PlagueState.Healthy && _deathTimer)
+        if(_building.PlagueState == PlagueState.Healthy && _isDying)
         {
-            StopCoroutine(nameof(DeathTimer));
+            StopDeathCoroutine();
             _targetIndicator.SetActive(false);
-            _deathTimer = false;
-            timer = _gameManager.ResetTimer();
+            _isDying = false;
+            _infectionTimer = _gameManager.ResetTimer();
+        }
+
+        if(_building.PlagueState == PlagueState.Healing)
+        {
+            StopDeathCoroutine();
+            _healingTimer += _gameManager.Timer(0.0f, _building.MaxHealingTime);
+            if (_healingTimer >= 1.0f)
+            {
+                if (_building.HasFinished)
+                {
+                    _building.GiveResource();
+                }
+                _healingTimer = _gameManager.ResetTimer();
+                _building.ChangePlagueState(PlagueState.Healthy);
+                _gameManager.buildingsInfected--;
+            }
         }
     }
 
@@ -272,9 +293,25 @@ public class BuildingManager : MonoBehaviour
 
     private IEnumerator DeathTimer()
     {
-        _deathTimer = true;
+        _isDying = true;
+        _hasCoroutineStarted = true;
         yield return new WaitForSeconds(_building.MaxPlagueTime);
+        _hasCoroutineStarted = false;
         Destroy(gameObject);
+    }
+
+    private void StopDeathCoroutine()
+    {
+        if (_hasCoroutineStarted)
+        {
+            StopCoroutine(_deathCoroutine);
+            _hasCoroutineStarted = false;
+        }
+    }
+
+    private void LerpMaterials(Material currentMaterial, Material firstMaterial, Material secondMaterial, float timerValue)
+    {
+        currentMaterial.Lerp(firstMaterial, secondMaterial, timerValue);
     }
 
     private void OnDestroy()

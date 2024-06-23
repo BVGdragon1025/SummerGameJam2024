@@ -205,13 +205,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healingElementDelay: 3
-  _healingStructureDelay: 3
+  _collectingDelay: 3
   _plagueElementPenalty: 4
   _plagueStructurePenalty: 3
-  _plagueHealingValue: 2
-  _isHealingElement: 0
-  _isCuringStructure: 0
-  _isCollecting: 0
+  _interactions: 0
   _structures: []
   _element: {fileID: 0}
 --- !u!114 &1303815914484683006
@@ -850,7 +847,6 @@ MonoBehaviour:
   _movement: {x: 0, y: 0, z: 0}
   _indicator: {fileID: 6469228738083428533}
   _interactionsEmitter: {fileID: 1167548883650633181}
-  _collectingEmitter: {fileID: 0}
 --- !u!65 &4924945977269998192
 BoxCollider:
   m_ObjectHideFlags: 0
