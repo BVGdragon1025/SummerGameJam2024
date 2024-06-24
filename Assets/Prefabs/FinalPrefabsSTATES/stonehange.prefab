@@ -219,11 +219,11 @@ MonoBehaviour:
   _targetIndicator: {fileID: 0}
   validPlacementMaterial: {fileID: 2100000, guid: 71e39cf82ed78c645a2de6efb9ba2f54, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: 6ad609c13fa8ba240be349dd662dec81, type: 2}
-  meshComponents:
-  - {fileID: 3114609459358558106}
+  meshComponent: {fileID: 3114609459358558106}
   hasValidPlacement: 0
   isPlaced: 0
-  timer: 0
+  _infectionTimer: 0
+  _healingTimer: 0
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -247,14 +247,16 @@ MonoBehaviour:
   resourceAmount: 5
   spawnRate: 0
   timerText: {fileID: 0}
-  _currentPlague: 0
   _maxPlagueTime: 0
-  hasFinished: 0
-  elementsInTrigger: 0
-  triggerGameObject: {fileID: 5960500574751018701}
+  _maxHealingTime: 0
+  healthyMaterial: {fileID: 2100000, guid: fe640c55775504946943253588276544, type: 2}
+  infectedMaterial: {fileID: 0}
+  plagueMaterial: {fileID: 0}
   healthyState: {fileID: 0}
   infectedState: {fileID: 0}
   plagueGameObject: {fileID: 0}
+  elementsInTrigger: 0
+  triggerGameObject: {fileID: 5960500574751018701}
 --- !u!1 &9072746080177531238
 GameObject:
   m_ObjectHideFlags: 0

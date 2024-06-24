@@ -347,6 +347,7 @@ Transform:
   m_LocalScale: {x: 0.31844, y: 0.31844, z: 0.31844}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 7653137378193877398}
   - {fileID: 7241496968342573829}
   - {fileID: 3149849677774865193}
   - {fileID: 7718929387550127250}
@@ -468,10 +469,11 @@ MonoBehaviour:
   _targetIndicator: {fileID: 0}
   validPlacementMaterial: {fileID: 2100000, guid: 5b9c65b10a163d947810e6acb6bf7dde, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: bd48883d84714104890c6600d80bf0c2, type: 2}
-  meshComponents:
-  - {fileID: 3621463842107248396}
+  meshComponent: {fileID: 3621463842107248396}
   hasValidPlacement: 0
   isPlaced: 0
+  _infectionTimer: 0
+  _healingTimer: 0
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -495,9 +497,12 @@ MonoBehaviour:
   resourceAmount: 10
   spawnRate: 30
   timerText: {fileID: 205604178340245516}
-  _currentPlague: 0
   _maxPlagueTime: 30
   _maxHealingTime: 3
+  healingParticles: {fileID: 2626636708598159130}
+  healthyMaterial: {fileID: 2100000, guid: fea4d60cd5b67a64eb7460c3710ffd2b, type: 2}
+  infectedMaterial: {fileID: 2100000, guid: ffc280c70b1f3804c99879ac974aa8e5, type: 2}
+  plagueMaterial: {fileID: 2100000, guid: f9dff01c70c771a4a838f749463c2b00, type: 2}
   healthyState: {fileID: 2880178888737646497}
   infectedState: {fileID: 8877367438023573844}
   plagueGameObject: {fileID: 4061736197718167314}
@@ -706,3 +711,74 @@ Transform:
   - {fileID: 5455636496186468405}
   m_Father: {fileID: 8554269850702842034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8295897484979253366
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8554269850702842034}
+    m_Modifications:
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673613232119441717, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: m_Name
+      value: HealingParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292446654016530284, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.25
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+--- !u!198 &2626636708598159130 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6292446654016530284, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+  m_PrefabInstance: {fileID: 8295897484979253366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7653137378193877398 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1807514835793746400, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+  m_PrefabInstance: {fileID: 8295897484979253366}
+  m_PrefabAsset: {fileID: 0}

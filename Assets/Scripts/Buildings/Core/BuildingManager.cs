@@ -12,7 +12,7 @@ public class BuildingManager : MonoBehaviour
     public Material validPlacementMaterial;
     public Material invalidPlacementMaterial;
 
-    public MeshRenderer[] meshComponents;
+    public MeshRenderer meshComponent;
     private Dictionary<MeshRenderer, List<Material>> _initialMaterials;
 
     [HideInInspector] public bool hasValidPlacement;
@@ -237,10 +237,8 @@ public class BuildingManager : MonoBehaviour
     {
         if (state == BuildingState.Placed)
         {
-            foreach (MeshRenderer renderer in meshComponents)
-            {
-                renderer.sharedMaterials = _initialMaterials[renderer].ToArray();
-            }
+            meshComponent.sharedMaterials = _initialMaterials[meshComponent].ToArray();
+
         }
         else
         {
@@ -250,16 +248,14 @@ public class BuildingManager : MonoBehaviour
             Material[] materials;
             int numberOfMaterials;
 
-            foreach (MeshRenderer renderer in meshComponents)
+            numberOfMaterials = _initialMaterials[meshComponent].Count;
+            materials = new Material[numberOfMaterials];
+            for (int i = 0; i < numberOfMaterials; i++)
             {
-                numberOfMaterials = _initialMaterials[renderer].Count;
-                materials = new Material[numberOfMaterials];
-                for (int i = 0; i < numberOfMaterials; i++)
-                {
-                    materials[i] = materialToApply;
-                }
-                renderer.sharedMaterials = materials;
+                materials[i] = materialToApply;
             }
+            meshComponent.sharedMaterials = materials;
+            
         }
     }
 
@@ -279,10 +275,7 @@ public class BuildingManager : MonoBehaviour
             _initialMaterials.Clear();
         }
 
-        foreach (MeshRenderer renderer in meshComponents)
-        {
-            _initialMaterials[renderer] = new List<Material>(renderer.sharedMaterials);
-        }
+        _initialMaterials[meshComponent] = new List<Material>(meshComponent.sharedMaterials);
 
     }
 

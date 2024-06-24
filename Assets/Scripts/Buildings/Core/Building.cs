@@ -37,6 +37,7 @@ public abstract class Building : MonoBehaviour
     public bool HasFinished { get { return _hasFinished; } }
 
     [Header("Other Data")]
+    public ParticleSystem healingParticles;
     public Material healthyMaterial;
     public Material infectedMaterial;
     public Material plagueMaterial;
@@ -52,7 +53,7 @@ public abstract class Building : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         _hasFinished = false;
-        _renderer = GetComponent<Renderer>();
+        _renderer = GetComponent<BuildingManager>().meshComponent;
         if(CompareTag("Building"))
             ChangePlagueState(PlagueState.Healthy);
     }
@@ -90,6 +91,7 @@ public abstract class Building : MonoBehaviour
         switch (state)
         {
             case PlagueState.Healthy:
+                healingParticles.Stop();
                 healthyState.SetActive(true);
                 infectedState.SetActive(false);
                 plagueGameObject.SetActive(false);
@@ -98,6 +100,7 @@ public abstract class Building : MonoBehaviour
                     ResetProduction();
                 break;
             case PlagueState.Infected:
+                healingParticles.Stop();
                 infectedState.SetActive(true);
                 healthyState.SetActive(false);
                 plagueGameObject.SetActive(false);
@@ -105,7 +108,7 @@ public abstract class Building : MonoBehaviour
                 StopAllCoroutines();
                 break;
             case PlagueState.Healing:
-
+                healingParticles.Play();
                 break;
             default:
                 Debug.LogWarning($"{name} encountered unknown state! State name: {state}");
