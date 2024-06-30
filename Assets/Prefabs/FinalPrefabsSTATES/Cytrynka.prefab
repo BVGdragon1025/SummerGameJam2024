@@ -109,7 +109,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283313410452035571}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 4.41}
+  m_LocalPosition: {x: 0, y: 0, z: 4.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117,7 +117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.6299998, y: 5.9099994}
+  m_AnchoredPosition: {x: -1.6, y: 6}
   m_SizeDelta: {x: 16, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1999697333116666917
@@ -764,12 +764,20 @@ PrefabInstance:
       value: HealingParticles
       objectReference: {fileID: 0}
     - target: {fileID: 6292446654016530284, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292446654016530284, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6292446654016530284, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292446654016530284, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6292446654016530284, guid: 29e5fde4902ead54f9628678207015f7, type: 3}
       propertyPath: InitialModule.startLifetime.scalar

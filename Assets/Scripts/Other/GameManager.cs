@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Game Over Region
-    [Header("GameOverScreens")]
+    [Header("Game Over Screens")]
     [SerializeField]
     private GameObject _victory;
     [SerializeField]

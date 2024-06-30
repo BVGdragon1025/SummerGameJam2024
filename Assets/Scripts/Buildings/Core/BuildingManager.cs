@@ -63,7 +63,7 @@ public class BuildingManager : MonoBehaviour
         if (_building.PlagueState == PlagueState.Infected)
         {
             _infectionTimer += _gameManager.Timer(0.0f, _building.MaxPlagueTime);
-            _audioManager.SetPublicVariable("Danger_Phase", _infectionTimer);
+            _healingTimer = _gameManager.ResetTimer();
             //Debug.Log(_infectionTimer);
             if (!_isDying)
             {
