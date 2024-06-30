@@ -80,7 +80,11 @@ public class HealingComponent : MonoBehaviour
                     if (building.PlagueState == PlagueState.Infected)
                     {
                         building.ChangePlagueState(PlagueState.Healing);
+                    }
 
+                    if (building.HasFinished && building.PlagueState == PlagueState.Healthy)
+                    {
+                        _collectText.gameObject.SetActive(true);
                     }
                 }
 
@@ -163,6 +167,7 @@ public class HealingComponent : MonoBehaviour
                 component.ChangePlagueState(PlagueState.Infected);
             }
             _structures.Remove(other.gameObject);
+            _collectText.gameObject.SetActive(false);
         }
 
     }
@@ -187,6 +192,7 @@ public class HealingComponent : MonoBehaviour
         {
             building.GiveResource();
         }
+        _collectText.gameObject.SetActive(false);
         _playerController.Animator.SetBool("isCollecting", false);
         _interactions = InteractionsEnum.NotInteracting;
         Debug.Log("Collecting finished!");
