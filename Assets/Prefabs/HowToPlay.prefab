@@ -1353,7 +1353,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'To harvest <i>Structures</i>
 
-    <b>press E</b>'
+    <b>press F</b>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
   m_sharedMaterial: {fileID: 6957120530936090379, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_text: '<b>Elements</b> can be found in the forest.
 
     To heal Infected <i>Element</i>
-    <b>Press E</b> '
+    <b>Press F</b> '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
   m_sharedMaterial: {fileID: 6957120530936090379, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
