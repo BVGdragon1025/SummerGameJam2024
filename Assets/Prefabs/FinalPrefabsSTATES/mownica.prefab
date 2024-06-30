@@ -338,11 +338,11 @@ MonoBehaviour:
   _targetIndicator: {fileID: 0}
   validPlacementMaterial: {fileID: 2100000, guid: bcf87c8565eb0654186e2f2b08b04942, type: 2}
   invalidPlacementMaterial: {fileID: 2100000, guid: fe368ee6f3b537f489ebf7bacca443f1, type: 2}
-  meshComponents:
-  - {fileID: 3114609459358558106}
+  meshComponent: {fileID: 3114609459358558106}
   hasValidPlacement: 0
   isPlaced: 0
-  timer: 0
+  _infectionTimer: 0
+  _healingTimer: 0
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -354,27 +354,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7592349934990317625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90c63b34192cf3944927255baf528324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Rostrum
   buildingType: 3
+  plagueState: 0
   buildingCost: 30
   resourceAmount: 5
-  _spawnRate: 0
+  spawnRate: 0
   timerText: {fileID: 0}
-  _currentPlague: 0
   _maxPlagueTime: 0
-  isInfected: 0
-  hasPlague: 0
-  hasFinished: 0
-  elementsInTrigger: 0
-  triggerGameObject: {fileID: 5960500574751018701}
+  _maxHealingTime: 0
+  healthyMaterial: {fileID: 2100000, guid: bfaf3a27c672c984bb800a1cf4ea112f, type: 2}
+  infectedMaterial: {fileID: 0}
+  plagueMaterial: {fileID: 0}
   healthyState: {fileID: 0}
   infectedState: {fileID: 0}
-  plagueState: {fileID: 0}
+  plagueGameObject: {fileID: 0}
+  elementsInTrigger: 0
+  triggerGameObject: {fileID: 5960500574751018701}
 --- !u!1 &9072746080177531238
 GameObject:
   m_ObjectHideFlags: 0

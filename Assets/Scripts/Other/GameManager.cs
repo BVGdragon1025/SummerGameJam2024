@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Game Over Region
-    [Header("GameOverScreens")]
+    [Header("Game Over Screens")]
     [SerializeField]
     private GameObject _victory;
     [SerializeField]
@@ -104,7 +104,6 @@ public class GameManager : MonoBehaviour
 
         InvokeRepeating(nameof(IncreasePlayerPlague), _plagueIncreaseDelay, _levelData.plagueIncreaseFrequency);
         InvokeRepeating(nameof(SelectBuidingToInfect), _levelData.infectionFrequency, _levelData.infectionFrequency);
-        //InvokeRepeating(nameof(GiveSomePoints), 5.0f, 1.0f);
     }
 
     private void Update()
@@ -114,19 +113,16 @@ public class GameManager : MonoBehaviour
         if (isLevelCompleted)
         {
             CancelInvoke();
-            //CancelInvoke(nameof(GiveSomePoints));
             YouWin();
         }
 
         ChangePoisonPlayerAmbient();
-        ChangePlagueState();
         UpdateSliders();
 
         if(_currentLvlPlagueValue <= 0)
         {
             isLevelCompleted = true;
             _audioManager.SetPublicVariable("Forest_State", 1.0f);
-            //_audioManager.SetPublicVariable("Danger_Phase", 0.0f);
         }
 
     }
@@ -170,10 +166,10 @@ public class GameManager : MonoBehaviour
         if(structures.Count > 0)
         {
             int random = Random.Range(0, structures.Count);
-            if (!structures[random].isInfected && !structures[random].hasPlague)
+            if (structures[random].PlagueState == PlagueState.Healthy)
             {
                 Debug.Log($"Building infected: {structures[random].name}");
-                structures[random].isInfected = true;
+                structures[random].ChangePlagueState(PlagueState.Infected);
                 _audioManager.PlayOneShot(FMODEvents.Instance.structureInfected, structures[random].transform.position);
                 buildingsInfected += 1;
             }
@@ -186,15 +182,6 @@ public class GameManager : MonoBehaviour
     {
         float plagueLvl = _currentPlayerPlagueValue / _levelData.lvlPlagueValue;
         _audioManager.SetPublicVariable("Player_Infection", plagueLvl);
-        //Debug.Log($"Current FMOD Player_Infection value: {plagueLvl} ");
-    }
-
-    private void ChangePlagueState()
-    {
-        if(buildingsInfected == 0 || buildingsInfected == structures.Count)
-        {
-            //_audioManager.SetPublicVariable("Infection_State", 0.0f);
-        }
     }
 
     public float Timer(float timerValue, float timeLimit)
@@ -229,12 +216,6 @@ public class GameManager : MonoBehaviour
     {
         float timerValue = 0.0f;
         return timerValue;
-    }
-
-    public void GiveSomePoints()
-    {
-        //Debug.LogFormat($"Some nature points! <color=#00ff00ff>{_additionalCurrency} pts!</color>");
-        ChangeCurrencyValue(_additionalCurrency);
     }
 
     public void UpdateSliders()

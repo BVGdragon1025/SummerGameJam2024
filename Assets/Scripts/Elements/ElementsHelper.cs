@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class ElementsHelper : MonoBehaviour
 {
-    public List<GameObject> structures;
+    [SerializeField]
+    private int _amountOfStructures = 0;
+    public int AmountOfStructures { get { return _amountOfStructures; }  set { _amountOfStructures = value; } }
     public BuildingType buildingType;
     private GameManager _gameManager;
+    private Collider _collider;
 
     private void Awake()
     {
-        structures = new();
         _gameManager = GameManager.Instance;
+        _collider = GetComponent<Collider>();
 
-    }
-
-    public void AddStructureToList(GameObject gameObject)
-    {
-        structures.Add(gameObject);
     }
 
     private void Update()
     {
-        if (structures.Count == _gameManager.LevelData.maxBuildingInRange)
+        if (_amountOfStructures == _gameManager.LevelData.maxBuildingInRange)
         {
-            gameObject.SetActive(false);
+            if(_collider.enabled)
+                _collider.enabled = false;
+        }
+
+        if(_amountOfStructures < _gameManager.LevelData.maxBuildingInRange)
+        {
+            if(!_collider.enabled)
+                _collider.enabled = true;
         }
     }
 }

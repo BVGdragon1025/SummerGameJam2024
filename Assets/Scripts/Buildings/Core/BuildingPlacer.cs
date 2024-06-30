@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class BuildingPlacer : MonoBehaviour
 {
     [Header("Indicators Section")]
-    [SerializeField, Tooltip("GameObject under Player Brefab, where Indicator prefabs will be stored"), FormerlySerializedAs("_waypointCanvas")]
+    [SerializeField, Tooltip("GameObject under Player Prefab, where Indicator prefabs will be stored"), FormerlySerializedAs("_waypointCanvas")]
     private Transform _indicatorsParent;
     [SerializeField] private GameObject _indicatorObject;
 

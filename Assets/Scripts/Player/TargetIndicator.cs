@@ -18,9 +18,6 @@ public class TargetIndicator : MonoBehaviour
         else
         {
             SetIndicatorActive(true);
-
-            
-            //float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
             transform.LookAt(targetTransform, Vector3.up);
 
         }

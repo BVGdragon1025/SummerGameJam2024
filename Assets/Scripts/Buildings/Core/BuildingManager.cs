@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-
     [Header("Indicator data")]
     [Tooltip("Indicator Game Object")]
     public GameObject _targetIndicator;
@@ -13,15 +12,21 @@ public class BuildingManager : MonoBehaviour
     public Material validPlacementMaterial;
     public Material invalidPlacementMaterial;
 
-    public MeshRenderer[] meshComponents;
+    public MeshRenderer meshComponent;
     private Dictionary<MeshRenderer, List<Material>> _initialMaterials;
 
     [HideInInspector] public bool hasValidPlacement;
     [HideInInspector] public bool isPlaced;
 
     private Building _building;
-    private bool _deathTimer;
-    public float timer;
+    private bool _isDying;
+    private bool _hasCoroutineStarted;
+    [SerializeField]
+    private float _infectionTimer;
+    public float InfectionTimer { get { return _infectionTimer; } }
+    [SerializeField]
+    private float _healingTimer;
+    public float HealingTimer { get { return _healingTimer; } }
 
     private int _numberOfObstacles;
     [SerializeField] private LayerMask _playerLayer;
@@ -31,11 +36,12 @@ public class BuildingManager : MonoBehaviour
     private GameManager _gameManager;
     private AudioManager _audioManager;
     private BuildingPlacer _buildingPlacer;
+    private Coroutine _deathCoroutine;
     
 
     private void Awake()
     {
-        _deathTimer = false;
+        _isDying = false;
         hasValidPlacement = true;
         isPlaced = true;
         _numberOfObstacles = 0;
@@ -54,27 +60,41 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
-        if (_building.isInfected)
+        if (_building.PlagueState == PlagueState.Infected)
         {
-            timer += _gameManager.Timer(_building.CurrentPlague, _building.MaxPlagueTime);
-            _audioManager.SetPublicVariable("Danger_Phase", timer);
-            //Debug.Log(timer);
-            if (!_deathTimer)
+            _infectionTimer += _gameManager.Timer(0.0f, _building.MaxPlagueTime);
+            _healingTimer = _gameManager.ResetTimer();
+            //Debug.Log(_infectionTimer);
+            if (!_isDying)
             {
+                _deathCoroutine = StartCoroutine(DeathTimer());
                 _targetIndicator.SetActive(true);
-                _building.healthyState.SetActive(false);
-                _building.infectedState.SetActive(true);
-                StartCoroutine(nameof(DeathTimer));
             }
             
         }
 
-        if(!_building.isInfected && _deathTimer)
+        if(_building.PlagueState == PlagueState.Healthy && _isDying)
         {
-            StopCoroutine(nameof(DeathTimer));
+            StopDeathCoroutine();
             _targetIndicator.SetActive(false);
-            _deathTimer = false;
-            timer = _gameManager.ResetTimer();
+            _isDying = false;
+            _infectionTimer = _gameManager.ResetTimer();
+        }
+
+        if(_building.PlagueState == PlagueState.Healing)
+        {
+            StopDeathCoroutine();
+            _healingTimer += _gameManager.Timer(0.0f, _building.MaxHealingTime);
+            if (_healingTimer >= 1.0f)
+            {
+                if (_building.HasFinished)
+                {
+                    _building.GiveResource();
+                }
+                _healingTimer = _gameManager.ResetTimer();
+                _building.ChangePlagueState(PlagueState.Healthy);
+                _gameManager.buildingsInfected--;
+            }
         }
     }
 
@@ -191,20 +211,16 @@ public class BuildingManager : MonoBehaviour
             case BuildingState.Placed:
                 isPlaced = true;
                 hasValidPlacement = true;
+                _building.enabled = true;
+                _building.GetComponent<Collider>().excludeLayers = 0;
                 if (gameObject.CompareTag("Building"))
                 {
+                    StartCoroutine(_building.StartProduction(_building.SpawnRate));
                     _targetIndicator = _buildingPlacer.CreateWaypoint(transform);
                     _gameManager.structures.Add(_building);
                     ElementsHelper element = _element.GetComponent<ElementsHelper>();
-                    if (element.buildingType == _building.BuildingType)
-                    {
-                        element.AddStructureToList(gameObject);
-                    }
+                    element.AmountOfStructures++;
                 }
-                _building.triggerGameObject.SetActive(true);
-                _building.GetComponent<Collider>().excludeLayers = 0;
-                
-                
                 break;
             case BuildingState.Valid:
                 hasValidPlacement = true;
@@ -221,10 +237,8 @@ public class BuildingManager : MonoBehaviour
     {
         if (state == BuildingState.Placed)
         {
-            foreach (MeshRenderer renderer in meshComponents)
-            {
-                renderer.sharedMaterials = _initialMaterials[renderer].ToArray();
-            }
+            meshComponent.sharedMaterials = _initialMaterials[meshComponent].ToArray();
+
         }
         else
         {
@@ -234,16 +248,14 @@ public class BuildingManager : MonoBehaviour
             Material[] materials;
             int numberOfMaterials;
 
-            foreach (MeshRenderer renderer in meshComponents)
+            numberOfMaterials = _initialMaterials[meshComponent].Count;
+            materials = new Material[numberOfMaterials];
+            for (int i = 0; i < numberOfMaterials; i++)
             {
-                numberOfMaterials = _initialMaterials[renderer].Count;
-                materials = new Material[numberOfMaterials];
-                for (int i = 0; i < numberOfMaterials; i++)
-                {
-                    materials[i] = materialToApply;
-                }
-                renderer.sharedMaterials = materials;
+                materials[i] = materialToApply;
             }
+            meshComponent.sharedMaterials = materials;
+            
         }
     }
 
@@ -263,10 +275,7 @@ public class BuildingManager : MonoBehaviour
             _initialMaterials.Clear();
         }
 
-        foreach (MeshRenderer renderer in meshComponents)
-        {
-            _initialMaterials[renderer] = new List<Material>(renderer.sharedMaterials);
-        }
+        _initialMaterials[meshComponent] = new List<Material>(meshComponent.sharedMaterials);
 
     }
 
@@ -277,16 +286,46 @@ public class BuildingManager : MonoBehaviour
 
     private IEnumerator DeathTimer()
     {
-        _deathTimer = true;
+        _isDying = true;
+        _hasCoroutineStarted = true;
         yield return new WaitForSeconds(_building.MaxPlagueTime);
-        _building.isInfected = false;
-        _building.hasPlague = true;
-        _targetIndicator.SetActive(false);
-        _building.infectedState.SetActive(false);
-        _building.plagueState.SetActive(true);
-        _building.CurrentPlague = 0.0f;
-        timer = _gameManager.ResetTimer();
-        _deathTimer = false;
+        _hasCoroutineStarted = false;
+        Destroy(gameObject);
+    }
+
+    private void StopDeathCoroutine()
+    {
+        if (_hasCoroutineStarted)
+        {
+            StopCoroutine(_deathCoroutine);
+            _hasCoroutineStarted = false;
+        }
+    }
+
+    private void LerpMaterials(Material currentMaterial, Material firstMaterial, Material secondMaterial, float timerValue)
+    {
+        currentMaterial.Lerp(firstMaterial, secondMaterial, timerValue);
+    }
+
+    private void OnDestroy()
+    {
+        if (isPlaced)
+        {
+            if(_element != null)
+            {
+                _element.GetComponent<ElementsHelper>().AmountOfStructures--;
+            }
+
+            if(_gameManager != null)
+            {
+                _gameManager.buildingsInfected--;
+                _gameManager.structures.Remove(_building);
+            }
+
+            if(_targetIndicator != null)
+                _targetIndicator.SetActive(false);
+        }
+
     }
 
 }
