@@ -85494,7 +85494,6 @@ MonoBehaviour:
   _movement: {x: 0, y: 0, z: 0}
   _indicator: {fileID: 0}
   _interactionsEmitter: {fileID: 0}
-  _collectingEmitter: {fileID: 0}
 --- !u!136 &2143681805
 CapsuleCollider:
   m_ObjectHideFlags: 0

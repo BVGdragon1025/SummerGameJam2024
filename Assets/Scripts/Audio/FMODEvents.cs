@@ -8,9 +8,6 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Player Footsteps")]
     [field: SerializeField] public EventReference playerFootsteps { get; private set; }
 
-    [field: Header("Test SFX")]
-    [field: SerializeField] public EventReference testSFXEvent { get; private set; }
-
     [field: Header("Ambience")]
     [field: SerializeField] public EventReference ambience { get; private set; }
 

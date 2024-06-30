@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using TMPro;
 
 [RequireComponent(typeof(StudioEventEmitter))]
 
@@ -18,9 +19,13 @@ public class HealingComponent : MonoBehaviour
     [SerializeField]
     private float _plagueStructurePenalty;
 
-    [Header("Interaction State")]
+    [Header("Interactions Section")]
     [SerializeField]
     private InteractionsEnum _interactions;
+    [SerializeField]
+    private TextMeshPro _collectText;
+    [SerializeField]
+    private TextMeshPro _healText;
 
     [Header("Object References")]
     [SerializeField]
@@ -75,7 +80,11 @@ public class HealingComponent : MonoBehaviour
                     if (building.PlagueState == PlagueState.Infected)
                     {
                         building.ChangePlagueState(PlagueState.Healing);
+                    }
 
+                    if (building.HasFinished && building.PlagueState == PlagueState.Healthy)
+                    {
+                        _collectText.gameObject.SetActive(true);
                     }
                 }
 
@@ -109,12 +118,14 @@ public class HealingComponent : MonoBehaviour
             ElementsController element = _element.GetComponentInParent<ElementsController>();
             if (element.PlagueState == PlagueState.Infected)
             {
+                _healText.gameObject.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.F) && _interactions == InteractionsEnum.NotInteracting)
                 {
                     _animator.SetBool("isHealing", true);
                     _healingElementCoroutine = StartCoroutine(HealElement(element));
                 }
             }
+
         }
 
         if (_playerController.PlayerMovement != 0)
@@ -146,6 +157,7 @@ public class HealingComponent : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Element"))
         {
             _element = null;
+            _healText.gameObject.SetActive(false);
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Structure"))
@@ -155,6 +167,7 @@ public class HealingComponent : MonoBehaviour
                 component.ChangePlagueState(PlagueState.Infected);
             }
             _structures.Remove(other.gameObject);
+            _collectText.gameObject.SetActive(false);
         }
 
     }
@@ -170,20 +183,6 @@ public class HealingComponent : MonoBehaviour
 
     }
 
-    private void HealStructure(Building building)
-    {
-        Debug.LogFormat("<color=orange>Structure healing start!</color>");
-        _audioManager.SetPublicVariable("Danger_Phase", 0.0f);
-        if (building.HasFinished)
-        {
-            building.GiveResource();
-        }
-        building.ChangePlagueState(PlagueState.Healthy);
-        _gameManager.buildingsInfected -= 1;
-        Debug.LogFormat("<color=green>Healing structure completed!</color>");
-
-    }
-
     private IEnumerator CollectResources(Building building)
     {
         _interactions = InteractionsEnum.Collecting;
@@ -193,6 +192,7 @@ public class HealingComponent : MonoBehaviour
         {
             building.GiveResource();
         }
+        _collectText.gameObject.SetActive(false);
         _playerController.Animator.SetBool("isCollecting", false);
         _interactions = InteractionsEnum.NotInteracting;
         Debug.Log("Collecting finished!");
@@ -203,6 +203,7 @@ public class HealingComponent : MonoBehaviour
         _animator.SetBool("isHealing", false);
         _gameManager.ChangePlayerPlagueLevel(_plagueElementPenalty);
         element.ChangePlagueState(PlagueState.Healthy);
+        _healText.gameObject.SetActive(false);
         Debug.LogFormat("<color=green>Healing completed!</color>");
         
     }
