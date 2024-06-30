@@ -2847,7 +2847,7 @@ MonoBehaviour:
 
     Every 60 seconds, one <i>Structure</i> will become
     infected. When infected, it stops producing resources and must be within your
-    light circle for 5 seconds to be healed. An arrow will guide you to the infected
+    light circle for 3 seconds to be healed. An arrow will guide you to the infected
     <i>Structure</i>. If not healed within 60 seconds, the <i>Structure</i> will
     be consumed by the Plague.'
   m_isRightToLeft: 0
