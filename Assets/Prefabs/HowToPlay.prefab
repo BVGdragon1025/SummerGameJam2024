@@ -753,7 +753,10 @@ MonoBehaviour:
   m_text: 'You can place max. 3 <b>Structures</b> around one healed <i>Element</i>.
 
     To
-    do it, choose one and place it. Right mouse button cancels it.'
+    do it, choose one and place it. Right mouse button cancels it.
+
+    Shift allows
+    you to place multiple.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
   m_sharedMaterial: {fileID: 6957120530936090379, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
@@ -2094,10 +2097,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<b>Elements</b> can by found in the forest.
+  m_text: '<b>Elements</b> can be found in the forest.
 
     To heal Infected <i>Element</i>
-    <b>Press F</b> '
+    <b>Press E</b> '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
   m_sharedMaterial: {fileID: 6957120530936090379, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
@@ -2417,7 +2420,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2844,9 +2847,9 @@ MonoBehaviour:
 
     Every 60 seconds, one <i>Structure</i> will become
     infected. When infected, it stops producing resources and must be within your
-    light circle to be healed. An arrow will guide you to the infected <i>Structure</i>.
-    If not healed within 60 seconds, the <i>Structure</i> will enter a fully infected
-    state. To heal it, press F.'
+    light circle for 5 seconds to be healed. An arrow will guide you to the infected
+    <i>Structure</i>. If not healed within 60 seconds, the <i>Structure</i> will
+    be consumed by the Plague.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
   m_sharedMaterial: {fileID: 6957120530936090379, guid: d103ad273bd88ab44a0f29b57680a864, type: 2}
