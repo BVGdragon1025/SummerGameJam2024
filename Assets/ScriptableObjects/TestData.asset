@@ -20,8 +20,8 @@ MonoBehaviour:
   playerSpeed: 4.5
   maxBuildingInRange: 3
   isObeliskUnlocked: 1
-  isStonehengeUnlocked: 0
-  isRostrumUnlocked: 0
+  isStonehengeUnlocked: 1
+  isRostrumUnlocked: 1
   <DefaultLvlPlagueValue>k__BackingField: 50
   <DefaultCurrency>k__BackingField: 255
   <DefaultPlayerPlagueValue>k__BackingField: 70
