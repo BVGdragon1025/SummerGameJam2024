@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 3345215623312707609}
   - component: {fileID: 6001819810184198183}
   - component: {fileID: 767799241706675407}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: obelisk
   m_TagString: BuildingSpecial
   m_Icon: {fileID: 0}
@@ -294,8 +294,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.7000003, y: 5, z: 6}
-  m_Center: {x: -1.5000001, y: 2.5, z: -3.0000002}
+  m_Size: {x: 6.7, y: 5, z: 1}
+  m_Center: {x: -1.5000004, y: 2.5, z: -4}
 --- !u!54 &3345215623312707609
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -368,6 +368,7 @@ MonoBehaviour:
   timerText: {fileID: 0}
   _maxPlagueTime: 0
   _maxHealingTime: 0
+  healingParticles: {fileID: 0}
   healthyMaterial: {fileID: 2100000, guid: 14d2bc93eb4a71949aa6dc2716c5ee5f, type: 2}
   infectedMaterial: {fileID: 0}
   plagueMaterial: {fileID: 0}

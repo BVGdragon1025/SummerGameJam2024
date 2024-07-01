@@ -249,6 +249,7 @@ MonoBehaviour:
   timerText: {fileID: 0}
   _maxPlagueTime: 0
   _maxHealingTime: 0
+  healingParticles: {fileID: 0}
   healthyMaterial: {fileID: 2100000, guid: fe640c55775504946943253588276544, type: 2}
   infectedMaterial: {fileID: 0}
   plagueMaterial: {fileID: 0}

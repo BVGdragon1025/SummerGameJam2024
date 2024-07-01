@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 8768757496158321158}
   - component: {fileID: 7948396919083635242}
   - component: {fileID: 5843313392685879804}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: mownica
   m_TagString: BuildingSpecial
   m_Icon: {fileID: 0}
@@ -294,8 +294,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 2, z: 3.4}
-  m_Center: {x: -1.5, y: 1, z: -2}
+  m_Size: {x: 3.5, y: 2, z: 1}
+  m_Center: {x: -1.5, y: 1, z: -3}
 --- !u!54 &8768757496158321158
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -368,6 +368,7 @@ MonoBehaviour:
   timerText: {fileID: 0}
   _maxPlagueTime: 0
   _maxHealingTime: 0
+  healingParticles: {fileID: 0}
   healthyMaterial: {fileID: 2100000, guid: bfaf3a27c672c984bb800a1cf4ea112f, type: 2}
   infectedMaterial: {fileID: 0}
   plagueMaterial: {fileID: 0}

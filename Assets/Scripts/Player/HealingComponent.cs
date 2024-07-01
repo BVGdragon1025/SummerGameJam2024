@@ -70,6 +70,11 @@ public class HealingComponent : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (_interactions == InteractionsEnum.Collecting)
+        {
+            PlayCollectSound();
+        }
+
         if (_structures.Count != 0)
         {
             for (int i = 0; i < _structures.Count; i++)
@@ -103,8 +108,7 @@ public class HealingComponent : MonoBehaviour
                             Debug.Log("Collecting resources");
                             _animator.SetBool("isCollecting", true);
                             StartCoroutine(CollectResources(building));
-                            PlayCollectSound();
-
+                            
                         }
                     }
 

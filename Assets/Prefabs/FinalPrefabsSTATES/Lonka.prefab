@@ -10412,7 +10412,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 17.43, y: 4, z: 2.9999998}
-  m_Center: {x: -0.89, y: 0, z: 1.5}
+  m_Center: {x: -0.89, y: 0, z: 2}
 --- !u!1 &6763197213255456389
 GameObject:
   m_ObjectHideFlags: 0
@@ -10533,7 +10533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1c7da36dc710d41ab03c862993dec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structures: []
+  _amountOfStructures: 0
   buildingType: 1
 --- !u!1 &6890493524798946481
 GameObject:
@@ -10671,7 +10671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924d921ec8e17eb488ebdd575bc5e484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasPlague: 0
   _objectWithPlague: {fileID: 1268442830188912301}
   _healthyObject: {fileID: 6890493524798946481}
 --- !u!1 &9076891138303904592
@@ -10809,7 +10808,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 17.43, y: 4, z: 2.9999998}
-  m_Center: {x: -0.89, y: 0, z: 1.5}
+  m_Center: {x: -0.89, y: 0, z: 2}
 --- !u!1001 &9058681041152221246
 PrefabInstance:
   m_ObjectHideFlags: 0

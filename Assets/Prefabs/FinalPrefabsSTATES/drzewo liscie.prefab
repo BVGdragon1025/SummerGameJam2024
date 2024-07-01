@@ -4982,8 +4982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1c7da36dc710d41ab03c862993dec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structures: []
-  _maxStructures: 3
+  _amountOfStructures: 0
   buildingType: 2
 --- !u!1 &5822087306788747752
 GameObject:
@@ -5154,7 +5153,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15, y: 4, z: 2.9999998}
+  m_Size: {x: 12, y: 4, z: 2.9999998}
   m_Center: {x: -0.81, y: 0, z: 1.5}
 --- !u!1 &6401062547841389112
 GameObject:
@@ -5411,7 +5410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924d921ec8e17eb488ebdd575bc5e484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasPlague: 0
   _objectWithPlague: {fileID: 1268442830188912301}
   _healthyObject: {fileID: 6890493524798946481}
 --- !u!1 &9072746080177531238
@@ -5508,10 +5506,6 @@ PrefabInstance:
     - target: {fileID: 1621587020423157435, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2110226628087602994, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
-      propertyPath: m_Size.x
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2110226628087602994, guid: 7db9e5b4e55e5654ebae4bd602bc674f, type: 3}
       propertyPath: m_Center.x
