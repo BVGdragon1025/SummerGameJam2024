@@ -46,6 +46,9 @@ public class MainMenu : MonoBehaviour
 				if(videoPlayer.isPlaying)
 					skipButtonObject.SetActive(true);
 
+				if(videoPlayer.time >= videoPlayer.clip.length - 4.0f)
+                    skipButtonObject.SetActive(false);
+
                 if (Input.GetKeyDown(KeyCode.Space) && _asyncSceneLoad.allowSceneActivation != true)
                 {
                     skipButtonObject.SetActive(false);
