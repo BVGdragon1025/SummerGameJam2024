@@ -38,15 +38,17 @@ public class MainMenu : MonoBehaviour
 		_asyncSceneLoad = SceneManager.LoadSceneAsync(GetRandomScene());
 		_asyncSceneLoad.allowSceneActivation = false;
 
-
 		while (!_asyncSceneLoad.isDone)
 		{
+            double videoPercentage = videoPlayer.time / videoPlayer.clip.length;
+            Debug.Log(videoPercentage);
+
             if (_asyncSceneLoad.progress >= 0.9f)
             {
 				if(videoPlayer.isPlaying)
 					skipButtonObject.SetActive(true);
 
-				if(videoPlayer.time >= videoPlayer.clip.length - 4.0f)
+				if(videoPercentage >= 0.95)
                     skipButtonObject.SetActive(false);
 
                 if (Input.GetKeyDown(KeyCode.Space) && _asyncSceneLoad.allowSceneActivation != true)
@@ -102,5 +104,10 @@ public class MainMenu : MonoBehaviour
 	{
 		AudioManager.Instance.StopEvent(FMODEvents.Instance.menuMusic);
 	}
+
+    private void OnDestroy()
+    {
+        _asyncSceneLoad = null;
+    }
 
 }
