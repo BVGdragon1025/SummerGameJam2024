@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -10,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public delegate void ValueDelegate(float value, BuildingType buildingType);
     public static event ValueDelegate OnValueChange;
+    public static System.Action OnLevelFinished;
 
     #region Level Specific
     [Header("Level specific data")]
@@ -57,8 +57,6 @@ public class GameManager : MonoBehaviour
     public bool isLevelCompleted;
     public List<Building> structures = new();
     public int buildingsInfected;
-    [SerializeField] private GameObject _exitTrigger;
-    [SerializeField] private GameObject _infectedGate;
     #endregion
     
     #region Sliders
@@ -247,8 +245,8 @@ public class GameManager : MonoBehaviour
 
     private void YouWin()
     {
-        _exitTrigger.SetActive(true);
-        _infectedGate.SetActive(false);
+
+        OnLevelFinished?.Invoke();
         
     }
 
