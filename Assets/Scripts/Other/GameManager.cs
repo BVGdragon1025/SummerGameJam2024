@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void ValueDelegate(float value, BuildingType buildingType);
+    public static event ValueDelegate OnValueChange;
+    public static System.Action OnLevelFinished;
+
     #region Level Specific
     [Header("Level specific data")]
     //Private variables
@@ -53,10 +57,8 @@ public class GameManager : MonoBehaviour
     public bool isLevelCompleted;
     public List<Building> structures = new();
     public int buildingsInfected;
-    [SerializeField] private GameObject _exitTrigger;
-    [SerializeField] private GameObject _infectedGate;
     #endregion
-
+    
     #region Sliders
     [Header("Sliders")]
     [SerializeField]
@@ -92,13 +94,14 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-        SetupGame();
+        //SetupGame();
         Time.timeScale = 1.0f;
 
     }
 
     private void Start()
     {
+        SetupGame();
         _audioManager = AudioManager.Instance;
         _audioManager.SetPublicVariable("Forest_State", 0.0f);
 
@@ -108,47 +111,46 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        KillPlayer();
-
-        if (isLevelCompleted)
-        {
-            CancelInvoke();
-            YouWin();
-        }
-
         ChangePoisonPlayerAmbient();
-        UpdateSliders();
-
-        if(_currentLvlPlagueValue <= 0)
-        {
-            isLevelCompleted = true;
-            _audioManager.SetPublicVariable("Forest_State", 1.0f);
-        }
 
     }
 
     public void ChangeForestPlagueLevel(float value)
     {
         _currentLvlPlagueValue = Mathf.Clamp(_currentLvlPlagueValue + value, 0, _levelData.lvlPlagueValue);
+        OnValueChange?.Invoke(_currentLvlPlagueValue, BuildingType.Pond);
+
+        if(_currentLvlPlagueValue <= 0)
+        {
+            isLevelCompleted = true;
+            _audioManager.SetPublicVariable("Forest_State", 1.0f);
+            CancelInvoke();
+            YouWin();
+        }
     }
 
     public void ChangeCurrencyValue(float value)
     {
         _currentCurrency = Mathf.Clamp(_currentCurrency + value, 0, _levelData.currency);
+        OnValueChange?.Invoke(_currentCurrency, BuildingType.Tree);
     }
 
     public void ChangePlayerPlagueLevel(float value)
     {
         _currentPlayerPlagueValue = Mathf.Clamp(_currentPlayerPlagueValue + value, 0, _levelData.playerPlagueValue);
+        OnValueChange?.Invoke(_currentPlayerPlagueValue, BuildingType.Meadow);
+
+        if(_currentPlayerPlagueValue >= _levelData.lvlPlagueValue)
+        {
+            KillPlayer();
+        }
     }
 
     private void IncreasePlayerPlague()
     {
-
         Debug.Log("Increasing player plague!");
         
         ChangePlayerPlagueLevel(_plagueIncreaseValue);
-        
 
     }
 
@@ -180,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     private void ChangePoisonPlayerAmbient()
     {
-        float plagueLvl = _currentPlayerPlagueValue / _levelData.lvlPlagueValue;
+        float plagueLvl = _currentPlayerPlagueValue / _levelData.playerPlagueValue;
         _audioManager.SetPublicVariable("Player_Infection", plagueLvl);
     }
 
@@ -210,19 +212,16 @@ public class GameManager : MonoBehaviour
         _currentLvlPlagueValue = _levelData.lvlPlagueValue;
         _currentPlayerPlagueValue = 0;
         _currentCurrency = _startingCurrency;
+
+        OnValueChange?.Invoke(_startingCurrency, BuildingType.Tree);
+        OnValueChange?.Invoke(0, BuildingType.Meadow);
+        OnValueChange?.Invoke(_levelData.lvlPlagueValue, BuildingType.Pond);
     }
 
     public float ResetTimer()
     {
         float timerValue = 0.0f;
         return timerValue;
-    }
-
-    public void UpdateSliders()
-    {
-        _forestPlagueSlider.value = _currentLvlPlagueValue;
-        _currencySlider.value = _currentCurrency;
-        _playerPlagueSlider.value = _currentPlayerPlagueValue;
     }
 
     private void PrepareButtons()
@@ -246,14 +245,9 @@ public class GameManager : MonoBehaviour
 
     private void YouWin()
     {
-        if (isLevelCompleted)
-        {
-            if (!_exitTrigger.activeInHierarchy)
-            {
-                _exitTrigger.SetActive(true);
-                _infectedGate.SetActive(false);
-            }
-        }
+
+        OnLevelFinished?.Invoke();
+        
     }
 
     public void RestartGame()

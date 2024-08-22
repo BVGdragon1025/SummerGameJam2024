@@ -18,9 +18,9 @@ public class LevelUI : MonoBehaviour
     {
         if (_gameManager != null)
         {
-            healthText.text = $"{_gameManager.CurrentPlayerPlague}";
-            moneyText.text = $"{_gameManager.CurrentCurrency}";
-            plagueText.text = $"{_gameManager.CurrentLvlPlague}";
+            healthText.SetText($"{_gameManager.CurrentPlayerPlague}");
+            moneyText.SetText($"{_gameManager.CurrentCurrency}");
+            plagueText.SetText($"{_gameManager.CurrentLvlPlague}");
         }
     }
 }

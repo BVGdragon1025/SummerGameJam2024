@@ -46,6 +46,7 @@ public abstract class Building : MonoBehaviour
     [FormerlySerializedAs("plagueState")]
     public GameObject plagueGameObject;
     private Renderer _renderer;
+    protected Coroutine productionCoroutine;
 
     protected GameManager gameManager;
 
@@ -105,6 +106,7 @@ public abstract class Building : MonoBehaviour
                 healthyState.SetActive(false);
                 plagueGameObject.SetActive(false);
                 timerText.gameObject.SetActive(false);
+                StopCoroutine(productionCoroutine);
                 StopAllCoroutines();
                 break;
             case PlagueState.Healing:

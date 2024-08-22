@@ -60,7 +60,7 @@ public class BuildingBasic : Building
     public override void ResetProduction()
     {
         ResetTimer();
-        StartCoroutine(StartProduction(_productionTimer));
+        productionCoroutine = StartCoroutine(StartProduction(_productionTimer));
     }
 
     public override void GiveResource()
